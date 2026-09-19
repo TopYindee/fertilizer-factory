@@ -1,0 +1,438 @@
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="070a7585-6afc-50b5-6c7e-065f6cf2334b")}catch(e){}}();
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,820308,775159,e=>{"use strict";e.i(850036);var t,s,a=e.i(479084),r=e.i(55956),n=((t={}).API="api",t.STORAGE="storage",t.AUTH="auth",t.QUERY_PERFORMANCE="query_performance",t.DATABASE="database",t);e.s(["Presets",()=>n],775159);var o=e.i(562616),i=((s={}).LAST_10_MINUTES="Last 10 minutes",s.LAST_30_MINUTES="Last 30 minutes",s.LAST_60_MINUTES="Last 60 minutes",s.LAST_3_HOURS="Last 3 hours",s.LAST_24_HOURS="Last 24 hours",s.LAST_7_DAYS="Last 7 days",s.LAST_14_DAYS="Last 14 days",s.LAST_28_DAYS="Last 28 days",s);let l=[{text:"Last 10 minutes",calcFrom:()=>(0,r.default)().subtract(10,"minute").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["free","pro","team","enterprise","platform"]},{text:"Last 30 minutes",calcFrom:()=>(0,r.default)().subtract(30,"minute").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["free","pro","team","enterprise","platform"]},{text:"Last 60 minutes",calcFrom:()=>(0,r.default)().subtract(1,"hour").toISOString(),calcTo:()=>(0,r.default)().toISOString(),default:!0,availableIn:["free","pro","team","enterprise","platform"]},{text:"Last 3 hours",calcFrom:()=>(0,r.default)().subtract(3,"hour").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["free","pro","team","enterprise","platform"]},{text:"Last 24 hours",calcFrom:()=>(0,r.default)().subtract(1,"day").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["free","pro","team","enterprise","platform"]},{text:"Last 7 days",calcFrom:()=>(0,r.default)().subtract(7,"day").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["pro","team","enterprise"]},{text:"Last 14 days",calcFrom:()=>(0,r.default)().subtract(14,"day").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["team","enterprise"]},{text:"Last 28 days",calcFrom:()=>(0,r.default)().subtract(28,"day").toISOString(),calcTo:()=>(0,r.default)().toISOString(),availableIn:["team","enterprise"]}],u={iso_timestamp_start:l[0].calcFrom(),iso_timestamp_end:l[0].calcTo()};function c(e){return e.replace(/^WHERE/,"AND")}function m(e,t=!0){if(0===e.length)return o.safeSql``;let s=e.map(e=>{let t,s=e.key.split("."),a=[s[s.length-2],s[s.length-1]].join("."),r=e.key.includes(".")?a:e.key;try{t=(0,o.quotedIdent)(r)}catch{return null}let n=isNaN(Number(e.value))?(0,o.analyticsLiteral)(String(e.value)):(0,o.analyticsLiteral)(Number(e.value));switch(e.compare){case"matches":return o.safeSql`REGEXP_CONTAINS(${t}, ${n})`;case"is":default:return o.safeSql`${t} = ${n}`;case"!=":return o.safeSql`${t} != ${n}`;case">=":return o.safeSql`${t} >= ${n}`;case"<=":return o.safeSql`${t} <= ${n}`;case">":return o.safeSql`${t} > ${n}`;case"<":return o.safeSql`${t} < ${n}`}}).filter(e=>null!==e);if(0===s.length)return o.safeSql``;let a=(0,o.joinSqlFragments)(s," AND ");return t?o.safeSql`WHERE ${a}`:o.safeSql`AND ${a}`}let _={[n.API]:{title:"API",queries:{totalRequests:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-total-requests
+        select
+          cast(timestamp_trunc(t.timestamp, hour) as datetime) as timestamp,
+          count(t.id) as count
+        FROM edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+          ${m(e)}
+        GROUP BY
+          timestamp
+        ORDER BY
+          timestamp ASC`},topRoutes:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-top-routes
+        select
+          request.path as path,
+          request.method as method,
+          request.search as search,
+          response.status_code as status_code,
+          count(t.id) as count
+        from edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+          ${m(e)}
+        group by
+          request.path, request.method, request.search, response.status_code
+        order by
+          count desc
+        limit 10
+        `},errorCounts:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-error-counts
+        select
+          cast(timestamp_trunc(t.timestamp, hour) as datetime) as timestamp,
+          count(t.id) as count
+        FROM edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+        WHERE
+          response.status_code >= 400
+        ${m(e,!1)}
+        GROUP BY
+          timestamp
+        ORDER BY
+          timestamp ASC
+        `},topErrorRoutes:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-top-error-routes
+        select
+          request.path as path,
+          request.method as method,
+          request.search as search,
+          response.status_code as status_code,
+          count(t.id) as count
+        from edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+        where
+          response.status_code >= 400
+        ${m(e,!1)}
+        group by
+          request.path, request.method, request.search, response.status_code
+        order by
+          count desc
+        limit 10
+        `},responseSpeed:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-response-speed
+        select
+          cast(timestamp_trunc(t.timestamp, hour) as datetime) as timestamp,
+          avg(response.origin_time) as avg
+        FROM
+          edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+          ${m(e)}
+        GROUP BY
+          timestamp
+        ORDER BY
+          timestamp ASC
+      `},topSlowRoutes:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-top-slow-routes
+        select
+          request.path as path,
+          request.method as method,
+          request.search as search,
+          response.status_code as status_code,
+          count(t.id) as count,
+          avg(response.origin_time) as avg
+        from edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+        ${m(e)}
+        group by
+          request.path, request.method, request.search, response.status_code
+        order by
+          avg desc
+        limit 10
+        `},networkTraffic:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-network-traffic
+        select
+          cast(timestamp_trunc(t.timestamp, hour) as datetime) as timestamp,
+          coalesce(
+            safe_divide(
+              sum(
+                cast(coalesce(headers.content_length, "0") as int64)
+              ),
+              1000000
+            ),
+            0
+          ) as ingress_mb,
+          coalesce(
+            safe_divide(
+              sum(
+                cast(coalesce(resp_headers.content_length, "0") as int64)
+              ),
+              1000000
+            ),
+            0
+          ) as egress_mb,
+        FROM
+          edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+          cross join unnest(response.headers) as resp_headers
+          ${m(e)}
+        GROUP BY
+          timestamp
+        ORDER BY
+          timestamp ASC
+        `},requestsByCountry:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-api-requests-by-country
+        select
+          cf.country as country,
+          count(t.id) as count
+        from edge_logs t
+          cross join unnest(metadata) as m
+          cross join unnest(m.response) as response
+          cross join unnest(m.request) as request
+          cross join unnest(request.headers) as headers
+          cross join unnest(request.cf) as cf
+        where
+          cf.country is not null
+        ${m(e,!1)}
+        group by
+          cf.country
+        `}}},[n.AUTH]:{title:"",queries:{}},[n.STORAGE]:{title:"Storage",queries:{cacheHitRate:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-storage-cache-hit-rate
+SELECT
+  timestamp_trunc(timestamp, hour) as timestamp,
+  countif( h.cf_cache_status in ('HIT', 'STALE', 'REVALIDATED', 'UPDATING') ) as hit_count,
+  countif( h.cf_cache_status in ('MISS', 'NONE/UNKNOWN', 'EXPIRED', 'BYPASS', 'DYNAMIC') ) as miss_count
+from edge_logs f
+  cross join unnest(f.metadata) as m
+  cross join unnest(m.request) as r
+  cross join unnest(m.response) as res
+  cross join unnest(res.headers) as h
+where starts_with(r.path, '/storage/v1/object') and r.method = 'GET'
+  ${m(e,!1)}
+group by timestamp
+order by timestamp desc
+`},topCacheMisses:{queryType:"logs",safeSql:e=>o.safeSql`
+        -- reports-storage-top-cache-misses
+SELECT
+  r.path as path,
+  r.search as search,
+  count(id) as count
+from edge_logs f
+  cross join unnest(f.metadata) as m
+  cross join unnest(m.request) as r
+  cross join unnest(m.response) as res
+  cross join unnest(res.headers) as h
+where starts_with(r.path, '/storage/v1/object')
+  and r.method = 'GET'
+  and h.cf_cache_status in ('MISS', 'NONE/UNKNOWN', 'EXPIRED', 'BYPASS', 'DYNAMIC')
+  ${m(e,!1)}
+group by path, search
+order by count desc
+limit 12
+    `}}},[n.QUERY_PERFORMANCE]:{title:"Query performance",queries:{mostFrequentlyInvoked:{queryType:"db",safeSql:(e,t,s,r=!1,n=!1)=>a.safeSql`
+        -- reports-query-performance-most-frequently-invoked
+set search_path to public, extensions;
+
+select
+    auth.rolname,
+    statements.query,
+    statements.calls,
+    -- -- Postgres 13, 14, 15
+    statements.total_exec_time + statements.total_plan_time as total_time,
+    statements.min_exec_time + statements.min_plan_time as min_time,
+    statements.max_exec_time + statements.max_plan_time as max_time,
+    statements.mean_exec_time + statements.mean_plan_time as mean_time,
+    -- -- Postgres <= 12
+    -- total_time,
+    -- min_time,
+    -- max_time,
+    -- mean_time,
+    coalesce(statements.rows::numeric / nullif(statements.calls, 0), 0) as avg_rows,
+    statements.rows as rows_read,
+    case
+      when (statements.shared_blks_hit + statements.shared_blks_read) > 0
+      then round(
+        (statements.shared_blks_hit * 100.0) /
+        (statements.shared_blks_hit + statements.shared_blks_read),
+        2
+      )
+      else 0
+    end as cache_hit_rate${r?a.safeSql`,
+    case
+      when (lower(statements.query) like 'select%' or lower(statements.query) like 'with pgrst%')
+      then (
+        select json_build_object(
+          'has_suggestion', array_length(index_statements, 1) > 0,
+          'startup_cost_before', startup_cost_before,
+          'startup_cost_after', startup_cost_after,
+          'total_cost_before', total_cost_before,
+          'total_cost_after', total_cost_after,
+          'index_statements', index_statements
+        )
+        from index_advisor(statements.query)
+      )
+      else null
+    end as index_advisor_result`:a.safeSql``}
+  from pg_stat_statements as statements
+    inner join pg_authid as auth on statements.userid = auth.oid
+  -- skip queries that were never actually executed
+  WHERE statements.calls > 0 ${t?c(t):a.safeSql``}
+  ${s||a.safeSql`order by statements.calls desc`}
+  limit 20`},mostTimeConsuming:{queryType:"db",safeSql:(e,t,s,r=!1,n=!1)=>a.safeSql`
+        -- reports-query-performance-most-time-consuming
+set search_path to public, extensions;
+
+-- compute total time once up front so we don't need a window function over all rows
+with grand_total as (
+  select coalesce(nullif(sum(total_exec_time + total_plan_time), 0), 1) as v
+  from pg_stat_statements where calls > 0
+)
+select
+    auth.rolname,
+    statements.query,
+    statements.calls,
+    statements.total_exec_time + statements.total_plan_time as total_time,
+    statements.mean_exec_time + statements.mean_plan_time as mean_time,
+    coalesce(
+      ((statements.total_exec_time + statements.total_plan_time) /
+        (select v from grand_total)) *
+        100,
+      0
+    ) as prop_total_time${r?a.safeSql`,
+    case
+      when (lower(statements.query) like 'select%' or lower(statements.query) like 'with pgrst%')
+      then (
+        select json_build_object(
+          'has_suggestion', array_length(index_statements, 1) > 0,
+          'startup_cost_before', startup_cost_before,
+          'startup_cost_after', startup_cost_after,
+          'total_cost_before', total_cost_before,
+          'total_cost_after', total_cost_after,
+          'index_statements', index_statements
+        )
+        from index_advisor(statements.query)
+      )
+      else null
+    end as index_advisor_result`:a.safeSql``}
+  from pg_stat_statements as statements
+    inner join pg_authid as auth on statements.userid = auth.oid
+  -- skip queries that were never actually executed
+  WHERE statements.calls > 0 ${t?c(t):a.safeSql``}
+  ${s||a.safeSql`order by total_time desc`}
+  limit 20`},slowestExecutionTime:{queryType:"db",safeSql:(e,t,s,r=!1,n=!1)=>a.safeSql`
+        -- reports-query-performance-slowest-execution-time
+set search_path to public, extensions;
+
+select
+    auth.rolname,
+    statements.query,
+    statements.calls,
+    -- -- Postgres 13, 14, 15
+    statements.total_exec_time + statements.total_plan_time as total_time,
+    statements.min_exec_time + statements.min_plan_time as min_time,
+    statements.max_exec_time + statements.max_plan_time as max_time,
+    statements.mean_exec_time + statements.mean_plan_time as mean_time,
+    -- -- Postgres <= 12
+    -- total_time,
+    -- min_time,
+    -- max_time,
+    -- mean_time,
+    coalesce(statements.rows::numeric / nullif(statements.calls, 0), 0) as avg_rows${r?a.safeSql`,
+    case
+      when (lower(statements.query) like 'select%' or lower(statements.query) like 'with pgrst%')
+      then (
+        select json_build_object(
+          'has_suggestion', array_length(index_statements, 1) > 0,
+          'startup_cost_before', startup_cost_before,
+          'startup_cost_after', startup_cost_after,
+          'total_cost_before', total_cost_before,
+          'total_cost_after', total_cost_after,
+          'index_statements', index_statements
+        )
+        from index_advisor(statements.query)
+      )
+      else null
+    end as index_advisor_result`:a.safeSql``}
+  from pg_stat_statements as statements
+    inner join pg_authid as auth on statements.userid = auth.oid
+  -- skip queries that were never actually executed
+  WHERE statements.calls > 0 ${t?c(t):a.safeSql``}
+  ${s||a.safeSql`order by max_time desc`}
+  limit 20`},queryHitRate:{queryType:"db",safeSql:e=>a.safeSql`-- reports-query-performance-cache-and-index-hit-rate
+select
+    'index hit rate' as name,
+    (sum(idx_blks_hit)) / nullif(sum(idx_blks_hit + idx_blks_read),0) as ratio
+  from pg_statio_user_indexes
+  union all
+  select
+    'table hit rate' as name,
+    sum(heap_blks_hit) / nullif(sum(heap_blks_hit) + sum(heap_blks_read),0) as ratio
+  from pg_statio_user_tables;`},unified:{queryType:"db",safeSql:(e,t,s,r=!1,n=!1,o=1,i=20)=>{let l=(o-1)*i,u=n&&r?l+10*i:l+i,m=r?Math.min(u,500):u;return a.safeSql`
+        -- reports-query-performance-unified
+        set search_path to public, extensions;
+
+        -- compute total time once up front so we don't need a window function over all rows
+        with grand_total as (
+          select coalesce(nullif(sum(total_exec_time + total_plan_time), 0), 1) as v
+          from pg_stat_statements where calls > 0
+        ),
+        base as (
+          select
+            auth.rolname,
+            statements.query,
+            statements.calls,
+            statements.total_exec_time + statements.total_plan_time as total_time,
+            statements.min_exec_time + statements.min_plan_time as min_time,
+            statements.max_exec_time + statements.max_plan_time as max_time,
+            statements.mean_exec_time + statements.mean_plan_time as mean_time,
+            coalesce(statements.rows::numeric / nullif(statements.calls, 0), 0) as avg_rows,
+            statements.rows as rows_read,
+            statements.shared_blks_hit as debug_hit,
+            statements.shared_blks_read as debug_read,
+            case
+              when (statements.shared_blks_hit + statements.shared_blks_read) > 0
+              then (statements.shared_blks_hit::numeric * 100.0) /
+                   (statements.shared_blks_hit + statements.shared_blks_read)
+              else 0
+            end as cache_hit_rate,
+            coalesce(
+              ((statements.total_exec_time + statements.total_plan_time) /
+                (select v from grand_total)) *
+                100,
+              0
+            ) as prop_total_time
+          from pg_stat_statements as statements
+            inner join pg_authid as auth on statements.userid = auth.oid
+          -- skip queries that were never actually executed
+          WHERE statements.calls > 0 ${t?c(t):a.safeSql``}
+          ${s||a.safeSql`order by total_time desc`}
+          ${null!==m?a.safeSql`limit ${(0,a.literal)(m)}`:a.safeSql``}
+        ),
+        query_results as (
+          select
+            base.*${r?a.safeSql`,
+            case
+              when (lower(base.query) like 'select%' or lower(base.query) like 'with pgrst%')
+              then (
+                select json_build_object(
+                  'has_suggestion', array_length(index_statements, 1) > 0,
+                  'startup_cost_before', startup_cost_before,
+                  'startup_cost_after', startup_cost_after,
+                  'total_cost_before', total_cost_before,
+                  'total_cost_after', total_cost_after,
+                  'index_statements', index_statements
+                )
+                from index_advisor(base.query)
+              )
+              else null
+            end as index_advisor_result`:a.safeSql``}
+          from base
+        )
+        select *
+        from query_results
+        ${n&&r?a.safeSql`where (index_advisor_result->>'has_suggestion')::boolean = true`:a.safeSql``}
+        ${s||a.safeSql`order by total_time desc`}
+        limit ${(0,a.literal)(i)} offset ${(0,a.literal)(l)}`}},slowQueriesCount:{queryType:"db",safeSql:()=>a.safeSql`
+        -- reports-query-performance-slow-queries-count
+        set search_path to public, extensions;
+
+        -- Count of slow queries (> 1 second average)
+        SELECT count(*) as slow_queries_count
+        -- alias needed to reference columns in WHERE
+        FROM pg_stat_statements as statements
+        -- skip never-executed queries; mean_exec_time > 1000ms = avg over 1 second
+        WHERE statements.calls > 0 AND statements.mean_exec_time > 1000;`},queryMetrics:{queryType:"db",safeSql:(e,t,s,r=!1,n=!1)=>a.safeSql`
+        -- reports-query-performance-metrics
+        set search_path to public, extensions;
+
+        SELECT
+          COALESCE(ROUND(AVG(statements.rows::numeric / NULLIF(statements.calls, 0)), 1), 0) as avg_rows_per_call,
+          COUNT(*) FILTER (WHERE statements.total_exec_time + statements.total_plan_time > 1000) as slow_queries,
+          COALESCE(
+            ROUND(
+              SUM(statements.shared_blks_hit) * 100.0 /
+              NULLIF(SUM(statements.shared_blks_hit + statements.shared_blks_read), 0),
+              2
+            ), 0
+          ) || '%' as cache_hit_rate
+        FROM pg_stat_statements as statements
+        -- skip queries that were never actually executed
+        WHERE statements.calls > 0 ${t?c(t):a.safeSql``}
+        ${s||a.safeSql``}`}}},[n.DATABASE]:{title:"database",queries:{largeObjects:{queryType:"db",safeSql:e=>a.safeSql`-- reports-database-large-objects
+SELECT
+        SCHEMA_NAME,
+        relname,
+        table_size
+      FROM
+        (SELECT
+          pg_catalog.pg_namespace.nspname AS SCHEMA_NAME,
+          relname,
+          pg_total_relation_size(pg_catalog.pg_class.oid) AS table_size
+        FROM pg_catalog.pg_class
+        JOIN pg_catalog.pg_namespace ON relnamespace = pg_catalog.pg_namespace.oid
+        ) t
+      WHERE SCHEMA_NAME NOT LIKE 'pg_%'
+      ORDER BY table_size DESC
+      LIMIT 5;`}}}};e.s(["BURSTABLE_IO_METRIC_KEYS",0,["disk_io_budget","disk_io_consumption"],"DEFAULT_QUERY_PARAMS",0,u,"DEPRECATED_REPORTS",0,["total_realtime_ingress","total_rest_options_requests","total_auth_ingress","total_auth_get_requests","total_auth_post_requests","total_auth_patch_requests","total_auth_options_requests","total_storage_options_requests","total_storage_patch_requests","total_options_requests","total_rest_ingress","total_rest_get_requests","total_rest_post_requests","total_rest_patch_requests","total_rest_delete_requests","total_storage_get_requests","total_storage_post_requests","total_storage_delete_requests","total_auth_delete_requests","total_get_requests","total_patch_requests","total_post_requests","total_ingress","total_delete_requests"],"EDGE_FUNCTION_REGIONS",0,[{key:"ap-northeast-1",label:"Tokyo"},{key:"ap-northeast-2",label:"Seoul"},{key:"ap-south-1",label:"Mumbai"},{key:"ap-southeast-1",label:"Singapore"},{key:"ap-southeast-2",label:"Sydney"},{key:"ca-central-1",label:"Canada Central"},{key:"us-east-1",label:"N. Virginia"},{key:"us-west-1",label:"N. California"},{key:"us-west-2",label:"Oregon"},{key:"eu-central-1",label:"Frankfurt"},{key:"eu-west-1",label:"Ireland"},{key:"eu-west-2",label:"London"},{key:"eu-west-3",label:"Paris"},{key:"sa-east-1",label:"São Paulo"}],"LAYOUT_COLUMN_COUNT",0,2,"PRESET_CONFIG",0,_,"REPORTS_DATEPICKER_HELPERS",0,l,"REPORT_DATERANGE_HELPER_LABELS",()=>i,"generateRegexpWhereSafe",0,m],820308)},172329,383692,338994,e=>{"use strict";var t=e.i(221628),s=e.i(55956),a=e.i(891115),r=e.i(365571);e.s(["SearchIcon",()=>r.default],383692);var r=r,n=e.i(416340),o=e.i(843778),i=e.i(874311),l=e.i(844048);let u=e=>{let t=Number(e);return""!==e&&Number.isFinite(t)?t:e};e.s(["ChartHighlightActions",0,({chartHighlight:e,updateDateRange:c,actions:m,chartId:_})=>{let{left:d,right:h,clearHighlight:p}=e??{},[f,g]=(0,n.useState)(!!e?.popoverPosition),y=(0,l.useFormatDateTime)();(0,n.useEffect)(()=>{g(!!e?.popoverPosition)},[e?.popoverPosition]);let b=d&&h&&p?{start:d,end:h,clear:p,chartId:_}:void 0,q=(0,n.useMemo)(()=>{if(!c||!b)return[];let e=10>(0,s.default)(b.end).diff((0,s.default)(b.start),"minutes");return[{id:"zoom-in",label:"Zoom in",icon:(0,t.jsx)(r.default,{className:"text-foreground-lighter",size:12}),rightSlot:e?(0,t.jsx)("span",{className:"text-xs",children:"Min. 10 minutes"}):null,isDisabled:()=>e,onSelect:({start:t,end:s,clear:a})=>{e||(c(t,s),a())}}]},[b,c]),S=(0,n.useMemo)(()=>[...q,...m??[]],[q,m]),x=e?.popoverPosition?`${e.popoverPosition.x}-${e.popoverPosition.y}`:"closed";return(0,t.jsxs)(i.DropdownMenu,{open:f,onOpenChange:g,children:[(0,t.jsx)(i.DropdownMenuTrigger,{className:"w-auto p-0",style:{position:"absolute",left:e?.popoverPosition?.x+"px",top:e?.popoverPosition?.y+"px"}}),(0,t.jsxs)(i.DropdownMenuContent,{className:"flex flex-col gap-1 p-1 w-fit text-left data-[state=open]:animate-none! data-[state=closed]:animate-none!",onEscapeKeyDown:()=>p?.(),onInteractOutside:e=>{let t=e.target;t?.closest(".recharts-wrapper")||p?.()},children:[(0,t.jsxs)(i.DropdownMenuLabel,{className:"flex items-center justify-center text-foreground-light font-mono gap-x-2 text-xs",children:[(0,t.jsx)("span",{children:y(u(d),"MMM D, H:mm")}),(0,t.jsx)(a.ArrowRight,{size:10}),(0,t.jsx)("span",{children:y(u(h),"MMM D, H:mm")})]}),(0,t.jsx)(i.DropdownMenuSeparator,{className:"my-0"}),S.map(e=>{let s=!!b&&!!e.isDisabled&&e.isDisabled(b),a=null;a="function"==typeof e.label?b?e.label(b):null:e.label;let r=null;return r="function"==typeof e.rightSlot?b?e.rightSlot(b):null:e.rightSlot??null,(0,t.jsx)(i.DropdownMenuItem,{asChild:!0,disabled:s,className:(0,o.cn)("group"),children:(0,t.jsxs)("button",{disabled:s,tabIndex:-1,onClick:()=>b&&e.onSelect({...b}),className:"w-full flex items-center gap-1.5",children:[e.icon,(0,t.jsx)("span",{className:"grow text-left",children:a}),r]})},e.id)})]})]},x)}],172329);let c=e=>{let t=Number(e);return void 0!==e&&""!==e&&Number.isFinite(t)?(0,s.default)(t):(0,s.default)(e)};e.s(["useChartHighlight",0,function(){let[e,t]=(0,n.useState)(void 0),[s,a]=(0,n.useState)(void 0),[r,o]=(0,n.useState)({left:void 0,right:void 0}),[i,l]=(0,n.useState)(!1),[u,m]=(0,n.useState)(null),[_,d]=(0,n.useState)(void 0),[h,p]=(0,n.useState)(void 0),[f,g]=(0,n.useState)(!1),[y,b]=(0,n.useState)({}),q=()=>{t(void 0),a(void 0),o({left:void 0,right:void 0}),m(null),d(void 0),p(void 0),g(!1),b({})};return{left:e,right:s,coordinates:r,isSelecting:i,popoverPosition:u,handleMouseDown:e=>{q(),e&&e.activeLabel&&(l(!0),g(!1),t(e.activeLabel),a(e.activeLabel),d(e.activeLabel),b({label:e.nextLabel,coordinate:e.nextCoordinate}),o({left:e.coordinates,right:e.coordinates}),"number"==typeof e.chartX&&"number"==typeof e.chartY&&p({x:e.chartX,y:e.chartY}))},handleMouseMove:e=>{if(!i||!e||!e.activeLabel)return;e.activeLabel!==_&&g(!0);let s=c(e.activeLabel),n=c(_);s.isBefore(n)?(t(e.activeLabel),a(_),o({left:e.coordinates,right:r.right})):(a(e.activeLabel),t(_),o({left:r.left,right:e.coordinates}))},handleMouseUp:e=>{i&&(l(!1),d(void 0),!f&&y.label&&(a(y.label),o(e=>({...e,right:y.coordinate}))),h?m(h):"object"==typeof e&&null!==e&&"chartX"in e&&"chartY"in e&&"number"==typeof e.chartX&&"number"==typeof e.chartY&&m({x:e.chartX,y:e.chartY}))},clearHighlight:q}}],338994)},135890,e=>{"use strict";var t=e.i(221628),s=e.i(734795),a=e.i(843778);e.s(["DataTableColumnStatusCode",0,({value:e,level:r,className:n})=>{let o=function(e){switch(e){case"1":case"info":return"text-blue-500";case"2":case"success":default:return"text-foreground";case"4":case"warning":case"redirect":return"text-warning";case"5":case"error":return"text-destructive"}}(r);return e?(0,t.jsx)("div",{className:(0,a.cn)("flex items-center relative",n),children:(0,t.jsx)("div",{className:(0,a.cn)("flex items-center justify-center relative font-mono",o),children:e})}):(0,t.jsx)(s.Minus,{className:"h-4 w-4 text-muted-foreground/50"})}])},734795,e=>{"use strict";let t=(0,e.i(679709).default)("Minus",[["path",{d:"M5 12h14",key:"1ays0h"}]]);e.s(["Minus",0,t],734795)},590552,e=>{"use strict";let t=(0,e.i(679709).default)("Network",[["rect",{x:"16",y:"16",width:"6",height:"6",rx:"1",key:"4q2zg0"}],["rect",{x:"2",y:"16",width:"6",height:"6",rx:"1",key:"8cvhb9"}],["rect",{x:"9",y:"2",width:"6",height:"6",rx:"1",key:"1egb70"}],["path",{d:"M5 16v-3a1 1 0 0 1 1-1h12a1 1 0 0 1 1 1v3",key:"1jsf9p"}],["path",{d:"M12 12V8",key:"2874zd"}]]);e.s(["Network",0,t],590552)},487362,e=>{"use strict";var t=e.i(416340),s=e.i(95840),a=e.i(13900),r=e.i(877260),n=e.i(97999),o=e.i(982635),i=e.i(121873),l=e.i(297504),u=e.i(614501),c=["x1","y1","x2","y2","key"],m=["offset"];function _(e){return(_="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function d(e,t){var s=Object.keys(e);if(Object.getOwnPropertySymbols){var a=Object.getOwnPropertySymbols(e);t&&(a=a.filter(function(t){return Object.getOwnPropertyDescriptor(e,t).enumerable})),s.push.apply(s,a)}return s}function h(e){for(var t=1;t<arguments.length;t++){var s=null!=arguments[t]?arguments[t]:{};t%2?d(Object(s),!0).forEach(function(t){var a,r,n;a=e,r=t,n=s[t],(r=function(e){var t=function(e,t){if("object"!=_(e)||!e)return e;var s=e[Symbol.toPrimitive];if(void 0!==s){var a=s.call(e,t||"default");if("object"!=_(a))return a;throw TypeError("@@toPrimitive must return a primitive value.")}return("string"===t?String:Number)(e)}(e,"string");return"symbol"==_(t)?t:t+""}(r))in a?Object.defineProperty(a,r,{value:n,enumerable:!0,configurable:!0,writable:!0}):a[r]=n}):Object.getOwnPropertyDescriptors?Object.defineProperties(e,Object.getOwnPropertyDescriptors(s)):d(Object(s)).forEach(function(t){Object.defineProperty(e,t,Object.getOwnPropertyDescriptor(s,t))})}return e}function p(){return(p=Object.assign.bind()).apply(this,arguments)}function f(e,t){if(null==e)return{};var s,a,r=function(e,t){if(null==e)return{};var s={};for(var a in e)if(Object.prototype.hasOwnProperty.call(e,a)){if(t.indexOf(a)>=0)continue;s[a]=e[a]}return s}(e,t);if(Object.getOwnPropertySymbols){var n=Object.getOwnPropertySymbols(e);for(a=0;a<n.length;a++)s=n[a],!(t.indexOf(s)>=0)&&Object.prototype.propertyIsEnumerable.call(e,s)&&(r[s]=e[s])}return r}var g=function(e){var s=e.fill;if(!s||"none"===s)return null;var a=e.fillOpacity,r=e.x,n=e.y,o=e.width,i=e.height,l=e.ry;return t.default.createElement("rect",{x:r,y:n,ry:l,width:o,height:i,stroke:"none",fill:s,fillOpacity:a,className:"recharts-cartesian-grid-bg"})};function y(e,a){var r;if(t.default.isValidElement(e))r=t.default.cloneElement(e,a);else if((0,s.default)(e))r=e(a);else{var o=a.x1,i=a.y1,l=a.x2,u=a.y2,_=a.key,d=f(a,c),h=(0,n.filterProps)(d,!1),g=(h.offset,f(h,m));r=t.default.createElement("line",p({},g,{x1:o,y1:i,x2:l,y2:u,fill:"none",key:_}))}return r}function b(e){var s=e.x,a=e.width,r=e.horizontal,n=void 0===r||r,o=e.horizontalPoints;if(!n||!o||!o.length)return null;var i=o.map(function(t,r){return y(n,h(h({},e),{},{x1:s,y1:t,x2:s+a,y2:t,key:"line-".concat(r),index:r}))});return t.default.createElement("g",{className:"recharts-cartesian-grid-horizontal"},i)}function q(e){var s=e.y,a=e.height,r=e.vertical,n=void 0===r||r,o=e.verticalPoints;if(!n||!o||!o.length)return null;var i=o.map(function(t,r){return y(n,h(h({},e),{},{x1:t,y1:s,x2:t,y2:s+a,key:"line-".concat(r),index:r}))});return t.default.createElement("g",{className:"recharts-cartesian-grid-vertical"},i)}function S(e){var s=e.horizontalFill,a=e.fillOpacity,r=e.x,n=e.y,o=e.width,i=e.height,l=e.horizontalPoints,u=e.horizontal;if(!(void 0===u||u)||!s||!s.length)return null;var c=l.map(function(e){return Math.round(e+n-n)}).sort(function(e,t){return e-t});n!==c[0]&&c.unshift(0);var m=c.map(function(e,l){var u=c[l+1]?c[l+1]-e:n+i-e;if(u<=0)return null;var m=l%s.length;return t.default.createElement("rect",{key:"react-".concat(l),y:e,x:r,height:u,width:o,stroke:"none",fill:s[m],fillOpacity:a,className:"recharts-cartesian-grid-bg"})});return t.default.createElement("g",{className:"recharts-cartesian-gridstripes-horizontal"},m)}function x(e){var s=e.vertical,a=e.verticalFill,r=e.fillOpacity,n=e.x,o=e.y,i=e.width,l=e.height,u=e.verticalPoints;if(!(void 0===s||s)||!a||!a.length)return null;var c=u.map(function(e){return Math.round(e+n-n)}).sort(function(e,t){return e-t});n!==c[0]&&c.unshift(0);var m=c.map(function(e,s){var u=c[s+1]?c[s+1]-e:n+i-e;if(u<=0)return null;var m=s%a.length;return t.default.createElement("rect",{key:"react-".concat(s),x:e,y:o,width:u,height:l,stroke:"none",fill:a[m],fillOpacity:r,className:"recharts-cartesian-grid-bg"})});return t.default.createElement("g",{className:"recharts-cartesian-gridstripes-vertical"},m)}var v=function(e,t){var s=e.xAxis,a=e.width,r=e.height,n=e.offset;return(0,o.getCoordinatesOfGrid)((0,i.getTicks)(h(h(h({},l.CartesianAxis.defaultProps),s),{},{ticks:(0,o.getTicksOfAxis)(s,!0),viewBox:{x:0,y:0,width:a,height:r}})),n.left,n.left+n.width,t)},w=function(e,t){var s=e.yAxis,a=e.width,r=e.height,n=e.offset;return(0,o.getCoordinatesOfGrid)((0,i.getTicks)(h(h(h({},l.CartesianAxis.defaultProps),s),{},{ticks:(0,o.getTicksOfAxis)(s,!0),viewBox:{x:0,y:0,width:a,height:r}})),n.top,n.top+n.height,t)},E=[],O=[];function j(e){var n,o,i,l,c,m,d=(0,u.useChartWidth)(),f=(0,u.useChartHeight)(),y=(0,u.useOffset)(),j=h(h({},e),{},{stroke:null!=(n=e.stroke)?n:"#ccc",fill:null!=(o=e.fill)?o:"none",horizontal:null==(i=e.horizontal)||i,horizontalFill:null!=(l=e.horizontalFill)?l:O,vertical:null==(c=e.vertical)||c,verticalFill:null!=(m=e.verticalFill)?m:E,x:(0,r.isNumber)(e.x)?e.x:y.left,y:(0,r.isNumber)(e.y)?e.y:y.top,width:(0,r.isNumber)(e.width)?e.width:y.width,height:(0,r.isNumber)(e.height)?e.height:y.height}),k=j.x,A=j.y,T=j.width,N=j.height,R=j.syncWithTicks,P=j.horizontalValues,C=j.verticalValues,L=(0,u.useArbitraryXAxis)(),I=(0,u.useYAxisWithFiniteDomainOrRandom)();if(!(0,r.isNumber)(T)||T<=0||!(0,r.isNumber)(N)||N<=0||!(0,r.isNumber)(k)||k!==+k||!(0,r.isNumber)(A)||A!==+A)return null;var M=j.verticalCoordinatesGenerator||v,D=j.horizontalCoordinatesGenerator||w,$=j.horizontalPoints,F=j.verticalPoints;if((!$||!$.length)&&(0,s.default)(D)){var U=P&&P.length,H=D({yAxis:I?h(h({},I),{},{ticks:U?P:I.ticks}):void 0,width:d,height:f,offset:y},!!U||R);(0,a.warn)(Array.isArray(H),"horizontalCoordinatesGenerator should return Array but instead it returned [".concat(_(H),"]")),Array.isArray(H)&&($=H)}if((!F||!F.length)&&(0,s.default)(M)){var Y=C&&C.length,z=M({xAxis:L?h(h({},L),{},{ticks:Y?C:L.ticks}):void 0,width:d,height:f,offset:y},!!Y||R);(0,a.warn)(Array.isArray(z),"verticalCoordinatesGenerator should return Array but instead it returned [".concat(_(z),"]")),Array.isArray(z)&&(F=z)}return t.default.createElement("g",{className:"recharts-cartesian-grid"},t.default.createElement(g,{fill:j.fill,fillOpacity:j.fillOpacity,x:j.x,y:j.y,width:j.width,height:j.height,ry:j.ry}),t.default.createElement(b,p({},j,{offset:y,horizontalPoints:$,xAxis:L,yAxis:I})),t.default.createElement(q,p({},j,{offset:y,verticalPoints:F,xAxis:L,yAxis:I})),t.default.createElement(S,p({},j,{horizontalPoints:$})),t.default.createElement(x,p({},j,{verticalPoints:F})))}j.displayName="CartesianGrid",e.s(["CartesianGrid",0,j])}]);
+
+//# debugId=070a7585-6afc-50b5-6c7e-065f6cf2334b

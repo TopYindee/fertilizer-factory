@@ -1,0 +1,1233 @@
+<!DOCTYPE html>
+<!-- saved from url=(0099)https://n-s77l4f6pcghq3jt3ol6rxrvrl77w5co47i67via-0lu-script.googleusercontent.com/userCodeAppPanel -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script src="./jsapi"></script><script>window.parent.maeExportApis_();</script>
+
+
+  <!--<base target="_top">--><base href="." target="_top">
+  <style>
+    :root {
+      --burgundy-primary: #6b1d2f;
+      --burgundy-hover: #541624;
+      --burgundy-light: #fdf8f8;
+      --burgundy-border: #e8d7da;
+      --burgundy-accent: #a3485e;
+      --bg-main: #ffffff;
+      --text-main: #37352f;
+      --text-muted: #787774;
+      --border-color: #ededed;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      font-size: 12px;
+      line-height: 1.25;
+      color: var(--text-main);
+    }
+
+    body {
+      background-color: var(--bg-main);
+      padding: 12px;
+    }
+
+    .nav-tabs {
+      display: flex;
+      gap: 2px;
+      border-bottom: 1px solid var(--burgundy-border);
+      background: var(--burgundy-light);
+      padding: 4px 4px 0 4px;
+      border-radius: 4px 4px 0 0;
+      overflow-x: auto;
+    }
+
+    .tab-button {
+      padding: 6px 12px;
+      border: 1px solid transparent;
+      border-bottom: none;
+      background: transparent;
+      cursor: pointer;
+      font-weight: 500;
+      color: var(--text-muted);
+      border-radius: 3px 3px 0 0;
+      white-space: nowrap;
+    }
+
+    .tab-button:hover {
+      background-color: rgba(107, 29, 47, 0.05);
+      color: var(--burgundy-primary);
+    }
+
+    .tab-button.active {
+      background: var(--bg-main);
+      color: var(--burgundy-primary);
+      border-color: var(--burgundy-border);
+      font-weight: 600;
+    }
+
+    .content-area {
+      border: 1px solid var(--burgundy-border);
+      border-top: none;
+      padding: 16px;
+      border-radius: 0 0 4px 4px;
+    }
+
+    .tab-content {
+      display: none;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    .section-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--burgundy-primary);
+      margin-bottom: 12px;
+      padding-bottom: 4px;
+      border-bottom: 1px dashed var(--burgundy-border);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+      gap: 10px;
+      margin-bottom: 16px;
+      background-color: var(--burgundy-light);
+      padding: 12px;
+      border-radius: 4px;
+      border: 1px solid var(--burgundy-border);
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+
+    .form-group.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    input, select, textarea {
+      padding: 5px 8px;
+      border: 1px solid var(--burgundy-border);
+      border-radius: 3px;
+      outline: none;
+      background: #fff;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      border-color: var(--burgundy-accent);
+      box-shadow: 0 0 0 1px var(--burgundy-accent);
+    }
+
+    input[readonly] {
+      background-color: #f7f7f7;
+      color: #666;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+    }
+
+    .btn {
+      padding: 6px 14px;
+      border-radius: 3px;
+      border: none;
+      cursor: pointer;
+      font-weight: 500;
+    }
+
+    .btn-primary {
+      background-color: var(--burgundy-primary);
+      color: #fff;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--burgundy-hover);
+    }
+
+    .table-container {
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+    }
+
+    th, td {
+      padding: 6px 10px;
+      border: 1px solid var(--border-color);
+      white-space: nowrap;
+    }
+
+    th {
+      background-color: var(--burgundy-light);
+      color: var(--burgundy-primary);
+      font-weight: 600;
+      border-bottom: 2px solid var(--burgundy-border);
+    }
+
+    tr:hover {
+      background-color: #fafafa;
+    }
+
+    .pagination {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 10px;
+      padding-top: 8px;
+      border-top: 1px solid var(--border-color);
+      font-size: 11px;
+    }
+
+    .pagination-controls {
+      display: flex;
+      gap: 4px;
+    }
+
+    .page-btn {
+      padding: 3px 8px;
+      border: 1px solid var(--border-color);
+      background: #fff;
+      cursor: pointer;
+      border-radius: 2px;
+    }
+
+    .page-btn:disabled {
+      opacity: 0.4;
+      cursor: not-allowed;
+    }
+  </style>
+</head>
+<body>
+
+  
+  <div class="nav-tabs">
+    <button class="tab-button active" onclick="switchTab(event, &#39;company&#39;)">บันทึกข้อมูลบริษัท</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;cropyear&#39;)">ปีการผลิต</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;warehouse&#39;)">ตั้งค่าโกดัง</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;vendor&#39;)">เพิ่มข้อมูลเจ้าหนี้</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;customer&#39;)">เพิ่มข้อมูลลูกค้า</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;rawmaterial&#39;)">นำเข้ารหัสแม่ปุ๋ย</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;product&#39;)">นำเข้ารหัสสินค้าสำเร็จรูป</button>
+    <button class="tab-button" onclick="switchTab(event, &#39;packaging&#39;)">นำเข้ารหัสบรรจุภัณฑ์</button>
+  </div>
+
+  <div class="content-area">
+
+    
+    <div id="tab-company" class="tab-content active">
+      <div class="section-title">บันทึกข้อมูลบริษัท</div>
+      <form id="form-company">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>ชื่อไทย</label>
+            <input type="text" name="nameTh" required="">
+          </div>
+          <div class="form-group">
+            <label>ชื่ออังกฤษ</label>
+            <input type="text" name="nameEn" required="">
+          </div>
+          <div class="form-group">
+            <label>สาขา</label>
+            <select name="branch">
+              <option value="สนญ">สนญ</option>
+              <option value="สาขา">สาขา</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>เลขผู้เสียภาษี</label>
+            <input type="text" name="taxId">
+          </div>
+          <div class="form-group full-width">
+            <label>ที่อยู่</label>
+            <textarea name="address" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;CompanyInfo&#39;, &#39;form-company&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-CompanyInfo"><div class="table-container"><table><thead><tr><th>ID</th><th>ชื่อไทย</th><th>ชื่ออังกฤษ</th><th>สาขา</th><th>เลขผู้เสียภาษี</th><th>ที่อยู่</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789183316613</td><td>บริษัท เวิลด์ เฟอท จำกัด</td><td>Worldfert Co.,Ltd.</td><td>สนญ</td><td>105531024397</td><td>อาคารรวมทนุไทย ชั้น 11 เลขที่ 933 ถนนมหาไชย แขวงวังบูรพาภิรมย์ เขตพระนคร กรุงเทพมหานคร 10200</td><td>2026-09-12 10:21:56</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;CompanyInfo&#39;, &#39;ID-1789183316613&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;CompanyInfo&#39;, &#39;ID-1789183316613&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 1 จากทั้งหมด 1 รายการ (หน้า 1/1)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;CompanyInfo&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;CompanyInfo&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-cropyear" class="tab-content">
+      <div class="section-title">ตั้งค่าปีการผลิต</div>
+      <form id="form-cropyear">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>รหัสปี</label>
+            <input type="text" name="yearCode" placeholder="เช่น 2026" required="">
+          </div>
+          <div class="form-group">
+            <label>วันเริ่ม</label>
+            <input type="date" name="startDate" required="">
+          </div>
+          <div class="form-group">
+            <label>วันจบ</label>
+            <input type="date" name="endDate" required="">
+          </div>
+          <div class="form-group">
+            <label>สถานะ</label>
+            <select name="status">
+              <option value="เปิด">เปิด</option>
+              <option value="ปิด">ปิด</option>
+            </select>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;CropYears&#39;, &#39;form-cropyear&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-CropYears"><div class="table-container"><table><thead><tr><th>ID</th><th>รหัสปี</th><th>วันเริ่ม</th><th>วันจบ</th><th>สถานะ</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789183402433</td><td>2026</td><td>2026-01-01</td><td>2026-12-31</td><td>เปิด</td><td>2026-09-12 10:23:22</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;CropYears&#39;, &#39;ID-1789183402433&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;CropYears&#39;, &#39;ID-1789183402433&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 1 จากทั้งหมด 1 รายการ (หน้า 1/1)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;CropYears&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;CropYears&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-warehouse" class="tab-content">
+      <div class="section-title">ตั้งค่าโกดัง (แยกตามโซนย่อย)</div>
+      <form id="form-warehouse">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>เลือกประเภทโกดัง</label>
+            <select name="type" id="wh-type" onchange="handleWhTypeChange()">
+              <option value="โกดังวัตถุดิบ(แม่ปุ๋ย)">โกดังวัตถุดิบ(แม่ปุ๋ย)</option>
+              <option value="โกดังสินค้าFG">โกดังสินค้าFG</option>
+              <option value="โกดังบรรจุภัณฑ์PKG">โกดังบรรจุภัณฑ์PKG</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>รหัสโกดังหลัก</label>
+            <input type="text" name="mainCode" id="wh-maincode" readonly="">
+          </div>
+          <div class="form-group">
+            <label>ระบุจำนวนโซนย่อยที่ต้องการแตก</label>
+            <input type="number" id="wh-zone-count" placeholder="กรอกจำนวนโซน" min="1" oninput="generateDynamicZoneInputs()">
+          </div>
+        </div>
+
+        <div id="subzone-inputs-container" style="margin-bottom: 16px;"></div>
+
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitWarehouseForm()">บันทึกข้อมูลทุกโซน</button>
+        </div>
+      </form>
+      <div id="table-Warehouses"><div class="table-container"><table><thead><tr><th>ID</th><th>ประเภทโกดัง</th><th>รหัสโกดังหลัก</th><th>โซนย่อย</th><th>ปริมาณจัดเก็บ</th><th>หน่วยนับ</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789377702870-2</td><td>โกดังวัตถุดิบ(แม่ปุ๋ย)</td><td>WH-RAW-003</td><td>Z02</td><td>4000</td><td>4000 ตัน (80,000 กระสอบ 50 กก.)</td><td>2026-09-14 16:21:42</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789377702870-2&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789377702870-2&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789377702658-1</td><td>โกดังวัตถุดิบ(แม่ปุ๋ย)</td><td>WH-RAW-003</td><td>Z01</td><td>4000</td><td>4000 ตัน (80,000 กระสอบ 50 กก.)</td><td>2026-09-14 16:21:42</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789377702658-1&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789377702658-1&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789199531433-2</td><td>โกดังบรรจุภัณฑ์PKG</td><td>WH-PKG-001</td><td>Z02</td><td>50000</td><td>50,000 ใบ</td><td>2026-09-12 14:52:10</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789199531433-2&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789199531433-2&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789199530929-1</td><td>โกดังบรรจุภัณฑ์PKG</td><td>WH-PKG-001</td><td>Z01</td><td>50000</td><td>50,000 ใบ</td><td>2026-09-12 14:52:10</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789199530929-1&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789199530929-1&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789199447892-1</td><td>โกดังวัตถุดิบ(แม่ปุ๋ย)</td><td>WH-RAW-002</td><td>Z01</td><td>8000</td><td>8000 ตัน (160,000 กระสอบ 50 กก.)</td><td>2026-09-12 14:50:47</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789199447892-1&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789199447892-1&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184009519-2</td><td>โกดังสินค้าFG</td><td>WH-FG-001</td><td>Z02</td><td>5000</td><td>5000 ตัน (100,000 กระสอบ 50 กก.)</td><td>2026-09-12 10:33:29</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789184009519-2&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789184009519-2&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184009356-1</td><td>โกดังสินค้าFG</td><td>WH-FG-001</td><td>Z01</td><td>5000</td><td>5000 ตัน (100,000 กระสอบ 50 กก.)</td><td>2026-09-12 10:33:29</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789184009356-1&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789184009356-1&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789183502239-2</td><td>โกดังวัตถุดิบ(แม่ปุ๋ย)</td><td>WH-RAW-001</td><td>Z02</td><td>4000</td><td>4000 ตัน (80,000 กระสอบ 50 กก.)</td><td>2026-09-12 10:25:02</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789183502239-2&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789183502239-2&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789183502125-1</td><td>โกดังวัตถุดิบ(แม่ปุ๋ย)</td><td>WH-RAW-001</td><td>Z01</td><td>4000</td><td>4000 ตัน (80,000 กระสอบ 50 กก.)</td><td>2026-09-12 10:25:02</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Warehouses&#39;, &#39;ID-1789183502125-1&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Warehouses&#39;, &#39;ID-1789183502125-1&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 9 จากทั้งหมด 9 รายการ (หน้า 1/1)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Warehouses&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Warehouses&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-vendor" class="tab-content">
+      <div class="section-title">เพิ่มข้อมูลเจ้าหนี้ (Vendor)</div>
+      <form id="form-vendor">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>รหัสเจ้าหนี้ (Auto)</label>
+            <input type="text" name="vendorCode" id="vendor-code" readonly="">
+          </div>
+          <div class="form-group">
+            <label>รหัสเก่า</label>
+            <input type="text" name="oldCode">
+          </div>
+          <div class="form-group">
+            <label>คำนำหน้า</label>
+            <input type="text" name="prefix">
+          </div>
+          <div class="form-group">
+            <label>ชื่อเจ้าหนี้</label>
+            <input type="text" name="name" required="">
+          </div>
+          <div class="form-group">
+            <label>ประเภท</label>
+            <select name="type">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>เลขผู้เสียภาษี</label>
+            <input type="text" name="taxId">
+          </div>
+          <div class="form-group full-width">
+            <label>ที่อยู่</label>
+            <textarea name="address" rows="2"></textarea>
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;Vendors&#39;, &#39;form-vendor&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-Vendors"><div class="table-container"><table><thead><tr><th>ID</th><th>รหัสเจ้าหนี้</th><th>รหัสเก่า</th><th>คำนำหน้า</th><th>ชื่อเจ้าหนี้</th><th>ประเภท</th><th>เลขผู้เสียภาษี</th><th>ที่อยู่</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789184119907</td><td>VEND-021</td><td>21</td><td>บจก.</td><td>พรปิยะฌาณ ทรานสปอร์ต</td><td>1</td><td>105538144266</td><td>169  ซอยประชาอุทิศ 33 แยก 6 แขวงบางมด เขตทุ่งครุ จ.กรุงเทพฯ 10140 02-8732025</td><td>2026-10-02 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119907&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119907&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119906</td><td>VEND-020</td><td>20</td><td>บริษัท</td><td>อ่าวไทยพัฒนาขนส่ง จำกัด</td><td>1</td><td>105525043172</td><td>119 หมู่ 13 ต.ทรงคนอง อ.พระประแดง จ.สุมทรปราการ 10130 02-8184021</td><td>2026-10-01 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119906&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119906&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119905</td><td>VEND-019</td><td>19</td><td>บริษัท</td><td>โกลบอลชิปปิ้ง จำกัด</td><td>1</td><td>105534105134</td><td>14/2 ซ.ริมคลองไผ่สิงห์โต ถ.พระราม 4 คลองเตย คลองเตย กรุงเทพมหานคร 10110 02-2616392</td><td>2026-09-30 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119905&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119905&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119904</td><td>VEND-018</td><td>18</td><td>บจก.</td><td>เดอะคาร์โกเอ๊กซ์เพรส โลจิสติกส์</td><td>1</td><td>105533078702</td><td>69-71-73-75 ซอยดำรงลัทธพัฒนา ถนนอาจณรงค์ แขวงคลองเตย เขตคลองเตย กรุงเทพมหานคร 10110 02-249-5623</td><td>2026-09-29 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119904&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119904&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119903</td><td>VEND-017</td><td>17</td><td></td><td>TAIKO FERTILISER MARKETING SDN, BHD.</td><td>1</td><td></td><td></td><td>2026-09-28 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119903&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119903&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119902</td><td>VEND-016</td><td>16</td><td></td><td>MULTITRADE INTERNATIONAL PTE LTD.</td><td>1</td><td></td><td></td><td>2026-09-27 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119902&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119902&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119901</td><td>VEND-015</td><td>15</td><td></td><td>LIVEN AGRICHEM PTE LTD.</td><td>1</td><td></td><td></td><td>2026-09-26 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119901&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119901&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119900</td><td>VEND-014</td><td>14</td><td></td><td>DEAD SEA WORKS LTD.</td><td>1</td><td></td><td></td><td>2026-09-25 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119900&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119900&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119899</td><td>VEND-013</td><td>13</td><td></td><td>YARA ASIA PTE LTD.</td><td>1</td><td></td><td></td><td>2026-09-24 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119899&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119899&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119898</td><td>VEND-012</td><td>12</td><td>บริษัท</td><td>ปุ๋ยเอเซีย จำกัด</td><td>1</td><td>105547141231</td><td>7/195 หมู่ 9 แขวงศาลาธรรมสพน์ เขตทวีวัฒนา จ.กรุงเทพฯ 10170 035-343333</td><td>2026-09-23 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119898&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119898&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119897</td><td>VEND-011</td><td>11</td><td>บริษัท</td><td>สินธุ์สุวรรณเคมีคัล จำกัด</td><td>1</td><td>105541033321</td><td></td><td>2026-09-22 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119897&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119897&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119896</td><td>VEND-010</td><td>10</td><td>บริษัท</td><td>วาย.วี.พี เฟอร์ติไลเซอร์ จำกัด</td><td>1</td><td></td><td>54/18 แขวงสีกัน เขตดอนเมือง จ.กรุงเทพฯ 10210 02-9281299</td><td>2026-09-21 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119896&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119896&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119895</td><td>VEND-009</td><td>9</td><td>บริษัท</td><td>โกรว์ซัคเซส จำกัด</td><td>1</td><td>125554004368</td><td>19/127 หมู่ 2 ต.คลองเกลือ อ.ปากเกร็ด จ.นนทบุรี 11120 085-2656769</td><td>2026-09-20 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119895&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119895&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119894</td><td>VEND-008</td><td>8</td><td>บริษัท</td><td>ศักดิ์สยาม คอร์เปอเรชั่น (ประเทศไทย) จำกัด</td><td>1</td><td>125548006427</td><td>17/2  หมู่ 2 ต.ขุนศรี อ.ไทรน้อย จ.นนทบุรี 11150 02-9219909</td><td>2026-09-19 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119894&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119894&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119893</td><td>VEND-007</td><td>7</td><td>บริษัท</td><td>พี.ดี.เฟอร์ติไลเซอร์ จำกัด</td><td>1</td><td>3031471634</td><td>46/156 แขวงคลองกุ่ม เขตบึ่งกุ่ม จ.กรุงเทพฯ 10230 02-8100212</td><td>2026-09-18 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119893&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119893&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119892</td><td>VEND-006</td><td>6</td><td>ห้างหุ้นส่วนจำกัด</td><td>สยามอินทรีย์ กรีน เคมีร่า</td><td>1</td><td></td><td></td><td>2026-09-17 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119892&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119892&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119891</td><td>VEND-005</td><td>5</td><td>บริษัท</td><td>รอเยลคราวน์เทรดดิ้ง จำกัด</td><td>1</td><td>105525018640</td><td>149/297  หมู่ 13 ต.อ้อมน้อย อ.กระทุ่มแบน จ.สุมทรสาคร 74130 02-4312374</td><td>2026-09-16 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119891&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119891&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119890</td><td>VEND-004</td><td>4</td><td>บจก.</td><td>สงวนชัยอุตสาหกรรม</td><td>1</td><td>735530000596</td><td>81/2  หมู่ 5 ต.ศรีษะทอง อ.นครชัยศรี จ.นครปฐม 73120 034-978416-7</td><td>2026-09-15 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119890&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119890&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119889</td><td>VEND-003</td><td>3</td><td>บจก.</td><td>อินเตอร์พลาสแม็ช</td><td>1</td><td>105535027188</td><td></td><td>2026-09-14 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119889&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119889&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184119888</td><td>VEND-002</td><td>2</td><td>บจก.</td><td>จีรเกษมพลาสติก</td><td>1</td><td>735543000239</td><td></td><td>2026-09-13 10:35:19</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119888&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Vendors&#39;, &#39;ID-1789184119888&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 20 จากทั้งหมด 21 รายการ (หน้า 1/2)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Vendors&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" onclick="loadTable(&#39;Vendors&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-customer" class="tab-content">
+      <div class="section-title">เพิ่มข้อมูลลูกค้า (Customer)</div>
+      <form id="form-customer">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>รหัสลูกค้า (Auto)</label>
+            <input type="text" name="custCode" id="cust-code" readonly="">
+          </div>
+          <div class="form-group">
+            <label>รหัสเก่า</label>
+            <input type="text" name="oldCode">
+          </div>
+          <div class="form-group">
+            <label>คำนำหน้า</label>
+            <input type="text" name="prefix">
+          </div>
+          <div class="form-group">
+            <label>ชื่อลูกค้า</label>
+            <input type="text" name="name" required="">
+          </div>
+          <div class="form-group">
+            <label>ประเภท</label>
+            <select name="type">
+              <option value="1">1</option>
+              <option value="2">2</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>สถานะเครดิต</label>
+            <select name="creditStatus">
+              <option value="ปกติ">ปกติ</option>
+              <option value="ค้าง">ค้าง</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>เกรดลูกค้า</label>
+            <select name="grade">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>เครดิต (วัน)</label>
+            <input type="number" name="creditDays" value="0">
+          </div>
+          <div class="form-group full-width">
+            <label>ที่อยู่</label>
+            <textarea name="address" rows="2"></textarea>
+          </div>
+          <div class="form-group full-width">
+            <label>หมายเหตุ</label>
+            <input type="text" name="remark">
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;Customers&#39;, &#39;form-customer&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-Customers"><div class="table-container"><table><thead><tr><th>ID</th><th>รหัสลูกค้า</th><th>รหัสเก่า</th><th>คำนำหน้า</th><th>ชื่อลูกค้า</th><th>ประเภท</th><th>สถานะเครดิต</th><th>เกรดลูกค้า</th><th>เครดิต (วัน)</th><th>ที่อยู่</th><th>หมายเหตุ</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789184251875</td><td>CUST-029</td><td>620004</td><td></td><td>ไม่ใช้ สุทธิโภคภัณฑ์</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td></td><td></td><td>2026-10-10 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251875&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251875&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251874</td><td>CUST-028</td><td>620003</td><td>ห้างหุ้นส่วนจำกัด</td><td>พีเจ 2019</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>เลขที่201 หมู่ 7  อำเภอพนัสนิคม ชลบุรี 20140 Tax ID.0203562000918</td><td></td><td>2026-10-09 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251874&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251874&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251873</td><td>CUST-027</td><td>620002</td><td>ร้าน</td><td>สมเกียรติเคมีเกษตร</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>64/7 หมู่ 7 ปากทางสำนักตะแบก ตำบลโปร่ง อำเภอบางละมุง ชลบุรี 20150</td><td></td><td>2026-10-08 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251873&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251873&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251872</td><td>CUST-026</td><td>620001</td><td>ร้าน</td><td>ต.การเกษตรบ้านบึง</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td></td><td></td><td>2026-10-07 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251872&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251872&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251871</td><td>CUST-025</td><td>612005</td><td>ห้างหุ้นส่วนจำกัด</td><td>กิจเสรีเคมีเกษตร</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td></td><td></td><td>2026-10-06 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251871&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251871&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251870</td><td>CUST-024</td><td>612004</td><td>บริษัท</td><td>พรหมประสิทธิ์การเกษตร จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>165-168 หมู่ที่ 6  อำเภอหนองเสือ ปทุมธานี 12170</td><td></td><td>2026-10-05 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251870&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251870&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251869</td><td>CUST-023</td><td>612003</td><td>บริษัท</td><td>กิตติเกษตร จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>124/24 หมู่ที่ 4  อำเภอธัญบุรี ปทุมธานี 12110</td><td></td><td>2026-10-04 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251869&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251869&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251868</td><td>CUST-022</td><td>612002</td><td>ร้าน</td><td>เสรีการเกษตร</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td></td><td></td><td>2026-10-03 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251868&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251868&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251867</td><td>CUST-021</td><td>612001</td><td>คณะบุคคล</td><td>โภคภัณฑ์วัฒนา</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td></td><td></td><td>2026-10-02 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251867&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251867&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251866</td><td>CUST-020</td><td>174002</td><td>ร้าน</td><td>คลองตันเพื่อนเกษตร</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>36/4 หมู่ 5 ตำบลคลองตัน อำเภอบ้านแพ้ว สมุทรสาคร 74120</td><td></td><td>2026-10-01 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251866&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251866&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251865</td><td>CUST-019</td><td>174001</td><td>บริษัท</td><td>ศ. วัฒนาการเกษตร จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>211 หมู่ 1 ตำบลแคราย อำเภอกระทุ่มแบน สมุทรสาคร 74110</td><td></td><td>2026-09-30 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251865&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251865&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251864</td><td>CUST-018</td><td>111004</td><td>บริษัท</td><td>โคเดล (ประเทศไทย) จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>423 ถนนนนทบุรี ตำบลท่าทราย อำเภอเมือง นนทบุรี 11000</td><td></td><td>2026-09-29 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251864&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251864&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251863</td><td>CUST-017</td><td>111003</td><td>บริษัท</td><td>ออสการ์ อะโกร จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>62/15-16 หมู่ 6 ถนนกาญจนาภิเษก ตำบลเสาธงหิน อำเภอบางใหญ่ นนทบุรี 11140</td><td></td><td>2026-09-28 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251863&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251863&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251862</td><td>CUST-016</td><td>0111002-1</td><td>บริษัท</td><td>ศักดิ์สยาม คอร์เปอร์เรชั่น(ประเทศไทย) จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>17/2 หมู่ 2  อำเภอไทรน้อย จังหวัดนนทบุรี 11150</td><td></td><td>2026-09-27 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251862&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251862&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251861</td><td>CUST-015</td><td>111001</td><td>บริษัท</td><td>กู๊ดมาร์ค จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>53/171 หมู่ 5 ถนนแจ้งวัฒนะ ตำบลบางตลาด อำเภอปากเกร็ด นนทบุรี 11120</td><td></td><td>2026-09-26 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251861&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251861&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251860</td><td>CUST-014</td><td>110014</td><td>บริษัท</td><td>โดมิเนี่ยน เคมเมท จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>2311/2 ถนนเพชรบุรีตัดใหม่ แขวงบางกะปิ เขตห้วยขวาง กรุงเทพฯ 10310</td><td></td><td>2026-09-25 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251860&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251860&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251859</td><td>CUST-013</td><td>110013</td><td>บริษัท</td><td>วาย.วี.พี. เฟอร์ติไลเซอร์ จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>54/18 ซอยประชาอุทิศ 3 แขวงดอนเมือง เขตดอนเมือง กรุงเทพมหานคร 10210</td><td></td><td>2026-09-24 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251859&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251859&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251858</td><td>CUST-012</td><td>110012</td><td>บริษัท</td><td>อุตสาหกรรมโคราช จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>701 ถนนไมตรีจิตต์  เขตป้อมปราบศัตรูพ่าย กรุงเทพฯ 10100 Tax ID.0105533144501</td><td></td><td>2026-09-23 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251858&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251858&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251857</td><td>CUST-011</td><td>110011</td><td>บริษัท</td><td>ปุ๋ยเอเชีย จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td></td><td></td><td>2026-09-22 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251857&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251857&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184251856</td><td>CUST-010</td><td>110010</td><td>บริษัท</td><td>จิ้นหยู่เฮง จำกัด</td><td>1</td><td>ปกติ</td><td>A</td><td>0</td><td>259 ถนนราชวงศ์ แขวงจักรวรรดิ เขตสัมพันธ์วงศ์ กรุงเทพฯ 10100</td><td></td><td>2026-09-21 10:37:31</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Customers&#39;, &#39;ID-1789184251856&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Customers&#39;, &#39;ID-1789184251856&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 20 จากทั้งหมด 29 รายการ (หน้า 1/2)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Customers&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" onclick="loadTable(&#39;Customers&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-rawmaterial" class="tab-content">
+      <div class="section-title">นำเข้ารหัสแม่ปุ๋ย (Raw Material)</div>
+      <form id="form-rawmaterial">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>รหัสแม่ปุ๋ย (Auto)</label>
+            <input type="text" name="rmCode" id="rm-code" readonly="">
+          </div>
+          <div class="form-group">
+            <label>ชื่อแม่ปุ๋ย</label>
+            <input type="text" name="name" required="">
+          </div>
+          <div class="form-group">
+            <label>ประเภท</label>
+            <select name="type">
+              <option value="ธาตุอาหาร">ธาตุอาหาร</option>
+              <option value="FILLER">FILLER</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>%N</label>
+            <input type="number" step="0.01" name="n" value="0">
+          </div>
+          <div class="form-group">
+            <label>%P</label>
+            <input type="number" step="0.01" name="p" value="0">
+          </div>
+          <div class="form-group">
+            <label>%K</label>
+            <input type="number" step="0.01" name="k" value="0">
+          </div>
+          <div class="form-group">
+            <label>%S (กำมะถัน)</label>
+            <input type="number" step="0.01" name="s" value="0">
+          </div>
+          <div class="form-group">
+            <label>%CaO (แคลเซียม)</label>
+            <input type="number" step="0.01" name="cao" value="0">
+          </div>
+          <div class="form-group">
+            <label>%MgO (แมกนีเซียม)</label>
+            <input type="number" step="0.01" name="mgo" value="0">
+          </div>
+          <div class="form-group full-width">
+            <label>หมายเหตุ</label>
+            <input type="text" name="remark">
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;RawMaterials&#39;, &#39;form-rawmaterial&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-RawMaterials"><div class="table-container"><table><thead><tr><th>ID</th><th>รหัสแม่ปุ๋ย</th><th>ชื่อแม่ปุ๋ย</th><th>ประเภท</th><th>%N</th><th>%P</th><th>%K</th><th>%S</th><th>%CaO</th><th>%MgO</th><th>หมายเหตุ</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-010</td><td>RM-010</td><td>11-44</td><td>ธาตุอาหาร</td><td>10.5</td><td>42</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-010&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-010&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-009</td><td>RM-009</td><td>18-46-0</td><td>ธาตุอาหาร</td><td>19</td><td>46</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-009&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-009&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-008</td><td>RM-008</td><td>21-0-0</td><td>ธาตุอาหาร</td><td>21</td><td>0</td><td>0</td><td>24</td><td>0</td><td>0</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-008&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-008&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-007</td><td>RM-007</td><td>MAG</td><td>ฟิลเลอร์</td><td>0</td><td>0</td><td>0</td><td>16</td><td>0</td><td>28</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-007&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-007&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-006</td><td>RM-006</td><td>แคล</td><td>ฟิลเลอร์</td><td>0</td><td>0</td><td>0</td><td>16</td><td>35</td><td>1</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-006&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-006&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-005</td><td>RM-005</td><td>ฟิลเลอร์</td><td>ฟิลเลอร์</td><td>0</td><td>0</td><td>0</td><td>4</td><td>40</td><td>5</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-005&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-005&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-004</td><td>RM-004</td><td>46-0-0</td><td>ธาตุอาหาร</td><td>46</td><td>0</td><td>0</td><td>0</td><td>0</td><td>0</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-004&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-004&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-003</td><td>RM-003</td><td>2-20-0</td><td>ธาตุอาหาร</td><td>2.35</td><td>21.3</td><td>0</td><td>13.5</td><td>2</td><td>2</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-003&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-003&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-002</td><td>RM-002</td><td>16-20-0</td><td>ธาตุอาหาร</td><td>16</td><td>18.5</td><td>0</td><td>3.5</td><td>0</td><td>0</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-002&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-002&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-001</td><td>RM-001</td><td>0-0-60</td><td>ธาตุอาหาร</td><td>0</td><td>0</td><td>62.2</td><td>0</td><td>0</td><td>0</td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;RawMaterials&#39;, &#39;ID-001&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;RawMaterials&#39;, &#39;ID-001&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 10 จากทั้งหมด 10 รายการ (หน้า 1/1)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;RawMaterials&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;RawMaterials&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-product" class="tab-content">
+      <div class="section-title">นำเข้ารหัสสินค้าสำเร็จรูป (FG)</div>
+      <form id="form-product">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>รหัสสินค้า (Auto)</label>
+            <input type="text" name="prodCode" id="prod-code" readonly="">
+          </div>
+          <div class="form-group">
+            <label>รหัสเก่า</label>
+            <input type="text" name="oldCode">
+          </div>
+          <div class="form-group">
+            <label>ชื่อสินค้า</label>
+            <input type="text" name="name" required="">
+          </div>
+          <div class="form-group">
+            <label>ประเภท</label>
+            <select name="type">
+              <option value="BB">BB</option>
+              <option value="HP">HP</option>
+              <option value="CP">CP</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>ตราสินค้า</label>
+            <input type="text" name="brand">
+          </div>
+          <div class="form-group">
+            <label>ขนาดบรรจุ</label>
+            <select name="packSize">
+              <option value="50 kg">50 kg</option>
+              <option value="1000 kg">1000 kg</option>
+              <option value="1200 kg">1200 kg</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>สูตรที่ใช้</label>
+            <select name="formula" id="dd-formula">
+              <option value="">-- ดึงมาจากสูตรการผลิต --</option>
+            </select>
+          </div>
+          <div class="form-group full-width">
+            <label>หมายเหตุ</label>
+            <input type="text" name="remark">
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;Products&#39;, &#39;form-product&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-Products"><div class="table-container"><table><thead><tr><th>ID</th><th>รหัสสินค้า</th><th>รหัสเก่า</th><th>ชื่อสินค้า</th><th>ประเภท</th><th>ตราสินค้า</th><th>ขนาดบรรจุ</th><th>สูตรที่ใช้</th><th>หมายเหตุ</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789184818944</td><td>FG-083</td><td>1167</td><td>46-0-0 โฟม กระสอบขาว</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818944&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818944&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818943</td><td>FG-082</td><td>1039</td><td>กระสอบ 18-4-5 เชิงผสม ตรารถเกษตร</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818943&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818943&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818942</td><td>FG-081</td><td>31103</td><td>21-0-0 เทกอง</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818942&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818942&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818941</td><td>FG-080</td><td>31102</td><td>0-0-60 (เม็ด) เทกอง (ปุ๋ยฝุ่น)</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818941&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818941&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818940</td><td>FG-079</td><td>31101</td><td>สารปรับปรุงดิน ตรารถเกษตร</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818940&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818940&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818939</td><td>FG-078</td><td>1083</td><td>18-46-0 เทกอง</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818939&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818939&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818938</td><td>FG-077</td><td>31099</td><td>21-0-0 เทกอง (ปุ๋ยฝุ่น)</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818938&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818938&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818937</td><td>FG-076</td><td>3007</td><td>21-0-0  เทกอง</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818937&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818937&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818936</td><td>FG-075</td><td>23008</td><td>18-46-0 เทกอง (1)</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818936&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818936&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818935</td><td>FG-074</td><td>31098</td><td>16-20-0 Bulk (ปุ๋ยฝุ่น)</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818935&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818935&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818934</td><td>FG-073</td><td>1074</td><td>0-0-60 (เม็ด)  เทกอง</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818934&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818934&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818933</td><td>FG-072</td><td>23047</td><td>21-4-4  เชิงผสม  ตราปุ๋ยเทพ</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818933&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818933&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818932</td><td>FG-071</td><td>23048</td><td>18-7-7  เชิงผสม  ตราปุ๋ยเทพ</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818932&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818932&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818931</td><td>FG-070</td><td>1111</td><td>15-5-35 เชิงผสม ตรารถเกษตร</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818931&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818931&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818930</td><td>FG-069</td><td>23042</td><td>12-4-26 เชิงผสม ตรารถเกษตร</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818930&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818930&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818929</td><td>FG-068</td><td>25059</td><td>10-3-30 เชิงผสม ตราปุ๋ยเทพ</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818929&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818929&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818928</td><td>FG-067</td><td>1157</td><td>0-0-60 (เม็ด)  กระสอบขาว</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818928&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818928&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818927</td><td>FG-066</td><td>25035</td><td>22-6-4 เชิงผสม ตรารถเกษตร</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818927&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818927&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818926</td><td>FG-065</td><td>25046</td><td>0-0-60 (เม็ด) เทกอง (3)</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818926&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818926&#39;)">ลบ</button>
+        </td></tr><tr><td>ID-1789184818925</td><td>FG-064</td><td>31000</td><td>MAGNESIUM  ตราปุ๋ยเทพ</td><td>BB</td><td></td><td>50 kg</td><td></td><td></td><td></td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Products&#39;, &#39;ID-1789184818925&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Products&#39;, &#39;ID-1789184818925&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 20 จากทั้งหมด 83 รายการ (หน้า 1/5)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Products&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" onclick="loadTable(&#39;Products&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    
+    <div id="tab-packaging" class="tab-content">
+      <div class="section-title">นำเข้ารหัสบรรจุภัณฑ์ (PKG)</div>
+      <form id="form-packaging">
+        <div class="form-grid">
+          <div class="form-group">
+            <label>รหัสกระสอบ (Auto)</label>
+            <input type="text" name="pkgCode" id="pkg-code" readonly="">
+          </div>
+          <div class="form-group">
+            <label>รหัสเก่า</label>
+            <input type="text" name="oldCode">
+          </div>
+          <div class="form-group">
+            <label>ชื่อกระสอบ</label>
+            <input type="text" name="name" required="">
+          </div>
+          <div class="form-group">
+            <label>ขนาดบรรจุ</label>
+            <select name="packSize">
+              <option value="50 kg">50 kg</option>
+              <option value="1000 kg">1000 kg</option>
+              <option value="1200 kg">1200 kg</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>หน่วยนับ</label>
+            <input type="text" name="unit" value="ใบ" readonly="">
+          </div>
+          <div class="form-group">
+            <label>ผู้ขาย (ไม่บังคับ)</label>
+            <select name="vendor" id="dd-pkg-vendor"><option value="">-- เลือกจาก Vendor --</option><option value="VEND-001 : ท่ามะกาเซอร์วิสเซ็นเตอร์">VEND-001 : ท่ามะกาเซอร์วิสเซ็นเตอร์</option><option value="VEND-002 : จีรเกษมพลาสติก">VEND-002 : จีรเกษมพลาสติก</option><option value="VEND-003 : อินเตอร์พลาสแม็ช">VEND-003 : อินเตอร์พลาสแม็ช</option><option value="VEND-004 : สงวนชัยอุตสาหกรรม">VEND-004 : สงวนชัยอุตสาหกรรม</option><option value="VEND-005 : รอเยลคราวน์เทรดดิ้ง จำกัด">VEND-005 : รอเยลคราวน์เทรดดิ้ง จำกัด</option><option value="VEND-006 : สยามอินทรีย์ กรีน เคมีร่า">VEND-006 : สยามอินทรีย์ กรีน เคมีร่า</option><option value="VEND-007 : พี.ดี.เฟอร์ติไลเซอร์ จำกัด">VEND-007 : พี.ดี.เฟอร์ติไลเซอร์ จำกัด</option><option value="VEND-008 : ศักดิ์สยาม คอร์เปอเรชั่น (ประเทศไทย) จำกัด">VEND-008 : ศักดิ์สยาม คอร์เปอเรชั่น (ประเทศไทย) จำกัด</option><option value="VEND-009 : โกรว์ซัคเซส จำกัด">VEND-009 : โกรว์ซัคเซส จำกัด</option><option value="VEND-010 : วาย.วี.พี เฟอร์ติไลเซอร์ จำกัด">VEND-010 : วาย.วี.พี เฟอร์ติไลเซอร์ จำกัด</option><option value="VEND-011 : สินธุ์สุวรรณเคมีคัล จำกัด">VEND-011 : สินธุ์สุวรรณเคมีคัล จำกัด</option><option value="VEND-012 : ปุ๋ยเอเซีย จำกัด">VEND-012 : ปุ๋ยเอเซีย จำกัด</option><option value="VEND-013 : YARA ASIA PTE LTD.">VEND-013 : YARA ASIA PTE LTD.</option><option value="VEND-014 : DEAD SEA WORKS LTD.">VEND-014 : DEAD SEA WORKS LTD.</option><option value="VEND-015 : LIVEN AGRICHEM PTE LTD.">VEND-015 : LIVEN AGRICHEM PTE LTD.</option><option value="VEND-016 : MULTITRADE INTERNATIONAL PTE LTD.">VEND-016 : MULTITRADE INTERNATIONAL PTE LTD.</option><option value="VEND-017 : TAIKO FERTILISER MARKETING SDN, BHD.">VEND-017 : TAIKO FERTILISER MARKETING SDN, BHD.</option><option value="VEND-018 : เดอะคาร์โกเอ๊กซ์เพรส โลจิสติกส์">VEND-018 : เดอะคาร์โกเอ๊กซ์เพรส โลจิสติกส์</option><option value="VEND-019 : โกลบอลชิปปิ้ง จำกัด">VEND-019 : โกลบอลชิปปิ้ง จำกัด</option><option value="VEND-020 : อ่าวไทยพัฒนาขนส่ง จำกัด">VEND-020 : อ่าวไทยพัฒนาขนส่ง จำกัด</option><option value="VEND-021 : พรปิยะฌาณ ทรานสปอร์ต">VEND-021 : พรปิยะฌาณ ทรานสปอร์ต</option></select>
+          </div>
+          <div class="form-group">
+            <label>ราคาทุน</label>
+            <input type="number" step="0.01" name="cost" value="0">
+          </div>
+          <div class="form-group">
+            <label>รหัส FG (ไม่บังคับ)</label>
+            <select name="fgCode" id="dd-pkg-fg"><option value="">-- เลือกจาก FG List --</option><option value="FG-001 : 18-46-0 กระสอบขาว">FG-001 : 18-46-0 กระสอบขาว</option><option value="FG-002 : 30-0-0 เชิงผสม ตราปุ๋ยเทพ">FG-002 : 30-0-0 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-003 : 20-5-3 เชิงผสม ตรา ปุ๋ยเทพ">FG-003 : 20-5-3 เชิงผสม ตรา ปุ๋ยเทพ</option><option value="FG-004 : 13-3-23 เชิงผสม ตรา ปุ๋ยเทพ">FG-004 : 13-3-23 เชิงผสม ตรา ปุ๋ยเทพ</option><option value="FG-005 : 46-0-0 โฟม ตรา ปุ๋ยเทพ">FG-005 : 46-0-0 โฟม ตรา ปุ๋ยเทพ</option><option value="FG-006 : 14-3-3 เชิงผสม ตรา ปุ๋ยเทพ">FG-006 : 14-3-3 เชิงผสม ตรา ปุ๋ยเทพ</option><option value="FG-007 : 30-0-0  เชิงผสม  ตรารถเกษตร">FG-007 : 30-0-0  เชิงผสม  ตรารถเกษตร</option><option value="FG-008 : 19-6-6 เชิงผสม ตรารถเกษตร">FG-008 : 19-6-6 เชิงผสม ตรารถเกษตร</option><option value="FG-009 : 18-4-5 เชิงผสม ตรารถเกษตร">FG-009 : 18-4-5 เชิงผสม ตรารถเกษตร</option><option value="FG-010 : 16-8-8 เชิงผสม ตรารถเกษตร">FG-010 : 16-8-8 เชิงผสม ตรารถเกษตร</option><option value="FG-011 : 16-8-8 เชิงผสม ตราปุ๋ยเทพ">FG-011 : 16-8-8 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-012 : 15-5-20 เชิงผสม ตราปุ๋ยเทพ">FG-012 : 15-5-20 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-013 : 20-10-12 เชิงผสม ตรารถเกษตร">FG-013 : 20-10-12 เชิงผสม ตรารถเกษตร</option><option value="FG-014 : 40-0-0 เชิงผสม ตรารถเกษตร">FG-014 : 40-0-0 เชิงผสม ตรารถเกษตร</option><option value="FG-015 : 40-0-0 เชิงผสม ตราปุ๋ยเทพ">FG-015 : 40-0-0 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-016 : 18-8-8 เชิงผสม ตราปุ๋ยเทพ">FG-016 : 18-8-8 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-017 : 20-8-8 เชิงผสม ตราปุ๋ยเทพ">FG-017 : 20-8-8 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-018 : 18-46-0 ตรารถเกษตร">FG-018 : 18-46-0 ตรารถเกษตร</option><option value="FG-019 : 0-0-60 (เม็ด)  ตรารถเกษตร">FG-019 : 0-0-60 (เม็ด)  ตรารถเกษตร</option><option value="FG-020 : 15-5-20+2MGO เชิงผสม ตรารถเกษตร">FG-020 : 15-5-20+2MGO เชิงผสม ตรารถเกษตร</option><option value="FG-021 : 13-8-35+0.3B เชิงผสม ตรารถเกษตร">FG-021 : 13-8-35+0.3B เชิงผสม ตรารถเกษตร</option><option value="FG-022 : 20-8-20 เชิงผสม ตรารถเกษตร">FG-022 : 20-8-20 เชิงผสม ตรารถเกษตร</option><option value="FG-023 : 18-8-8 เชิงผสม ตรารถเกษตร">FG-023 : 18-8-8 เชิงผสม ตรารถเกษตร</option><option value="FG-024 : 21-0-0  ตรารถเกษตร">FG-024 : 21-0-0  ตรารถเกษตร</option><option value="FG-025 : 20-8-8 เชิงผสม ตรารถเกษตร">FG-025 : 20-8-8 เชิงผสม ตรารถเกษตร</option><option value="FG-026 : 15-3-3 เชิงผสม ตรารถเกษตร">FG-026 : 15-3-3 เชิงผสม ตรารถเกษตร</option><option value="FG-027 : 0-0-60 เม็ด ตรา ปุ๋ยเทพ">FG-027 : 0-0-60 เม็ด ตรา ปุ๋ยเทพ</option><option value="FG-028 : 16-20-0 คอมปาวส์ ตราปุ๋ยเทพ">FG-028 : 16-20-0 คอมปาวส์ ตราปุ๋ยเทพ</option><option value="FG-029 : 16-20-0 คอมปาวส์ตรารถเกษตร">FG-029 : 16-20-0 คอมปาวส์ตรารถเกษตร</option><option value="FG-030 : 17-5-3 เชิงผสม ตรารถเกษตร">FG-030 : 17-5-3 เชิงผสม ตรารถเกษตร</option><option value="FG-031 : 13-3-21 เชิงผสม ตรารถเกษตร">FG-031 : 13-3-21 เชิงผสม ตรารถเกษตร</option><option value="FG-032 : 14-7-35 เชิงผสม ตรารถเกษตร">FG-032 : 14-7-35 เชิงผสม ตรารถเกษตร</option><option value="FG-033 : ซากปุ๋ย">FG-033 : ซากปุ๋ย</option><option value="FG-034 : 15-10-30 เชิงผสม ตรารถเกษตร">FG-034 : 15-10-30 เชิงผสม ตรารถเกษตร</option><option value="FG-035 : 13-13-21 เชิงผสม ตรารถเกษตร">FG-035 : 13-13-21 เชิงผสม ตรารถเกษตร</option><option value="FG-036 : 20-5-5 เชิงผสม ตรารถเกษตร">FG-036 : 20-5-5 เชิงผสม ตรารถเกษตร</option><option value="FG-037 : 16-16-8 เชิงผสม ตรารถเกษตร">FG-037 : 16-16-8 เชิงผสม ตรารถเกษตร</option><option value="FG-038 : 14-4-9 เชิงผสม ตรารถเกษตร">FG-038 : 14-4-9 เชิงผสม ตรารถเกษตร</option><option value="FG-039 : 14-4-24 เชิงผสม ตรารถเกษตร">FG-039 : 14-4-24 เชิงผสม ตรารถเกษตร</option><option value="FG-040 : 15-5-25 เชิงผสม ตราปุ๋ยเทพ">FG-040 : 15-5-25 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-041 : 15-15-15 เชิงผสม ตรารถเกษตร">FG-041 : 15-15-15 เชิงผสม ตรารถเกษตร</option><option value="FG-042 : 29-5-18 เชิงผสม ตรารถเกษตร">FG-042 : 29-5-18 เชิงผสม ตรารถเกษตร</option><option value="FG-043 : 46-0-0  โฟม  ตรารถเกษตร">FG-043 : 46-0-0  โฟม  ตรารถเกษตร</option><option value="FG-044 : 16-20-0 เชิงผสม ตรารถเกษตร">FG-044 : 16-20-0 เชิงผสม ตรารถเกษตร</option><option value="FG-045 : 15-10-30 เชิงผสม ตราปุ๋ยเทพ">FG-045 : 15-10-30 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-046 : 18-46-0 ตรา ปุ๋ยเทพ">FG-046 : 18-46-0 ตรา ปุ๋ยเทพ</option><option value="FG-047 : 12-4-40 เชิงผสม ตรารถเกษตร">FG-047 : 12-4-40 เชิงผสม ตรารถเกษตร</option><option value="FG-048 : 21-0-0  ตราปุ๋ยเทพ">FG-048 : 21-0-0  ตราปุ๋ยเทพ</option><option value="FG-049 : 15-7-18 เชิงผสม ตรารถเกษตร">FG-049 : 15-7-18 เชิงผสม ตรารถเกษตร</option><option value="FG-050 : 16-20-0 เทกอง">FG-050 : 16-20-0 เทกอง</option><option value="FG-051 : 25-5-18 เชิงผสม ตราปุ๋ยเทพ">FG-051 : 25-5-18 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-052 : BORON FERTIBOR กระสอบขาว">FG-052 : BORON FERTIBOR กระสอบขาว</option><option value="FG-053 : 46-0-0  (โฟม)  เทกอง (ปุ๋ยเปียก)">FG-053 : 46-0-0  (โฟม)  เทกอง (ปุ๋ยเปียก)</option><option value="FG-054 : 13-3-27 เชิงผสม ตรารถเกษตร">FG-054 : 13-3-27 เชิงผสม ตรารถเกษตร</option><option value="FG-055 : 16-20-0  Bulk (ปุ๋ยเปียก)">FG-055 : 16-20-0  Bulk (ปุ๋ยเปียก)</option><option value="FG-056 : 27-12-6 เชิงผสม ตรารถเกษตร">FG-056 : 27-12-6 เชิงผสม ตรารถเกษตร</option><option value="FG-057 : MAGNESIUM  ตรารถเกษตร">FG-057 : MAGNESIUM  ตรารถเกษตร</option><option value="FG-058 : 18-4-8 เชิงผสม ตรารถเกษตร">FG-058 : 18-4-8 เชิงผสม ตรารถเกษตร</option><option value="FG-059 : 16-16-8 เชิงผสม ตรารถเกษตร (ปุ๋ยฝุ่น)">FG-059 : 16-16-8 เชิงผสม ตรารถเกษตร (ปุ๋ยฝุ่น)</option><option value="FG-060 : 20-10-12 เชิงผสม ตรารถเกษตร (ปุ๋ยฝุ่น)">FG-060 : 20-10-12 เชิงผสม ตรารถเกษตร (ปุ๋ยฝุ่น)</option><option value="FG-061 : 25-7-7+2MGO เชิงผสม ตรารถเกษตร">FG-061 : 25-7-7+2MGO เชิงผสม ตรารถเกษตร</option><option value="FG-062 : 21-7-18 เชิงผสม ตรารถเกษตร">FG-062 : 21-7-18 เชิงผสม ตรารถเกษตร</option><option value="FG-063 : 23-4-24 เชิงผสม ตรา ปุ๋ยเทพ">FG-063 : 23-4-24 เชิงผสม ตรา ปุ๋ยเทพ</option><option value="FG-064 : MAGNESIUM  ตราปุ๋ยเทพ">FG-064 : MAGNESIUM  ตราปุ๋ยเทพ</option><option value="FG-065 : 0-0-60 (เม็ด) เทกอง (3)">FG-065 : 0-0-60 (เม็ด) เทกอง (3)</option><option value="FG-066 : 22-6-4 เชิงผสม ตรารถเกษตร">FG-066 : 22-6-4 เชิงผสม ตรารถเกษตร</option><option value="FG-067 : 0-0-60 (เม็ด)  กระสอบขาว">FG-067 : 0-0-60 (เม็ด)  กระสอบขาว</option><option value="FG-068 : 10-3-30 เชิงผสม ตราปุ๋ยเทพ">FG-068 : 10-3-30 เชิงผสม ตราปุ๋ยเทพ</option><option value="FG-069 : 12-4-26 เชิงผสม ตรารถเกษตร">FG-069 : 12-4-26 เชิงผสม ตรารถเกษตร</option><option value="FG-070 : 15-5-35 เชิงผสม ตรารถเกษตร">FG-070 : 15-5-35 เชิงผสม ตรารถเกษตร</option><option value="FG-071 : 18-7-7  เชิงผสม  ตราปุ๋ยเทพ">FG-071 : 18-7-7  เชิงผสม  ตราปุ๋ยเทพ</option><option value="FG-072 : 21-4-4  เชิงผสม  ตราปุ๋ยเทพ">FG-072 : 21-4-4  เชิงผสม  ตราปุ๋ยเทพ</option><option value="FG-073 : 0-0-60 (เม็ด)  เทกอง">FG-073 : 0-0-60 (เม็ด)  เทกอง</option><option value="FG-074 : 16-20-0 Bulk (ปุ๋ยฝุ่น)">FG-074 : 16-20-0 Bulk (ปุ๋ยฝุ่น)</option><option value="FG-075 : 18-46-0 เทกอง (1)">FG-075 : 18-46-0 เทกอง (1)</option><option value="FG-076 : 21-0-0  เทกอง">FG-076 : 21-0-0  เทกอง</option><option value="FG-077 : 21-0-0 เทกอง (ปุ๋ยฝุ่น)">FG-077 : 21-0-0 เทกอง (ปุ๋ยฝุ่น)</option><option value="FG-078 : 18-46-0 เทกอง">FG-078 : 18-46-0 เทกอง</option><option value="FG-079 : สารปรับปรุงดิน ตรารถเกษตร">FG-079 : สารปรับปรุงดิน ตรารถเกษตร</option><option value="FG-080 : 0-0-60 (เม็ด) เทกอง (ปุ๋ยฝุ่น)">FG-080 : 0-0-60 (เม็ด) เทกอง (ปุ๋ยฝุ่น)</option><option value="FG-081 : 21-0-0 เทกอง">FG-081 : 21-0-0 เทกอง</option><option value="FG-082 : กระสอบ 18-4-5 เชิงผสม ตรารถเกษตร">FG-082 : กระสอบ 18-4-5 เชิงผสม ตรารถเกษตร</option><option value="FG-083 : 46-0-0 โฟม กระสอบขาว">FG-083 : 46-0-0 โฟม กระสอบขาว</option></select>
+          </div>
+          <div class="form-group full-width">
+            <label>หมายเหตุ</label>
+            <input type="text" name="remark">
+          </div>
+        </div>
+        <div class="btn-group">
+          <button type="button" class="btn btn-primary" onclick="submitForm(&#39;Packaging&#39;, &#39;form-packaging&#39;)">บันทึกข้อมูล</button>
+        </div>
+      </form>
+      <div id="table-Packaging"><div class="table-container"><table><thead><tr><th>ID</th><th>รหัสกระสอบ</th><th>รหัสเก่า</th><th>ชื่อกระสอบ</th><th>ขนาดบรรจุ</th><th>หน่วยนับ</th><th>ผู้ขาย</th><th>ราคาทุน</th><th>รหัส FG</th><th>หมายเหตุ</th><th>บันทึกเมื่อ</th><th>จัดการ</th></tr></thead><tbody><tr><td>ID-1789186224517</td><td>PKG-001</td><td>40-0-0</td><td>กระสอบ 40-0-0</td><td>50 kg</td><td>ใบ</td><td>VEND-002 : จีรเกษมพลาสติก</td><td>12</td><td>FG-014 : 40-0-0 เชิงผสม ตรารถเกษตร</td><td>ทดสอบนำเข้ารหัสกระสอบ</td><td>2026-09-12 11:10:24</td><td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI(&#39;Packaging&#39;, &#39;ID-1789186224517&#39;)">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI(&#39;Packaging&#39;, &#39;ID-1789186224517&#39;)">ลบ</button>
+        </td></tr></tbody></table></div>
+        <div class="pagination">
+          <div>แสดง 1 จากทั้งหมด 1 รายการ (หน้า 1/1)</div>
+          <div class="pagination-controls">
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Packaging&#39;, 0)">ก่อนหน้า</button>
+            <button class="page-btn" disabled="" onclick="loadTable(&#39;Packaging&#39;, 2)">ถัดไป</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <script>
+    let currentPages = {};
+    let currentTableData = {};
+    let editingIds = {};
+
+    
+    const EDIT_FIELD_MAP = {
+      'CompanyInfo':  { formId: 'form-company',    fields: ['nameTh','nameEn','branch','taxId','address'] },
+      'CropYears':    { formId: 'form-cropyear',   fields: ['yearCode','startDate','endDate','status'] },
+      'Vendors':      { formId: 'form-vendor',     fields: ['vendorCode','oldCode','prefix','name','type','taxId','address'] },
+      'Customers':    { formId: 'form-customer',   fields: ['custCode','oldCode','prefix','name','type','creditStatus','grade','creditDays','address','remark'] },
+      'RawMaterials': { formId: 'form-rawmaterial',fields: ['rmCode','name','type','n','p','k','s','cao','mgo','remark'] },
+      'Products':     { formId: 'form-product',    fields: ['prodCode','oldCode','name','type','brand','packSize','formula','remark'] },
+      'Packaging':    { formId: 'form-packaging',  fields: ['pkgCode','oldCode','name','packSize','unit','vendor','cost','fgCode','remark'] }
+    };
+
+    window.onload = function() {
+      loadAutoIds();
+      loadDropdowns();
+      loadTable('CompanyInfo', 1);
+    };
+
+    function switchTab(evt, tabId) {
+      document.querySelectorAll('.tab-button').forEach(btn => btn.classList.remove('active'));
+      document.querySelectorAll('.tab-content').forEach(content => content.classList.remove('active'));
+
+      if (evt && evt.target) evt.target.classList.add('active');
+      document.getElementById('tab-' + tabId).classList.add('active');
+
+      loadDropdowns();
+
+      const sheetMap = {
+        'company': 'CompanyInfo',
+        'cropyear': 'CropYears',
+        'warehouse': 'Warehouses',
+        'vendor': 'Vendors',
+        'customer': 'Customers',
+        'rawmaterial': 'RawMaterials',
+        'product': 'Products',
+        'packaging': 'Packaging'
+      };
+
+      if (sheetMap[tabId]) {
+        loadTable(sheetMap[tabId], 1);
+      }
+    }
+
+    function handleError(err) {
+      alert('เกิดข้อผิดพลาดจาก Server: ' + (err.message || err));
+    }
+
+    
+    function escapeHtml(str) {
+      if (str === null || str === undefined) return '';
+      return String(str)
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#39;');
+    }
+
+    function loadAutoIds() {
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(id => document.getElementById('rm-code').value = id).getNextAutoId('RM-', 'RawMaterials', 1);
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(id => document.getElementById('vendor-code').value = id).getNextAutoId('VEND-', 'Vendors', 1);
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(id => document.getElementById('cust-code').value = id).getNextAutoId('CUST-', 'Customers', 1);
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(id => document.getElementById('prod-code').value = id).getNextAutoId('FG-', 'Products', 1);
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(id => document.getElementById('pkg-code').value = id).getNextAutoId('PKG-', 'Packaging', 1);
+      handleWhTypeChange();
+    }
+
+    function handleWhTypeChange() {
+      const type = document.getElementById('wh-type').value;
+      let prefix = 'WH-RAW-';
+      if (type === 'โกดังสินค้าFG') prefix = 'WH-FG-';
+      if (type === 'โกดังบรรจุภัณฑ์PKG') prefix = 'WH-PKG-';
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(id => document.getElementById('wh-maincode').value = id).getNextAutoId(prefix, 'Warehouses', 2);
+      generateDynamicZoneInputs();
+    }
+
+    function generateDynamicZoneInputs() {
+      const count = parseInt(document.getElementById('wh-zone-count').value, 10) || 0;
+      const container = document.getElementById('subzone-inputs-container');
+      const type = document.getElementById('wh-type').value;
+      container.innerHTML = '';
+
+      if (count <= 0) return;
+
+      let html = '<div style="display:flex; flex-direction:column; gap:8px; background:var(--burgundy-light); padding:12px; border:1px solid var(--burgundy-border); border-radius:4px;">';
+      html += '<div style="font-weight:600; color:var(--burgundy-primary); margin-bottom:4px;">ระบุปริมาณจัดเก็บแยกตามโซนย่อย:</div>';
+
+      for (let i = 1; i <= count; i++) {
+        const zoneCode = 'Z' + String(i).padStart(2, '0');
+        const unitLabel = (type === 'โกดังบรรจุภัณฑ์PKG') ? 'ใบ' : 'ตัน';
+
+        html += `
+          <div style="display:flex; align-items:center; gap:10px; background:#fff; padding:6px 10px; border:1px solid var(--burgundy-border); border-radius:3px;">
+            <span style="font-weight:600; min-width:45px; color:var(--burgundy-primary);">${zoneCode}</span>
+            <label style="margin:0;">ปริมาณ (${unitLabel}):</label>
+            <input type="number" class="zone-cap-input" data-zone="${zoneCode}" placeholder="0" oninput="updateZoneDisplay(this, '${type}')" style="width:100px;">
+            <span class="zone-unit-display" style="color:var(--text-muted); font-size:11px;"></span>
+          </div>
+        `;
+      }
+      html += '</div>';
+      container.innerHTML = html;
+    }
+
+    function updateZoneDisplay(input, type) {
+      const cap = parseFloat(input.value) || 0;
+      const displaySpan = input.nextElementSibling;
+
+      if (type === 'โกดังวัตถุดิบ(แม่ปุ๋ย)' || type === 'โกดังสินค้าFG') {
+        const bags = cap * 20;
+        displaySpan.innerText = `= ${cap} ตัน (${bags.toLocaleString()} กระสอบ 50 กก.)`;
+      } else if (type === 'โกดังบรรจุภัณฑ์PKG') {
+        displaySpan.innerText = `= ${cap.toLocaleString()} ใบ`;
+      }
+    }
+
+    function submitWarehouseForm() {
+      const type = document.getElementById('wh-type').value;
+      const mainCode = document.getElementById('wh-maincode').value;
+      const inputs = document.querySelectorAll('.zone-cap-input');
+
+      if (inputs.length === 0) {
+        alert('กรุณาระบุจำนวนโซนย่อย');
+        return;
+      }
+
+      const zoneList = [];
+      inputs.forEach(input => {
+        const zoneCode = input.dataset.zone;
+        const cap = parseFloat(input.value) || 0;
+        let unitInfo = '';
+
+        if (type === 'โกดังวัตถุดิบ(แม่ปุ๋ย)' || type === 'โกดังสินค้าFG') {
+          unitInfo = `${cap} ตัน (${(cap * 20).toLocaleString()} กระสอบ 50 กก.)`;
+        } else {
+          unitInfo = `${cap.toLocaleString()} ใบ`;
+        }
+
+        zoneList.push({
+          zoneCode: zoneCode,
+          capacity: cap,
+          unitInfo: unitInfo
+        });
+      });
+
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(res => {
+        alert('บันทึกข้อมูลโกดังแยกโซนย่อยเรียบร้อยแล้ว');
+        document.getElementById('form-warehouse').reset();
+        document.getElementById('subzone-inputs-container').innerHTML = '';
+        handleWhTypeChange();
+        loadTable('Warehouses', 1);
+      }).saveWarehouseBatch(type, mainCode, zoneList);
+    }
+
+    function loadDropdowns() {
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(data => {
+        if (!data) return;
+        const vendorSelect = document.getElementById('dd-pkg-vendor');
+        if (vendorSelect) {
+          vendorSelect.innerHTML = '<option value="">-- เลือกจาก Vendor --</option>';
+          (data.vendors || []).forEach(v => {
+            const safe = escapeHtml(v);
+            vendorSelect.innerHTML += `<option value="${safe}">${safe}</option>`;
+          });
+        }
+
+        const fgSelect = document.getElementById('dd-pkg-fg');
+        if (fgSelect) {
+          fgSelect.innerHTML = '<option value="">-- เลือกจาก FG List --</option>';
+          (data.fgList || []).forEach(fg => {
+            const safe = escapeHtml(fg);
+            fgSelect.innerHTML += `<option value="${safe}">${safe}</option>`;
+          });
+        }
+      }).getDropdownData();
+    }
+
+    function submitForm(sheetName, formId) {
+      const form = document.getElementById(formId);
+      const formData = new FormData(form);
+      const values = [];
+
+      for (let [key, val] of formData.entries()) {
+        values.push(val);
+      }
+
+      const isEditing = !!editingIds[sheetName];
+
+      const onDone = () => {
+        alert(isEditing ? 'แก้ไขข้อมูลเรียบร้อยแล้ว' : 'บันทึกข้อมูลเรียบร้อยแล้ว');
+        form.reset();
+        delete editingIds[sheetName];
+        const btn = form.querySelector('.btn-primary');
+        if (btn) btn.innerText = 'บันทึกข้อมูล';
+        loadAutoIds();
+        loadDropdowns();
+        loadTable(sheetName, currentPages[sheetName] || 1);
+      };
+
+      if (isEditing) {
+        google.script.run.withFailureHandler(handleError).withSuccessHandler(onDone).updateRecord(sheetName, editingIds[sheetName], values);
+      } else {
+        google.script.run.withFailureHandler(handleError).withSuccessHandler(onDone).saveRecord(sheetName, values);
+      }
+    }
+
+    // เปิดข้อมูลเดิมขึ้นมาแก้ในฟอร์ม — ค้นหาจาก ID เท่านั้น ไม่อิงตำแหน่งแถวที่แสดงผล
+    function editRecordUI(sheetName, id) {
+      const rows = currentTableData[sheetName] || [];
+      const row = rows.find(r => String(r[0]) === String(id));
+      if (!row) { alert('ไม่พบข้อมูล'); return; }
+
+      if (sheetName === 'Warehouses') { editWarehouseZone(id, row); return; }
+
+      const map = EDIT_FIELD_MAP[sheetName];
+      if (!map) return;
+
+      const form = document.getElementById(map.formId);
+      // row = [ID, ...ข้อมูลคอลัมน์กลาง..., timestamp] -> ตัด ID (ต้น) กับ timestamp (ท้าย) ออก
+      const values = row.slice(1, row.length - 1);
+      map.fields.forEach((fname, idx) => {
+        const el = form.elements[fname];
+        if (el) el.value = values[idx] !== undefined ? values[idx] : '';
+      });
+
+      editingIds[sheetName] = id;
+      const btn = form.querySelector('.btn-primary');
+      if (btn) btn.innerText = 'บันทึกการแก้ไข (ID: ' + id + ')';
+      form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function editWarehouseZone(id, row) {
+      // row = [ID, ประเภท, รหัสโกดังหลัก, โซนย่อย, ปริมาณ, หน่วยนับ/แปลงหน่วย, timestamp]
+      const type = row[1], mainCode = row[2], zoneCode = row[3], currentCap = row[4];
+      const input = prompt('แก้ไขปริมาณจัดเก็บโซน ' + zoneCode + ' (ปัจจุบัน: ' + currentCap + ')', currentCap);
+      if (input === null) return;
+
+      const newCap = parseFloat(input) || 0;
+      const unitInfo = (type === 'โกดังวัตถุดิบ(แม่ปุ๋ย)' || type === 'โกดังสินค้าFG')
+        ? `${newCap} ตัน (${(newCap * 20).toLocaleString()} กระสอบ 50 กก.)`
+        : `${newCap.toLocaleString()} ใบ`;
+
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(res => {
+        if (res && res.success) {
+          alert('แก้ไขโซน ' + zoneCode + ' เรียบร้อยแล้ว');
+          loadTable('Warehouses', currentPages['Warehouses'] || 1);
+        } else {
+          alert(res && res.message ? res.message : 'ไม่พบข้อมูลที่ต้องการแก้ไข');
+        }
+      }).updateRecord('Warehouses', id, [type, mainCode, zoneCode, newCap, unitInfo]);
+    }
+
+    function deleteRecordUI(sheetName, id) {
+      if (!confirm('ยืนยันการลบข้อมูล ID: ' + id + ' ? การลบนี้ไม่สามารถกู้คืนได้')) return;
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(res => {
+        if (res && res.success) {
+          loadTable(sheetName, currentPages[sheetName] || 1);
+        } else {
+          alert(res && res.message ? res.message : 'ไม่พบข้อมูลที่ต้องการลบ');
+        }
+      }).deleteRecord(sheetName, id);
+    }
+
+    function loadTable(sheetName, page) {
+      currentPages[sheetName] = page;
+      google.script.run.withFailureHandler(handleError).withSuccessHandler(data => renderTable(sheetName, data)).getMasterData(sheetName, page, 20);
+    }
+
+    function renderTable(sheetName, data) {
+      const container = document.getElementById('table-' + sheetName);
+      if (!container) return;
+
+      currentTableData[sheetName] = data.rows || [];
+
+      if (!data || !data.rows || data.rows.length === 0) {
+        container.innerHTML = '<div style="margin-top:10px; color:#888;">ไม่พบข้อมูลในระบบ</div>';
+        return;
+      }
+
+      let html = '<div class="table-container"><table><thead><tr>';
+      data.headers.forEach(h => html += `<th>${escapeHtml(h)}</th>`);
+      html += '<th>จัดการ</th>';
+      html += '</tr></thead><tbody>';
+
+      data.rows.forEach(row => {
+        const id = row[0];
+        html += '<tr>';
+        row.forEach(cell => html += `<td>${escapeHtml(cell)}</td>`);
+        html += `<td style="white-space:nowrap;">
+          <button class="page-btn" onclick="editRecordUI('${sheetName}', '${id}')">แก้ไข</button>
+          <button class="page-btn" onclick="deleteRecordUI('${sheetName}', '${id}')">ลบ</button>
+        </td>`;
+        html += '</tr>';
+      });
+
+      html += '</tbody></table></div>';
+
+      html += `
+        <div class="pagination">
+          <div>แสดง ${data.rows.length} จากทั้งหมด ${data.totalRecords} รายการ (หน้า ${data.page}/${data.totalPages})</div>
+          <div class="pagination-controls">
+            <button class="page-btn" ${data.page <= 1 ? 'disabled' : ''} onclick="loadTable('${sheetName}', ${data.page - 1})">ก่อนหน้า</button>
+            <button class="page-btn" ${data.page >= data.totalPages ? 'disabled' : ''} onclick="loadTable('${sheetName}', ${data.page + 1})">ถัดไป</button>
+          </div>
+        </div>
+      `;
+
+      container.innerHTML = html;
+    }
+  </script>
+
+</body></html>

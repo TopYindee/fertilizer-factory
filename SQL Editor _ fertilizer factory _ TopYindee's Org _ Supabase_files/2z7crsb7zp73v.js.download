@@ -1,0 +1,251 @@
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="2f683699-c2dc-4b69-b23d-b5f692a31cef")}catch(e){}}();
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,933275,297808,232622,e=>{"use strict";var t=e.i(221628);e.i(850036);var a=e.i(480762),s=e.i(662972),n=e.i(728561),i=e.i(582968),r=e.i(839869),o=e.i(889131),u=e.i(52906),l=e.i(866543),c=e.i(690032),d=e.i(611448),p=e.i(843778),h=e.i(108151),g=e.i(758237),m=e.i(837710),_=e.i(911735),E=e.i(450346),b=e.i(635494);let f=({minimumVersion:e="15.6"})=>{let{data:a}=(0,b.useSelectedProjectQuery)();return(0,t.jsxs)(_.Admonition,{type:"default",title:"Database upgrade needed",childProps:{description:{className:"flex flex-col gap-y-2"}},children:[(0,t.jsx)("div",{className:"prose text-sm max-w-full",children:(0,t.jsxs)("p",{children:["This integration requires the ",(0,t.jsx)("code",{children:"pgmq"})," extension which is not available on this version of Postgres. The extension is available on version ",e," and higher."]})}),(0,t.jsx)(m.Button,{variant:"primary",color:"primary",className:"w-fit",children:(0,t.jsx)(g.default,{href:(0,E.getServiceVersionsPath)(a?.ref),children:"Upgrade database"})})]})};var y=e.i(559398),v=e.i(615515),T=e.i(918018),S=e.i(705541),A=e.i(964574);e.i(128328);var N=e.i(704206),I=e.i(739114),R=e.i(246230),O=e.i(10429),w=e.i(967052);async function C({projectRef:e,stripeSecretKey:t,startTime:a}){let s=await (0,N.getAccessToken)(),n=await fetch(`${O.BASE_PATH}/api/integrations/stripe-sync`,{method:"POST",headers:{"Content-Type":"application/json",Authorization:`Bearer ${s}`},body:JSON.stringify({projectRef:e,stripeSecretKey:t,startTime:a})}),i=await n.json();if(!n.ok)throw Error(i.error?.message||"Failed to install Stripe Sync");return i}e.s(["installStripeSync",0,C,"useStripeSyncInstallMutation",0,({onSuccess:e,onError:t,...a}={})=>{let s=(0,A.useQueryClient)(),n=(0,w.useTrack)();return(0,S.useMutation)({mutationFn:e=>C(e),async onSuccess(t,a,i){let{projectRef:r}=a;n("integration_install_submitted",{integrationName:"stripe_sync_engine",method:"template"}),await s.invalidateQueries({queryKey:R.databaseKeys.schemas(r)}),await s.invalidateQueries({queryKey:T.stripeSyncKeys.all}),await e?.(t,a,i)},async onError(e,a,s){void 0===t?I.toast.error(`Failed to install Stripe Sync: ${e.message}`):t(e,a,s)},...a})}],297808);var L=e.i(801834),x=e.i(234745);async function k({ref:e}){let{data:t,error:a}=await (0,x.post)("/platform/database/{ref}/hook-enable",{params:{path:{ref:e}}});return a&&(0,x.handleError)(a),t}e.s(["enableDatabaseWebhooks",0,k,"useHooksEnableMutation",0,({onSuccess:e,onError:t,...a}={})=>{let s=(0,A.useQueryClient)();return(0,S.useMutation)({mutationFn:e=>k(e),async onSuccess(t,a,n){let{ref:i}=a;await e?.(t,a,n),await (0,L.invalidateSchemasQuery)(s,i)},async onError(e,a,s){void 0===t?I.toast.error(`Failed to enable webhooks: ${e.message}`):t(e,a,s)},...a})}],232622);var j=e.i(741391);let F={name:"Supabase",websiteUrl:"https://supabase.com"},G=[{id:"queues",type:"postgres_extension",source:"Community",requiredExtensions:["pgmq"],missingExtensionsAlert:(0,t.jsx)(f,{minimumVersion:"15.6.1.143"}),name:"Queues",icon:({className:e,...a}={})=>(0,t.jsx)(i.Layers,{className:(0,p.cn)("inset-0 p-2 text-black w-full h-full",e),...a}),description:"Lightweight message queue in Postgres",docsUrl:"https://github.com/tembo-io/pgmq",author:{name:"pgmq",websiteUrl:"https://github.com/tembo-io/pgmq"},navigation:[{route:"overview",label:"Overview"},{route:"queues",label:"Queues",hasChild:!0,childIcon:(0,t.jsx)(i.Layers,{size:12,strokeWidth:1.5,className:(0,p.cn)("text-foreground w-full h-full")})},{route:"settings",label:"Settings",layout:"constrained"}],navigate:({pageId:t="overview",childId:a})=>{if(a)return(0,c.default)(()=>e.A(274794).then(e=>e.QueuePage),{loadableGenerated:{modules:[571538]},loading:q});switch(t){case"overview":return(0,c.default)(()=>e.A(909495).then(e=>e.QueuesOverviewTab),{loadableGenerated:{modules:[698380]},loading:q});case"queues":return(0,c.default)(()=>e.A(548863).then(e=>e.QueuesTab),{loadableGenerated:{modules:[79703]},loading:q});case"settings":return(0,c.default)(()=>e.A(283398).then(e=>e.QueuesSettings),{loadableGenerated:{modules:[541970]},loading:q})}return null}},{id:"cron",type:"postgres_extension",source:"Community",requiredExtensions:["pg_cron"],name:"Cron",icon:({className:e,...a}={})=>(0,t.jsx)(s.Clock5,{className:(0,p.cn)("inset-0 p-2 text-black w-full h-full",e),...a}),description:"Schedule recurring Jobs in Postgres",docsUrl:"https://github.com/citusdata/pg_cron",author:{name:"Citus Data",websiteUrl:"https://github.com/citusdata/pg_cron"},navigation:[{route:"overview",label:"Overview"},{route:"jobs",label:"Jobs",hasChild:!0,childIcon:(0,t.jsx)(r.Timer,{size:12,strokeWidth:1.5,className:(0,p.cn)("text-foreground w-full h-full")})}],navigate:({pageId:t="overview",childId:a})=>{if(a)return(0,c.default)(()=>e.A(609157).then(e=>e.CronJobPage),{loadableGenerated:{modules:[323205]},loading:q});switch(t){case"overview":return(0,c.default)(()=>e.A(929825).then(e=>e.CronOverviewTab),{loadableGenerated:{modules:[777403]},loading:q});case"jobs":return(0,c.default)(()=>e.A(579437).then(e=>e.CronjobsTab),{loadableGenerated:{modules:[524943]},loading:q})}return null}},{id:"vault",type:"postgres_extension",source:"Official",requiredExtensions:["supabase_vault"],missingExtensionsAlert:(0,t.jsx)(f,{}),name:"Vault",status:"beta",icon:({className:e,...a}={})=>(0,t.jsx)(o.Vault,{className:(0,p.cn)("inset-0 p-2 text-black w-full h-full",e),...a}),description:"Application level encryption for your project",docsUrl:`${O.DOCS_URL}/guides/database/vault`,author:F,navigation:[{route:"overview",label:"Overview"},{route:"secrets",label:"Secrets"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,c.default)(()=>e.A(150116).then(e=>e.VaultOverviewTab),{loadableGenerated:{modules:[763645]},loading:q});case"secrets":return(0,c.default)(()=>e.A(707643).then(e=>e.SecretsManagement),{loadableGenerated:{modules:[935100]},loading:q})}return null}},{id:"webhooks",type:"postgres_extension",source:"Official",name:"Database Webhooks",icon:({className:e,...a}={})=>(0,t.jsx)(l.Webhook,{className:(0,p.cn)("inset-0 p-2 text-black w-full h-full",e),...a}),description:"Send real-time data from your database to another system when a table event occurs",docsUrl:`${O.DOCS_URL}/guides/database/webhooks`,author:F,requiredExtensions:["pg_net"],navigation:[{route:"overview",label:"Overview"},{route:"webhooks",label:"Webhooks",layout:"constrained"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,c.default)(()=>e.A(467186).then(e=>e.WebhooksOverviewTab),{loadableGenerated:{modules:[6777]},loading:q});case"webhooks":return(0,c.default)(()=>e.A(639206).then(e=>e.WebhooksListTab),{loadableGenerated:{modules:[791713]},loading:q})}return null},installationSql:(0,a.getEnableWebhooksSQL)(),installationCommand:async({ref:e})=>{let t=(0,j.getQueryClient)();await k({ref:e}),await (0,L.invalidateSchemasQuery)(t,e)}},{id:"data_api",type:"custom",source:"Official",requiredExtensions:[],name:"Data API",icon:({className:e,...a}={})=>(0,t.jsx)(n.Code2,{className:(0,p.cn)("inset-0 p-2 text-black w-full h-full",e),...a}),description:"Auto-generate an API directly from your database schema",docsUrl:`${O.DOCS_URL}/guides/api`,author:F,navigation:[{route:"overview",label:"Overview"},{route:"settings",label:"Settings",layout:"constrained"},{route:"docs",label:"Docs"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,c.default)(()=>e.A(250577).then(e=>e.DataApiOverviewTab),{loadableGenerated:{modules:[429091]},loading:q});case"settings":return(0,c.default)(()=>e.A(610764).then(e=>e.DataApiSettingsTab),{loadableGenerated:{modules:[247311]},loading:q});case"docs":return(0,c.default)(()=>e.A(818633).then(e=>e.DataApiDocsTab),{loadableGenerated:{modules:[338481]},loading:q})}return null}},{id:"warehouse",type:"custom",source:"Official",status:"alpha",requiredExtensions:[],name:"Warehouse",icon:({className:e,...a}={})=>(0,t.jsx)(u.Warehouse,{className:(0,p.cn)("inset-0 p-2 text-black w-full h-full",e),...a}),description:"Replicate your database to an analytical endpoint",docsUrl:null,author:F,navigation:[{route:"overview",label:"Overview"}],navigate:({pageId:t="overview"})=>"overview"===t?(0,c.default)(()=>e.A(545508).then(e=>e.WarehouseOverviewTab),{loadableGenerated:{modules:[773213]},loading:q}):null},{id:"graphiql",type:"postgres_extension",source:"Official",requiredExtensions:["pg_graphql"],name:"GraphQL",icon:({className:e,...a}={})=>(0,t.jsx)(d.default,{fill:!0,src:`${O.BASE_PATH}/img/graphql.svg`,alt:"GraphiQL",className:(0,p.cn)("p-2",e),...a}),description:"Run GraphQL queries through our interactive in-browser IDE",docsUrl:`${O.DOCS_URL}/guides/database/extensions/pg_graphql`,author:F,navigation:[{route:"overview",label:"Overview"},{route:"graphiql",label:"GraphiQL"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,c.default)(()=>e.A(859528).then(e=>e.GraphQLOverviewTab),{loadableGenerated:{modules:[372475]},loading:q});case"graphiql":return(0,c.default)(()=>e.A(500556).then(e=>e.GraphiQLTab),{loadableGenerated:{modules:[321608]},loading:q})}return null}}],P=v.WRAPPERS.map(a=>({id:a.name,type:"wrapper",source:"Official",name:`${a.label} Wrapper`,icon:({className:e,...s}={})=>(0,t.jsx)(d.default,{fill:!0,src:a.icon,alt:a.name,className:(0,p.cn)("p-2",e),...s}),requiredExtensions:["wrappers","supabase_vault"],description:a.description,docsUrl:a.docsUrl,categories:a.categories,meta:a,author:F,navigation:[{route:"overview",label:"Overview"},{route:"wrappers",label:"Wrappers"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,c.default)(()=>e.A(596207).then(e=>e.WrapperOverviewTab),{loadableGenerated:{modules:[865243]},loading:q});case"wrappers":return(0,c.default)(()=>e.A(354946).then(e=>e.WrappersTab),{loadableGenerated:{modules:[674412]},loading:q})}return null}})),U=[{id:"stripe_sync_engine",type:"template",source:"Partner",requiredExtensions:["pgmq","supabase_vault","pg_cron","pg_net"],missingExtensionsAlert:(0,t.jsx)(f,{minimumVersion:"15.6.1.143"}),name:"Stripe Sync Engine",status:"alpha",icon:({className:e,...a}={})=>(0,t.jsx)(d.default,{fill:!0,src:`${O.BASE_PATH}/img/icons/stripe-icon.svg`,alt:"Stripe Logo",className:(0,p.cn)("p-2",e),...a}),description:"Continuously sync your payments, customer, and other data from Stripe to your Postgres database",docsUrl:"https://github.com/stripe-experiments/sync-engine/",author:{name:"Stripe",websiteUrl:"https://www.stripe.com"},navigation:[{route:"overview",label:"Overview"},{route:"settings",label:"Settings",layout:"constrained"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,c.default)(()=>e.A(943222).then(e=>e.StripeSyncEngineOverviewTab),{loadableGenerated:{modules:[140017]},loading:q});case"settings":return(0,c.default)(()=>e.A(98740).then(e=>e.StripeSyncSettingsPage),{loadableGenerated:{modules:[795776]},loading:q})}return null},inputs:{stripe_api_key:{type:"password",required:!0,label:"Stripe API secret key",description:"Requires write access to Webhook Endpoints and read-only access to all other categories.",actions:[{label:"Get API key",href:"https://dashboard.stripe.com/apikeys"},{label:"What are Stripe API keys?",href:"https://support.stripe.com/questions/what-are-stripe-api-keys-and-how-to-find-them"}]}},steps:[{label:"Creates a new database schema named `stripe`"},{label:"Creates tables and views in the `stripe` schema for synced Stripe data"},{label:"Deploys Edge Functions to handle incoming webhooks from Stripe"},{label:"Schedules automatic Stripe data syncs using Supabase Queues"}],installationCommand:async({ref:e,track:t,stripe_api_key:a})=>{let s=Date.now();await C({projectRef:e,startTime:s,stripeSecretKey:a}),t&&t("integration_install_submitted",{integrationName:"stripe_sync_engine",method:"template"});let n=(0,j.getQueryClient)();await n.invalidateQueries({queryKey:T.stripeSyncKeys.all})},checkInstallationStatus:async e=>{let t=(0,j.getQueryClient)(),{projectRef:a,connectionString:s}=e||{},n=await (0,L.getSchemas)({projectRef:a,connectionString:s}),{status:i,errorMessage:r}=(0,y.getStripeSyncSchemaComment)(n);if("install error"===i)throw Error(r??"Stripe Sync installation failed");return"installed"===i&&await t.invalidateQueries({queryKey:R.databaseKeys.schemas(a)}),"installed"===i?"installed":"installing"}}],M=[...P,...G.map(e=>({...e,categories:({queues:["devtools"],cron:["devtools"],vault:["security"],webhooks:["api"],data_api:["api","data-platform"],warehouse:["data-platform"],graphiql:["api","devtools"]})[e.id]||[]})),...U.map(e=>({...e,categories:({stripe_sync_engine:["billing"]})[e.id]||[]}))],q=()=>(0,t.jsx)("div",{className:"p-10",children:(0,t.jsx)(h.GenericSkeletonLoader,{})});e.s(["INTEGRATIONS",0,M,"Loading",0,q],933275)},26760,e=>{"use strict";e.i(766590);var t=e.i(398734),a=e.i(832068),s=e.i(416340),n=e.i(12214),i=e.i(427459),r=e.i(108892),o=e.i(14703),u=e.i(656429),l=e.i(125356),c=e.i(255392),d=e.i(234745);async function p({projectRef:e},t){if(!e)throw Error("Project ref is required");let{data:a,error:s}=await (0,d.get)("/platform/integrations/partners/{ref}",{params:{path:{ref:e}},signal:t});return s&&(0,d.handleError)(s),a.integrations}var h=e.i(230833),g=e.i(2579),m=e.i(265735),_=e.i(237948);let E=e=>e instanceof _.ResponseError&&403===e.code;function b(e,t,a){return E(t)?a:e??a}let f=(e,t)=>e.partnerIntegrations.some(e=>e.listing_slug===t.id&&"ready"===e.status),y=(e,t)=>!!t.oauthAppId&&e.oauthApps.some(e=>e.app_id===t.oauthAppId),v=(e,t)=>!!t&&e.apiKeys.some(e=>"secret"===e.type&&e.name.startsWith(t)),T=(e,t)=>!!t&&e.edgeFunctionSecrets.some(e=>e.name===t),S={grafana:{secretKeyPrefix:"grafana_cloud_integration_",usage:{oauth_app:{description:"Grants Grafana access to your organization so it can discover projects to monitor."},api_key:{description:"Grafana uses this secret API key to read your project metrics from the Prometheus-compatible metrics endpoint.",removalWarning:"Removing this key stops Grafana from collecting metrics from your project until a new key is connected.",noteWhenAbsent:"No secret API key is connected for Grafana to read your project metrics. Dashboards will not receive data without one."}}},doppler:{edgeFunctionSecretName:"DOPPLER_CONFIG",usage:{oauth_app:{description:"Grants Doppler access to your organization so it can update secrets in your projects.",noteWhenAbsent:"Doppler does not have access to update secrets in your project. Any changes you make to secrets in Doppler will not be reflected in your project until access is granted."},edge_function_secret:{description:"Doppler syncs your managed secrets into this Edge Function secret so they are available to your functions at runtime.",removalWarning:"Connected secrets that are removed while this integration is active may be resynced if still present in Doppler.",noteWhenAbsent:"No Edge Function secrets were found connected to this integration."}}},resend:{resendSmtp:!0,usage:{oauth_app:{description:"Grants Resend access to manage the custom SMTP configuration used to send your project emails."},smtp:{description:"Resend is configured as the custom SMTP relay your project uses to deliver authentication and transactional emails.",noteWhenAbsent:"SMTP settings for Resend were not detected. Authentication emails may not be sent through Resend's SMTP service."}}}};e.s(["getConnectedResourceUsage",0,(e,t)=>S[e]?.usage?.[t],"getConnectedResources",0,({integration:e,projectData:t})=>{let a=S[e.id]??{},s=[];if(e.oauthAppId){let a=t.oauthApps.find(t=>t.app_id===e.oauthAppId);a&&s.push({kind:"oauth_app",key:`oauth_app:${a.id}`,title:"OAuth application",description:`Grants ${e.name} access to your organization and its projects.`,app:a})}let n=a.secretKeyPrefix??e.secretKeyPrefix;n&&t.apiKeys.filter(e=>"secret"===e.type&&e.name.startsWith(n)).forEach(e=>{s.push({kind:"api_key",key:`api_key:${e.id}`,title:"Secret API key",description:e.name,apiKey:e})});let i=a.edgeFunctionSecretName??e.edgeFunctionSecretName;if(i){let e=t.edgeFunctionSecrets.find(e=>e.name===i);e&&s.push({kind:"edge_function_secret",key:`edge_function_secret:${e.name}`,title:"Edge Function secret",description:e.name,secret:e})}return a.resendSmtp&&t.authConfig?.SMTP_HOST==="smtp.resend.com"&&s.push({kind:"smtp",key:"smtp",title:"SMTP settings",description:`Custom SMTP relay configured to send project emails through ${e.name}.`}),s},"getExpectedResourceKinds",0,e=>{let t=S[e.id]??{},a=[];return e.oauthAppId&&a.push("oauth_app"),(t.secretKeyPrefix??e.secretKeyPrefix)&&a.push("api_key"),(t.edgeFunctionSecretName??e.edgeFunctionSecretName)&&a.push("edge_function_secret"),t.resendSmtp&&a.push("smtp"),a},"hasMatchingWrapper",0,({meta:e,wrappers:t})=>t.find(t=>(0,n.wrapperMetaComparator)(e,t)),"hasRequiredExtensions",0,({integration:e,extensions:t})=>e.requiredExtensions.every(e=>{let a=t.find(t=>t.name===e);return!!a?.installed_version}),"isOAuthInstalled",0,({integration:e,projectData:t})=>"resend"===e.id?t.authConfig?.SMTP_HOST==="smtp.resend.com"&&y(t,e):"grafana"===e.id||"grafana-cloud"===e.id?y(t,e)||v(t,"grafana_cloud_integration_"):"aikido"===e.id?y(t,e):"doppler"===e.id?y(t,e)||T(t,"DOPPLER_CONFIG")||f(t,e):"integration_status"===e.installIdentificationMethod?f(t,e):"oauth_authorization"===e.installIdentificationMethod?y(t,e):"secret_key_prefix"===e.installIdentificationMethod?v(t,e.secretKeyPrefix):"edge_function_secret_name"===e.installIdentificationMethod&&T(t,e.edgeFunctionSecretName),"isStripeSyncEngineInstalled",0,e=>{let a=(0,i.findStripeSchema)(e),s=(0,t.parseSchemaComment)(a?.comment);return(0,i.isInstalled)(s.status)},"useProjectOAuthIntegrationData",0,(e,{enabled:t=!0}={})=>{let{data:n}=(0,m.useSelectedOrganizationQuery)({enabled:t}),{can:i}=(0,g.useAsyncCheckPermissions)(a.PermissionAction.READ,"oauth_apps",void 0,{organizationSlug:n?.slug,projectRef:null}),d={enabled:t,retryOnMount:!1},_={apiKeys:(0,r.useAPIKeysQuery)({projectRef:e,reveal:!1},d),edgeFunctionSecrets:(0,h.useSecretsQuery)({projectRef:e},d),authConfig:(0,o.useAuthConfigQuery)({projectRef:e},d),partnerIntegrations:(({projectRef:e},{enabled:t=!0,...a}={})=>(0,l.useQuery)({queryKey:c.partnersKeys.getIntegrations(e),queryFn:({signal:t})=>p({projectRef:e},t),enabled:t&&void 0!==e,...a}))({projectRef:e},d),oauthApps:(0,u.useAuthorizedAppsQuery)({slug:n?.slug},{...d,enabled:i&&t&&!!n})},f=(0,s.useMemo)(()=>({apiKeys:b(_.apiKeys.data,_.apiKeys.error,[]),edgeFunctionSecrets:b(_.edgeFunctionSecrets.data,_.edgeFunctionSecrets.error,[]),authConfig:b(_.authConfig.data,_.authConfig.error,null),partnerIntegrations:b(_.partnerIntegrations.data,_.partnerIntegrations.error,[]),oauthApps:b(_.oauthApps.data,_.oauthApps.error,[])}),[_.apiKeys.data,_.apiKeys.error,_.edgeFunctionSecrets.data,_.edgeFunctionSecrets.error,_.authConfig.data,_.authConfig.error,_.partnerIntegrations.data,_.partnerIntegrations.error,_.oauthApps.data,_.oauthApps.error]),y=Object.values(_),v=y.map(e=>e.error).filter(e=>!!e&&!E(e));return{data:f,error:v[0]??null,isError:v.length>0,isLoading:y.some(e=>e.isLoading),isPending:y.some(e=>e.isPending),isSuccess:y.every(e=>e.isSuccess||E(e.error))}}],26760)},79745,e=>{"use strict";var t=e.i(221628);e.i(128328);var a=e.i(657588),s=e.i(86086),n=e.i(757670),i=e.i(469099),r=e.i(690032),o=e.i(611448),u=e.i(416340),l=e.i(843778),c=e.i(933275),d=e.i(463333),p=e.i(462531),h=e.i(375890),g=e.i(912793),m=e.i(465486);let _=e=>({className:a,...s}={})=>(0,t.jsx)("div",{className:"relative w-full h-full",children:e?(0,t.jsx)(o.default,{fill:!0,src:(0,n.fullImageUrl)(e),alt:"",className:(0,l.cn)("p-2",a),...s}):(0,t.jsx)(i.Boxes,{className:(0,l.cn)("inset-0 p-2 text-black w-full h-full",a),...s})});function E(e){return e.categories.some(e=>e?.slug==="foreign-data-wrapper")}e.s(["useAvailableIntegrations",0,()=>{let{integrationsWrappers:t}=(0,g.useIsFeatureEnabled)(["integrations:wrappers"]),i=(0,m.useIsWarehouseEnabled)(),{data:o}=(0,h.useCLIReleaseVersionQuery)(),l=!!o?.current,{isPending:b,isSuccess:f,isError:y,data:v,error:T}=(()=>{let{hasLoaded:e}=(0,u.useContext)(a.FeatureFlagContext),t=(0,d.useIsMarketplaceEnabled)(),{data:n,error:i}=(0,p.useMarketplaceIntegrationsQuery)({enabled:t}),r=s.IS_PLATFORM&&(!e||t&&!n&&!i),o=!s.IS_PLATFORM||e&&(!t||!!n&&!i),l=s.IS_PLATFORM&&t&&!!i,c=(0,a.useFlag)("previewMarketplaceListingsEnabled"),h=(0,a.useFeatureFlags)();return{isPending:r,isSuccess:o,isError:l,data:(0,u.useMemo)(()=>(n??[]).filter(e=>{var t;let a;return"approved"===e.review_status||"preview"===e.review_status&&(c||(t=e.slug,a=`${t}DashboardIntegrationEnabled`,h.configcat[a]??!1))}),[n,c,h]),error:i}})(),S=(0,u.useMemo)(()=>v.filter(e=>!E(e)).map(t=>{let{id:a,slug:s,categories:i,featured:o,title:u,description:l,documentation_url:d,website_url:p,installation_url:h,installation_url_type:g,installation_identification_method:m,secret_key_prefix:E,edge_function_secret_name:b,images:f,content:y,built_by:v,listing_logo:T,oauth_app_id:S}=t;return{id:s??"",name:u??"",status:void 0,featured:!!o,type:"oauth",source:"Partner",categories:i.map(e=>e.slug),content:y,files:f?.map((e,t)=>({src:(0,n.fullImageUrl)(e),alt:`${u} image ${t+1}`})),description:l,docsUrl:d,siteUrl:p,installUrl:h,installUrlType:g??void 0,installIdentificationMethod:m??void 0,secretKeyPrefix:E??void 0,edgeFunctionSecretName:b??void 0,oauthAppId:S??void 0,listingId:a??void 0,author:{name:v??"",websiteUrl:""},requiredExtensions:[],icon:_(T),navigation:[{route:"overview",label:"Overview"},{route:"settings",label:"Settings",layout:"constrained"}],navigate:({pageId:t="overview"})=>{switch(t){case"overview":return(0,r.default)(()=>e.A(130281).then(e=>e.MarketplaceIntegrationOverviewTab),{loadableGenerated:{modules:[10338]},loading:c.Loading});case"settings":return(0,r.default)(()=>e.A(655992).then(e=>e.MarketplaceIntegrationSettingsTab),{loadableGenerated:{modules:[614956]},loading:c.Loading})}return null}}}),[v]),A=(0,u.useMemo)(()=>{let e={};return v.forEach(t=>{E(t)&&(e[t.slug.replaceAll("-","_")]=t)}),e},[v]),N=(0,u.useMemo)(()=>c.INTEGRATIONS.filter(e=>(!!t||"wrapper"!==e.type)&&("stripe_sync_engine"!==e.id||!l)&&("warehouse"!==e.id||!!i)).map(e=>{if("wrapper"!==e.type)return e;let t=A[e.id];if(!t)return e;let{title:a,description:s,content:i,documentation_url:r,website_url:o,images:u,built_by:l,listing_logo:c}=t,d={name:a,description:s,content:i,docsUrl:r,siteUrl:o,author:l?{name:l,websiteUrl:""}:void 0,files:u?.map((e,t)=>({src:(0,n.fullImageUrl)(e),alt:`${a} screenshot ${t+1}`})),icon:c?_(c):void 0};return{...e,...Object.fromEntries(Object.entries(d).filter(([,e])=>null!=e))}}),[t,l,i,A]);return{data:(0,u.useMemo)(()=>[...S,...N].sort((e,t)=>e.name.localeCompare(t.name)),[S,N]),error:T,isPending:b,isSuccess:f,isError:y}}])},400104,e=>{"use strict";var t=e.i(832068),a=e.i(416340),s=e.i(26760),n=e.i(79745),i=e.i(450972),r=e.i(801834),o=e.i(298625),u=e.i(2579),l=e.i(265735),c=e.i(635494),d=e.i(681328);e.s(["useInstalledIntegrations",0,()=>{let{data:e}=(0,c.useSelectedProjectQuery)(),{data:p}=(0,l.useSelectedOrganizationQuery)(),{can:h}=(0,u.useAsyncCheckPermissions)(t.PermissionAction.READ,"oauth_apps",void 0,{organizationSlug:p?.slug,projectRef:null}),{data:g=d.EMPTY_ARR,error:m,isPending:_,isSuccess:E,isError:b}=(0,n.useAvailableIntegrations)(),f=(0,a.useMemo)(()=>g.some(e=>"oauth"===e.type),[g]),{data:y,error:v,isError:T,isLoading:S,isSuccess:A}=(0,s.useProjectOAuthIntegrationData)(e?.ref,{enabled:f}),{data:N=d.EMPTY_ARR,error:I,isError:R,isPending:O,isSuccess:w}=(0,o.useFDWsQuery)({projectRef:e?.ref,connectionString:e?.connectionString}),{data:C=d.EMPTY_ARR,error:L,isError:x,isPending:k,isSuccess:j}=(0,i.useDatabaseExtensionsQuery)({projectRef:e?.ref,connectionString:e?.connectionString}),{data:F=d.EMPTY_ARR,error:G,isError:P,isPending:U,isSuccess:M}=(0,r.useSchemasQuery)({projectRef:e?.ref,connectionString:e?.connectionString}),q=F.some(e=>"supabase_functions"===e.name),D=(0,a.useMemo)(()=>g.filter(e=>"webhooks"===e.id?q:"data_api"===e.id||"warehouse"===e.id||("stripe_sync_engine"===e.id?(0,s.isStripeSyncEngineInstalled)(F):"wrapper"===e.type?(0,s.hasMatchingWrapper)({meta:e.meta,wrappers:N}):"postgres_extension"===e.type?(0,s.hasRequiredExtensions)({integration:e,extensions:C}):"oauth"===e.type&&(0,s.isOAuthInstalled)({integration:e,projectData:y}))).sort((e,t)=>e.name.localeCompare(t.name)),[g,N,C,F,q,y]),W=I||L||G||m||(h&&f?v:null),Q=U||O||k||_||f&&h&&S,K=R||x||P||b||f&&h&&T,H=w&&j&&M&&E&&(!f||!h||A);return{installedIntegrations:Q?d.EMPTY_ARR:D,error:W,isError:K,isLoading:Q,isSuccess:H}}])},450346,e=>{"use strict";e.s(["getServiceVersionsPath",0,e=>`/project/${e??"_"}/settings/general#service-versions`])},14703,294285,e=>{"use strict";var t=e.i(125356),a=e.i(964574),s=e.i(416340);let n={user:(e,t)=>["projects",e,"user",t],usersInfinite:(e,t)=>["projects",e,"users-infinite",t].filter(Boolean),usersSearch:(e,t)=>["projects",e,"users-search",t],usersCount:(e,t)=>["projects",e,"users-count",t].filter(Boolean),usersIndexStatuses:e=>["projects",e,"users-index-statuses"],indexWorkerStatus:e=>["projects",e,"index-worker-status"],authConfig:e=>["projects",e,"auth-config"],accessToken:()=>["access-token"],overviewMetrics:e=>["projects",e,"auth-overview-metrics"]};e.s(["authKeys",0,n],294285);var i=e.i(234745),r=e.i(10429);async function o({projectRef:e},t){if(!e)throw Error("projectRef is required");let{data:a,error:s}=await (0,i.get)("/platform/auth/{ref}/config",{params:{path:{ref:e}},signal:t});return s&&(0,i.handleError)(s),a}e.s(["getProjectAuthConfig",0,o,"useAuthConfigPrefetch",0,({projectRef:e})=>{let t=(0,a.useQueryClient)();return(0,s.useCallback)(()=>{e&&t.prefetchQuery({queryKey:n.authConfig(e),queryFn:({signal:t})=>o({projectRef:e},t)})},[t,e])},"useAuthConfigQuery",0,({projectRef:e},{enabled:a=!0,...s}={})=>(0,t.useQuery)({queryKey:n.authConfig(e),queryFn:({signal:t})=>o({projectRef:e},t),enabled:a&&r.IS_PLATFORM&&void 0!==e&&"_"!==e,...s})],14703)},462531,353917,e=>{"use strict";var t=e.i(125356),a=e.i(757670);let s={list:()=>["marketplace","integrations"],categories:()=>["marketplace","categories"]};e.s(["marketplaceIntegrationsKeys",0,s],353917);var n=e.i(234745);async function i(e){let t=(0,a.createMarketplaceClient)().from("marketplace_listings").select("*").not("published_in_marketplace_at","is",null);e&&(t=t.abortSignal(e));let{data:s,error:i}=await t;return i&&(0,n.handleError)(i),s??[]}e.s(["useMarketplaceIntegrationsQuery",0,({enabled:e=!0,...a}={})=>(0,t.useQuery)({queryKey:s.list(),queryFn:({signal:e})=>i(e),enabled:e,...a})],462531)},375890,e=>{"use strict";var t=e.i(125356),a=e.i(142119),s=e.i(234745),n=e.i(10429);async function i(){try{return await (0,s.fetchHandler)(`${n.BASE_PATH}/api/cli-release-version`).then(e=>e.json())}catch(e){throw e}}e.s(["getCLIReleaseVersion",0,i,"useCLIReleaseVersionQuery",0,({enabled:e=!0,...s}={})=>(0,t.useQuery)({queryKey:a.miscKeys.cliReleaseVersion(),queryFn:()=>i(),enabled:e&&!n.IS_PLATFORM,...s})])},656429,984965,e=>{"use strict";var t=e.i(125356);let a={oauthApps:e=>[e,"oauth-apps"],authorizedApps:e=>[e,"authorized-apps"]};e.s(["oauthAppKeys",0,a],984965);var s=e.i(234745);async function n({slug:e}){if(!e)throw Error("Organization slug is required");let{data:t,error:a}=await (0,s.get)("/platform/organizations/{slug}/oauth/apps",{params:{path:{slug:e},query:{type:"authorized"}}});return a&&(0,s.handleError)(a),t}e.s(["useAuthorizedAppsQuery",0,({slug:e},{enabled:s=!0,...i}={})=>(0,t.useQuery)({queryKey:a.authorizedApps(e),queryFn:()=>n({slug:e}),enabled:s&&void 0!==e,...i})],656429)},255392,e=>{"use strict";e.s(["partnersKeys",0,{getIntegrations:e=>["partners","integrations",e],getStripeProjects:e=>["stripe","projects",e]}])},230833,481943,e=>{"use strict";var t=e.i(125356);let a={list:e=>["projects",e,"edge_functions_secrets"]};e.s(["secretsKeys",0,a],481943);var s=e.i(234745);async function n({projectRef:e},t){if(!e)throw Error("Project ref is required");let{data:a,error:i}=await (0,s.get)("/v1/projects/{ref}/secrets",{params:{path:{ref:e}},signal:t});return i&&(0,s.handleError)(i),a}e.s(["useSecretsQuery",0,({projectRef:e},{enabled:s=!0,...i}={})=>(0,t.useQuery)({queryKey:a.list(e),queryFn:({signal:t})=>n({projectRef:e},t),enabled:s&&void 0!==e,...i})],230833)},465486,e=>{"use strict";var t=e.i(125356);e.i(128328);var a=e.i(637972),s=e.i(158639),n=e.i(912793),i=e.i(265735),r=e.i(10429);e.s(["useIsWarehouseEnabled",0,function(){let{ref:e}=(0,s.useParams)(),{projectConnectionShowWarehouse:o}=(0,n.useIsFeatureEnabled)(["project_connection:show_warehouse"]),{data:u}=(0,i.useSelectedOrganizationQuery)({enabled:r.IS_PLATFORM}),{data:l,isSuccess:c}=(0,t.useQuery)({queryKey:["warehouse-configcat-flag",e],queryFn:()=>(0,a.getStringArrayFlag)("warehouse",e),enabled:r.IS_PLATFORM&&o&&!!e,staleTime:3e5});return!!r.IS_PLATFORM&&!!o&&!!c&&!!u?.slug&&(l.includes("all")||l.includes(u.slug))}])},662972,e=>{"use strict";let t=(0,e.i(679709).default)("Clock5",[["circle",{cx:"12",cy:"12",r:"10",key:"1mglay"}],["polyline",{points:"12 6 12 12 14.5 16",key:"1pcbox"}]]);e.s(["Clock5",0,t],662972)},728561,e=>{"use strict";let t=(0,e.i(679709).default)("CodeXml",[["path",{d:"m18 16 4-4-4-4",key:"1inbqp"}],["path",{d:"m6 8-4 4 4 4",key:"15zrgr"}],["path",{d:"m14.5 4-5 16",key:"e7oirm"}]]);e.s(["Code2",0,t],728561)},582968,e=>{"use strict";let t=(0,e.i(679709).default)("Layers",[["path",{d:"m12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83Z",key:"8b97xw"}],["path",{d:"m22 17.65-9.17 4.16a2 2 0 0 1-1.66 0L2 17.65",key:"dd6zsq"}],["path",{d:"m22 12.65-9.17 4.16a2 2 0 0 1-1.66 0L2 12.65",key:"ep9fru"}]]);e.s(["Layers",0,t],582968)},839869,e=>{"use strict";let t=(0,e.i(679709).default)("Timer",[["line",{x1:"10",x2:"14",y1:"2",y2:"2",key:"14vaq8"}],["line",{x1:"12",x2:"15",y1:"14",y2:"11",key:"17fdiu"}],["circle",{cx:"12",cy:"14",r:"8",key:"1e1u0o"}]]);e.s(["Timer",0,t],839869)},889131,e=>{"use strict";let t=(0,e.i(679709).default)("Vault",[["rect",{width:"18",height:"18",x:"3",y:"3",rx:"2",key:"afitv7"}],["circle",{cx:"7.5",cy:"7.5",r:".5",fill:"currentColor",key:"kqv944"}],["path",{d:"m7.9 7.9 2.7 2.7",key:"hpeyl3"}],["circle",{cx:"16.5",cy:"7.5",r:".5",fill:"currentColor",key:"w0ekpg"}],["path",{d:"m13.4 10.6 2.7-2.7",key:"264c1n"}],["circle",{cx:"7.5",cy:"16.5",r:".5",fill:"currentColor",key:"nkw3mc"}],["path",{d:"m7.9 16.1 2.7-2.7",key:"p81g5e"}],["circle",{cx:"16.5",cy:"16.5",r:".5",fill:"currentColor",key:"fubopw"}],["path",{d:"m13.4 13.4 2.7 2.7",key:"abhel3"}],["circle",{cx:"12",cy:"12",r:"2",key:"1c9p78"}]]);e.s(["Vault",0,t],889131)},52906,e=>{"use strict";let t=(0,e.i(679709).default)("Warehouse",[["path",{d:"M22 8.35V20a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V8.35A2 2 0 0 1 3.26 6.5l8-3.2a2 2 0 0 1 1.48 0l8 3.2A2 2 0 0 1 22 8.35Z",key:"gksnxg"}],["path",{d:"M6 18h12",key:"9pbo8z"}],["path",{d:"M6 14h12",key:"4cwo0f"}],["rect",{width:"12",height:"12",x:"6",y:"10",key:"apd30q"}]]);e.s(["Warehouse",0,t],52906)},866543,e=>{"use strict";let t=(0,e.i(679709).default)("Webhook",[["path",{d:"M18 16.98h-5.99c-1.1 0-1.95.94-2.48 1.9A4 4 0 0 1 2 17c.01-.7.2-1.4.57-2",key:"q3hayz"}],["path",{d:"m6 17 3.13-5.78c.53-.97.1-2.18-.5-3.1a4 4 0 1 1 6.89-4.06",key:"1go1hn"}],["path",{d:"m12 6 3.13 5.73C15.66 12.7 16.9 13 18 13a4 4 0 0 1 0 8",key:"qlwsc0"}]]);e.s(["Webhook",0,t],866543)},757670,e=>{"use strict";var t=e.i(333210);e.s(["createMarketplaceClient",0,()=>(0,t.createClient)("https://otqhrpbxhxkrhrnjqbba.supabase.co","sb_publishable_ZVVKKu1s88KsSBWVYlou-g_phb2OJVQ",{auth:{persistSession:!1,autoRefreshToken:!1,detectSessionInUrl:!1,storage:{getItem:e=>null,setItem:(e,t)=>{},removeItem:e=>{}}}}),"fullImageUrl",0,e=>`https://otqhrpbxhxkrhrnjqbba.supabase.co${e}`])},480762,e=>{"use strict";var t=e.i(479084);e.s(["getEnableWebhooksSQL",0,()=>t.safeSql`
+BEGIN;
+  DO
+  $$
+  BEGIN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM pg_roles
+      WHERE rolname = 'supabase_functions_admin'
+    )
+    THEN
+      CREATE USER supabase_functions_admin NOINHERIT CREATEROLE LOGIN NOREPLICATION;
+    END IF;
+  END
+  $$;
+
+  -- Event trigger for pg_net
+  CREATE OR REPLACE FUNCTION extensions.grant_pg_net_access()
+  RETURNS event_trigger
+  LANGUAGE plpgsql
+  AS $$
+  BEGIN
+    IF EXISTS (
+      SELECT 1
+      FROM pg_event_trigger_ddl_commands() AS ev
+      JOIN pg_extension AS ext
+      ON ev.objid = ext.oid
+      WHERE ext.extname = 'pg_net'
+    )
+    THEN
+      GRANT USAGE ON SCHEMA net TO supabase_functions_admin, postgres, anon, authenticated, service_role;
+
+      IF EXISTS (
+        SELECT FROM pg_extension
+        WHERE extname = 'pg_net'
+        -- all versions in use on existing projects as of 2025-02-20
+        -- version 0.12.0 onwards don't need these applied
+        AND extversion IN ('0.2', '0.6', '0.7', '0.7.1', '0.8', '0.10.0', '0.11.0')
+      ) THEN
+        ALTER function net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) SECURITY DEFINER;
+        ALTER function net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) SECURITY DEFINER;
+
+        ALTER function net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) SET search_path = net;
+        ALTER function net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) SET search_path = net;
+
+        REVOKE ALL ON FUNCTION net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) FROM PUBLIC;
+        REVOKE ALL ON FUNCTION net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) FROM PUBLIC;
+
+        GRANT EXECUTE ON FUNCTION net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) TO supabase_functions_admin, postgres, anon, authenticated, service_role;
+        GRANT EXECUTE ON FUNCTION net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) TO supabase_functions_admin, postgres, anon, authenticated, service_role;
+      END IF;
+    END IF;
+  END;
+  $$;
+  COMMENT ON FUNCTION extensions.grant_pg_net_access IS 'Grants access to pg_net';
+
+  DO
+  $$
+  BEGIN
+    IF NOT EXISTS (
+      SELECT 1
+      FROM pg_event_trigger
+      WHERE evtname = 'issue_pg_net_access'
+    ) THEN
+      CREATE EVENT TRIGGER issue_pg_net_access ON ddl_command_end WHEN TAG IN ('CREATE EXTENSION')
+      EXECUTE PROCEDURE extensions.grant_pg_net_access();
+    END IF;
+  END
+  $$;
+
+  -- pg_net grants when extension is already enabled
+  DO
+  $$
+  BEGIN
+    IF EXISTS (
+      SELECT 1
+      FROM pg_extension
+      WHERE extname = 'pg_net'
+    )
+    THEN
+      GRANT USAGE ON SCHEMA net TO supabase_functions_admin, postgres, anon, authenticated, service_role;
+
+      IF EXISTS (
+        SELECT FROM pg_extension
+        WHERE extname = 'pg_net'
+        -- all versions in use on existing projects as of 2025-02-20
+        -- version 0.12.0 onwards don't need these applied
+        AND extversion IN ('0.2', '0.6', '0.7', '0.7.1', '0.8', '0.10.0', '0.11.0')
+      ) THEN
+        ALTER function net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) SECURITY DEFINER;
+        ALTER function net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) SECURITY DEFINER;
+
+        ALTER function net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) SET search_path = net;
+        ALTER function net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) SET search_path = net;
+
+        REVOKE ALL ON FUNCTION net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) FROM PUBLIC;
+        REVOKE ALL ON FUNCTION net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) FROM PUBLIC;
+
+        GRANT EXECUTE ON FUNCTION net.http_get(url text, params jsonb, headers jsonb, timeout_milliseconds integer) TO supabase_functions_admin, postgres, anon, authenticated, service_role;
+        GRANT EXECUTE ON FUNCTION net.http_post(url text, body jsonb, params jsonb, headers jsonb, timeout_milliseconds integer) TO supabase_functions_admin, postgres, anon, authenticated, service_role;
+      END IF;
+    END IF;
+  END
+  $$;
+
+  -- Create pg_net extension
+  CREATE EXTENSION IF NOT EXISTS pg_net SCHEMA extensions;
+
+  -- Create supabase_functions schema
+  CREATE SCHEMA supabase_functions AUTHORIZATION supabase_admin;
+
+  GRANT USAGE ON SCHEMA supabase_functions TO postgres, anon, authenticated, service_role;
+  ALTER DEFAULT PRIVILEGES IN SCHEMA supabase_functions GRANT ALL ON TABLES TO postgres, anon, authenticated, service_role;
+  ALTER DEFAULT PRIVILEGES IN SCHEMA supabase_functions GRANT ALL ON FUNCTIONS TO postgres, anon, authenticated, service_role;
+  ALTER DEFAULT PRIVILEGES IN SCHEMA supabase_functions GRANT ALL ON SEQUENCES TO postgres, anon, authenticated, service_role;
+
+  -- supabase_functions.migrations definition
+  CREATE TABLE supabase_functions.migrations (
+    version text PRIMARY KEY,
+    inserted_at timestamptz NOT NULL DEFAULT NOW()
+  );
+
+  -- Initial supabase_functions migration
+  INSERT INTO supabase_functions.migrations (version) VALUES ('initial');
+
+  -- supabase_functions.hooks definition
+  CREATE TABLE supabase_functions.hooks (
+    id bigserial PRIMARY KEY,
+    hook_table_id integer NOT NULL,
+    hook_name text NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT NOW(),
+    request_id bigint
+  );
+  CREATE INDEX supabase_functions_hooks_request_id_idx ON supabase_functions.hooks USING btree (request_id);
+  CREATE INDEX supabase_functions_hooks_h_table_id_h_name_idx ON supabase_functions.hooks USING btree (hook_table_id, hook_name);
+  COMMENT ON TABLE supabase_functions.hooks IS 'Supabase Functions Hooks: Audit trail for triggered hooks.';
+
+  CREATE FUNCTION supabase_functions.http_request()
+    RETURNS trigger
+    LANGUAGE plpgsql
+    AS $function$
+    DECLARE
+      request_id bigint;
+      payload jsonb;
+      url text := TG_ARGV[0]::text;
+      method text := TG_ARGV[1]::text;
+      headers jsonb DEFAULT '{}'::jsonb;
+      params jsonb DEFAULT '{}'::jsonb;
+      timeout_ms integer DEFAULT 1000;
+    BEGIN
+      IF url IS NULL OR url = 'null' THEN
+        RAISE EXCEPTION 'url argument is missing';
+      END IF;
+
+      IF method IS NULL OR method = 'null' THEN
+        RAISE EXCEPTION 'method argument is missing';
+      END IF;
+
+      IF TG_ARGV[2] IS NULL OR TG_ARGV[2] = 'null' THEN
+        headers = '{"Content-Type": "application/json"}'::jsonb;
+      ELSE
+        headers = TG_ARGV[2]::jsonb;
+      END IF;
+
+      IF TG_ARGV[3] IS NULL OR TG_ARGV[3] = 'null' THEN
+        params = '{}'::jsonb;
+      ELSE
+        params = TG_ARGV[3]::jsonb;
+      END IF;
+
+      IF TG_ARGV[4] IS NULL OR TG_ARGV[4] = 'null' THEN
+        timeout_ms = 1000;
+      ELSE
+        timeout_ms = TG_ARGV[4]::integer;
+      END IF;
+
+      CASE
+        WHEN method = 'GET' THEN
+          SELECT http_get INTO request_id FROM net.http_get(
+            url,
+            params,
+            headers,
+            timeout_ms
+          );
+        WHEN method = 'POST' THEN
+          payload = jsonb_build_object(
+            'old_record', OLD,
+            'record', NEW,
+            'type', TG_OP,
+            'table', TG_TABLE_NAME,
+            'schema', TG_TABLE_SCHEMA
+          );
+
+          SELECT http_post INTO request_id FROM net.http_post(
+            url,
+            payload,
+            params,
+            headers,
+            timeout_ms
+          );
+        ELSE
+          RAISE EXCEPTION 'method argument % is invalid', method;
+      END CASE;
+
+      INSERT INTO supabase_functions.hooks
+        (hook_table_id, hook_name, request_id)
+      VALUES
+        (TG_RELID, TG_NAME, request_id);
+
+      RETURN NEW;
+    END
+  $function$;
+
+  GRANT ALL PRIVILEGES ON SCHEMA supabase_functions TO supabase_functions_admin;
+  GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA supabase_functions TO supabase_functions_admin;
+  GRANT ALL PRIVILEGES ON ALL SEQUENCES IN SCHEMA supabase_functions TO supabase_functions_admin;
+  ALTER USER supabase_functions_admin SET search_path = "supabase_functions";
+  ALTER table "supabase_functions".migrations OWNER TO supabase_functions_admin;
+  ALTER table "supabase_functions".hooks OWNER TO supabase_functions_admin;
+  ALTER function "supabase_functions".http_request() OWNER TO supabase_functions_admin;
+  GRANT supabase_functions_admin TO postgres;
+
+  -- Remove unused supabase_pg_net_admin role
+  DO
+  $$
+  BEGIN
+    IF EXISTS (
+      SELECT 1
+      FROM pg_roles
+      WHERE rolname = 'supabase_pg_net_admin'
+    )
+    THEN
+      REASSIGN OWNED BY supabase_pg_net_admin TO supabase_admin;
+      DROP OWNED BY supabase_pg_net_admin;
+      DROP ROLE supabase_pg_net_admin;
+    END IF;
+  END
+  $$;
+
+  INSERT INTO supabase_functions.migrations (version) VALUES ('20210809183423_update_grants');
+
+  ALTER function supabase_functions.http_request() SECURITY DEFINER;
+  ALTER function supabase_functions.http_request() SET search_path = supabase_functions;
+  REVOKE ALL ON FUNCTION supabase_functions.http_request() FROM PUBLIC;
+  GRANT EXECUTE ON FUNCTION supabase_functions.http_request() TO postgres, anon, authenticated, service_role;
+
+  COMMIT;
+`])}]);
+
+//# debugId=2f683699-c2dc-4b69-b23d-b5f692a31cef

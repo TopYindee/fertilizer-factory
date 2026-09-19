@@ -1,0 +1,215 @@
+;!function(){try { var e="undefined"!=typeof globalThis?globalThis:"undefined"!=typeof global?global:"undefined"!=typeof window?window:"undefined"!=typeof self?self:{},n=(new e.Error).stack;n&&((e._debugIds|| (e._debugIds={}))[n]="bfeb575a-ae53-b3af-5090-54dc330a76fb")}catch(e){}}();
+(globalThis.TURBOPACK||(globalThis.TURBOPACK=[])).push(["object"==typeof document?document.currentScript:void 0,12214,e=>{"use strict";var r=e.i(531837),t=e.i(615515);let a=r.object({index:r.number(),columns:r.array(r.object({name:r.string(),type:r.string()})),is_new_schema:r.boolean(),schema:r.string(),schema_name:r.string(),table_name:r.string(),object:r.any().optional()}).passthrough(),n=e=>Object.fromEntries(e.map(e=>e.split("=")));function i(e,r){if("wasm_fdw_handler"===e.handlerName){let t=n(r?.server_options??[]);return e.server.options.find(e=>"fdw_package_name"===e.name)?.defaultValue===t.fdw_package_name}return e.handlerName===r?.handler}e.s(["NewTable",0,{},"convertKVStringArrayToJson",0,n,"formatWrapperTables",0,(e,r)=>(e?.tables??[]).map(a=>{let n=0,i=Object.fromEntries(a.options.map(e=>e.split("=")));switch(e.handler){case t.WRAPPER_HANDLERS.STRIPE:n=r?.tables.findIndex(e=>e.options.find(e=>"object"===e.name)?.defaultValue===i.object)??0;break;case t.WRAPPER_HANDLERS.FIREBASE:n="auth/users"===i.object?r?.tables.findIndex(e=>e.options.find(e=>"auth/users"===e.defaultValue))??0:r?.tables.findIndex(e=>"Firestore Collection"===e.label)??0;case t.WRAPPER_HANDLERS.S3:case t.WRAPPER_HANDLERS.AIRTABLE:case t.WRAPPER_HANDLERS.LOGFLARE:case t.WRAPPER_HANDLERS.BIG_QUERY:case t.WRAPPER_HANDLERS.CLICK_HOUSE:}return{...i,index:n,id:a.id,columns:a.columns??[],is_new_schema:!1,schema:a.schema,schema_name:a.schema,table_name:a.name}}),"getEditionFormSchema",0,e=>{let t={wrapper_name:r.string().min(1,"Please provide a name for your wrapper"),tables:r.array(a,{required_error:"Please provide at least one table"}).min(1,"Please provide at least one table")};return e.server.options.forEach(e=>{if(e.required){t[e.name]=r.string().min(1,"Required");return}t[e.name]=r.string().optional()}),r.object(t)},"getRequiredExtensionsToInstall",0,function(e,r){return void 0===e?null:e.filter(e=>r.includes(e.name)&&!e.installed_version)},"getTableFormSchema",0,e=>{let t={table_name:r.string().min(1,"Required"),schema:r.string().min(1,"Required"),schema_name:r.string().optional(),columns:r.array(r.object({name:r.string().min(1,"Required"),type:r.string().min(1,"Required")}))};return e.options.forEach(e=>{if(e.required){t[e.name]=r.string().min(1,"Required");return}t[e.name]=r.string().optional()}),r.object(t).passthrough().superRefine((e,r)=>{"custom"!==e.schema||e.schema_name||r.addIssue({code:"custom",path:["schema_name"],message:"Required"})})},"getWrapperCreationFormSchema",0,e=>{let t={wrapper_name:r.string().min(1,"Please provide a name for your wrapper")};return e.server.options.forEach(e=>{if(e.required){t[e.name]=r.string().min(1,"Required");return}t[e.name]=r.string().optional()}),r.discriminatedUnion("mode",[r.object({mode:r.literal("tables"),tables:r.array(a,{required_error:"Please provide at least one table"}).min(1,"Please provide at least one table")}).merge(r.object(t)),r.object({mode:r.literal("schema"),source_schema:r.string().min(1,"Please provide a source schema"),target_schema:r.string().min(1,"Please provide an unique target schema")}).merge(r.object(t))])},"getWrapperMetaForWrapper",0,function(e){return t.WRAPPERS.find(r=>i(r,e))},"hasForeignSchemaSupport",0,function(e){return!!e?.installed_version&&e.installed_version>="0.5.0"},"wrapperMetaComparator",0,i])},513826,e=>{"use strict";var r=e.i(221628),t=e.i(345216),a=e.i(837710);e.s(["DocsButton",0,({href:e,abbrev:n=!0,className:i,topic:s,label:o})=>(0,r.jsx)(a.Button,{asChild:!0,variant:"default",className:i,icon:(0,r.jsx)(t.BookOpen,{}),onClick:e=>e.stopPropagation(),children:(0,r.jsx)("a",{target:"_blank",rel:"noopener noreferrer",href:e,"aria-label":s?`${s} documentation (opens in new tab)`:void 0,children:o??(n?"Docs":"Documentation")})})])},108892,348682,e=>{"use strict";var r=e.i(125356),t=e.i(416340);let a={list:(e,r)=>["projects",e,"api-keys",r].filter(Boolean),single:(e,r)=>["projects",e,"api-keys",r],status:e=>["projects",e,"api-keys","legacy"],temporary:e=>["projects",e,"api-keys","temporary"]};e.s(["apiKeysKeys",0,a],348682);var n=e.i(234745);async function i({projectRef:e,reveal:r},t){if(!e)throw Error("projectRef is required");let{data:a,error:s}=await (0,n.get)("/v1/projects/{ref}/api-keys",{params:{path:{ref:e},query:{reveal:r?"true":"false"}},signal:t});return s&&(0,n.handleError)(s),a}let s=({projectRef:e,reveal:t=!1},{enabled:n=!0,...s}={})=>(0,r.useQuery)({queryKey:a.list(e,t),queryFn:({signal:r})=>i({projectRef:e,reveal:t},r),enabled:n&&void 0!==e,...s}),o={anonKey:void 0,serviceKey:void 0,publishableKey:void 0,secretKey:void 0,allSecretKeys:[]},l=(e=[])=>{if(!Array.isArray(e))return o;let r=e.find(e=>"anon"===e.name),t=e.find(e=>"service_role"===e.name),a=e.find(e=>"publishable"===e.type);return{anonKey:r,serviceKey:t,publishableKey:a,secretKey:e.find(e=>"secret"===e.type),allSecretKeys:e.filter(e=>"secret"===e.type)}},u=[];e.s(["getKeys",0,l,"useAPIKeys",0,(e,r={})=>{let a=(0,t.useCallback)(e=>l(r.enabled?e:[]),[r.enabled]);return s(e,{...r,placeholderData:u,select:a})},"useAPIKeysQuery",0,s],108892)},78162,e=>{"use strict";e.s(["configKeys",0,{settings:e=>["projects",e,"settings"],settingsV2:e=>["projects",e,"settings-v2"],api:e=>["projects",e,"settings","api"],postgrest:e=>["projects",e,"postgrest"],jwtSecretUpdatingStatus:e=>["projects",e,"jwt-secret-updating-status"],storage:e=>["projects",e,"storage"],upgradeEligibility:e=>["projects",e,"upgrade-eligibility"],upgradeStatus:e=>["projects",e,"upgrade-status"],diskAttributes:e=>["projects",e,"disk-attributes"],diskBreakdown:e=>["projects",e,"disk-breakdown"],diskUtilization:e=>["projects",e,"disk-utilization"],projectCreationPostgresVersions:(e,r,t)=>["projects",e,r,t,"available-creation-versions"],projectUnpausePostgresVersions:e=>["projects",e,"available-unpause-versions"],diskAutoscaleConfig:e=>["projects",e,"disk-autoscale-config"],deploymentMode:()=>["deployment-mode"],postgresConfig:e=>["projects",e,"postgres-config"],projectConfig:e=>["projects",e,"config"]}])},801834,e=>{"use strict";var r=e.i(850036),t=e.i(125356),a=e.i(246230),n=e.i(617361),i=e.i(681328);let s=r.default.schemas.list();async function o({projectRef:e,connectionString:r},t){let{result:a}=await (0,n.executeSql)({projectRef:e,connectionString:r,sql:s.sql,queryKey:["schemas"]},t);return Array.isArray(a)?a:i.EMPTY_ARR}e.s(["getSchemas",0,o,"invalidateSchemasQuery",0,function(e,r){return e.invalidateQueries({queryKey:a.databaseKeys.schemas(r)})},"prefetchSchemas",0,function(e,{projectRef:r,connectionString:t}){return e.fetchQuery({queryKey:a.databaseKeys.schemas(r),queryFn:({signal:e})=>o({projectRef:r,connectionString:t},e)})},"useSchemasQuery",0,({projectRef:e,connectionString:r},{enabled:n=!0,...i}={})=>(0,t.useQuery)({queryKey:a.databaseKeys.schemas(e),queryFn:({signal:t})=>o({projectRef:e,connectionString:r},t),enabled:n&&void 0!==e,...i})])},298625,33942,584258,e=>{"use strict";e.i(850036);var r=e.i(479084);let t=()=>r.safeSql`
+    select
+      s.oid as "id",
+      w.fdwname as "name",
+      s.srvname as "server_name",
+      s.srvoptions as "server_options",
+      c.proname as "handler",
+      (
+        select jsonb_agg(
+          jsonb_build_object(
+            'id', c.oid::bigint,
+            'schema', relnamespace::regnamespace::text,
+            'name', c.relname,
+            'columns', (
+              select jsonb_agg(
+                jsonb_build_object(
+                  'name', a.attname,
+                  'type', pg_catalog.format_type(a.atttypid, a.atttypmod)
+                )
+              )
+              from pg_catalog.pg_attribute a
+              where a.attrelid = c.oid and a.attnum > 0 and not a.attisdropped
+            ),
+            'options', t.ftoptions
+          )
+        )
+        from pg_catalog.pg_class c
+        join pg_catalog.pg_foreign_table t on c.oid = t.ftrelid
+        where c.oid = any (select t.ftrelid from pg_catalog.pg_foreign_table t where t.ftserver = s.oid)
+      ) as "tables"
+    from pg_catalog.pg_foreign_server s
+    join pg_catalog.pg_foreign_data_wrapper w on s.srvfdw = w.oid
+    join pg_catalog.pg_proc c on w.fdwhandler = c.oid;
+  `;function a({wrapperMeta:e,formState:t,mode:n,tables:i,sourceSchema:s,targetSchema:o,schemaOptions:l=[]}){let u=(0,r.joinSqlFragments)(i.filter(e=>e.is_new_schema).map(e=>r.safeSql`create schema if not exists ${(0,r.ident)(e.schema_name)};`),"\n"),c=r.safeSql`
+    create foreign data wrapper ${(0,r.ident)(t.wrapper_name)}
+    handler ${(0,r.ident)(e.handlerName)}
+    validator ${(0,r.ident)(e.validatorName)};
+  `,f=e.server.options.filter(e=>e.encrypted),d=e.server.options.filter(e=>!e.encrypted),p=f.map(e=>{let a=`${t.wrapper_name}_${e.name}`,n=(0,r.literal)(t[e.name]||"");return r.safeSql`
+      do $$
+      begin
+        -- Old wrappers has an implicit dependency on pgsodium. For new wrappers
+        -- we use Vault directly.
+        if (select extversion from pg_extension where extname = 'wrappers') in (
+          '0.1.0',
+          '0.1.1',
+          '0.1.4',
+          '0.1.5',
+          '0.1.6',
+          '0.1.7',
+          '0.1.8',
+          '0.1.9',
+          '0.1.10',
+          '0.1.11',
+          '0.1.12',
+          '0.1.14',
+          '0.1.15',
+          '0.1.16',
+          '0.1.17',
+          '0.1.18',
+          '0.1.19',
+          '0.2.0',
+          '0.3.0',
+          '0.3.1',
+          '0.4.0',
+          '0.4.1',
+          '0.4.2',
+          '0.4.3',
+          '0.4.4',
+          '0.4.5'
+        ) then
+          create extension if not exists pgsodium;
+
+          perform pgsodium.create_key(
+            name := ${(0,r.literal)(a)}
+          );
+
+          perform vault.create_secret(
+            new_secret := ${n},
+            new_name   := ${(0,r.literal)(a)},
+            new_key_id := (select id from pgsodium.valid_key where name = ${(0,r.literal)(a)})
+          );
+        else
+          perform vault.create_secret(
+            new_secret := ${n},
+            new_name := ${(0,r.literal)(a)}
+          );
+        end if;
+      end $$;
+    `}),m=(0,r.joinSqlFragments)(p,"\n"),g=f.filter(e=>t[e.name]).map(e=>r.safeSql`${(0,r.ident)(e.name)} ''%s''`),y=d.filter(e=>t[e.name]),h=y.map(e=>r.safeSql`${(0,r.ident)(e.name)} %L`),v=(0,r.joinSqlFragments)([...g,...h],","),_=r.safeSql`
+    do $$
+    declare
+      -- Old wrappers has an implicit dependency on pgsodium. For new wrappers
+      -- we use Vault directly.
+      is_using_old_wrappers bool;
+      ${(0,r.joinSqlFragments)(f.map(e=>r.safeSql`${(0,r.ident)(`v_${e.name}`)} text;`),"\n")}
+    begin
+      is_using_old_wrappers := (select extversion from pg_extension where extname = 'wrappers') in (
+        '0.1.0',
+        '0.1.1',
+        '0.1.4',
+        '0.1.5',
+        '0.1.6',
+        '0.1.7',
+        '0.1.8',
+        '0.1.9',
+        '0.1.10',
+        '0.1.11',
+        '0.1.12',
+        '0.1.14',
+        '0.1.15',
+        '0.1.16',
+        '0.1.17',
+        '0.1.18',
+        '0.1.19',
+        '0.2.0',
+        '0.3.0',
+        '0.3.1',
+        '0.4.0',
+        '0.4.1',
+        '0.4.2',
+        '0.4.3',
+        '0.4.4',
+        '0.4.5'
+      );
+      ${(0,r.joinSqlFragments)(f.map(e=>r.safeSql`
+              if is_using_old_wrappers then
+                select id into ${(0,r.ident)(`v_${e.name}`)} from pgsodium.valid_key where name = ${(0,r.literal)(`${t.wrapper_name}_${e.name}`)} limit 1;
+              else
+                select id into ${(0,r.ident)(`v_${e.name}`)} from vault.secrets where name = ${(0,r.literal)(`${t.wrapper_name}_${e.name}`)} limit 1;
+              end if;
+            `),"\n")}
+    
+      execute format(
+        E'create server ${(0,r.ident)(t.server_name)} foreign data wrapper ${(0,r.ident)(t.wrapper_name)} options (${v});',
+        ${(0,r.joinSqlFragments)([...f.filter(e=>t[e.name]).map(e=>(0,r.ident)(`v_${e.name}`)),...y.map(e=>(0,r.literal)(t[e.name]))],",")}
+      );
+    end $$;
+  `,x=(0,r.joinSqlFragments)(i.map(e=>{let a=e.columns;return r.safeSql`
+        create foreign table ${(0,r.ident)(e.schema_name)}.${(0,r.ident)(e.table_name)} (
+          ${(0,r.joinSqlFragments)(a.map(e=>r.safeSql`${(0,r.ident)(e.name)} ${(0,r.keyword)(e.type)}`),",")}
+        )
+        server ${(0,r.ident)(t.server_name)}
+        options (
+          ${(0,r.joinSqlFragments)(Object.entries(e).filter(([e,r])=>"table_name"!==e&&"schema_name"!==e&&"columns"!==e&&"index"!==e&&"is_new_schema"!==e&&!!r).map(([e,t])=>r.safeSql`${(0,r.ident)(e)} ${(0,r.literal)(t)}`),",")}
+        );
+      `}),"\n\n"),b=(0,r.joinSqlFragments)([...l,r.safeSql`strict 'true'`],", ");return r.safeSql`
+    ${u}
+
+    ${c}
+
+    ${m}
+
+    ${_}
+
+    ${"tables"===n?x:r.safeSql``}
+
+    ${"schema"===n?r.safeSql`
+  import foreign schema ${(0,r.ident)(s)} from server ${(0,r.ident)(t.server_name)} into ${(0,r.ident)(o)} options (${b});
+`:r.safeSql``}
+  `}let n=({wrapper:e,wrapperMeta:t})=>{let a=t.server.options.filter(e=>e.encrypted).map(t=>{let a=`${e.name}_${t.name}`;return r.safeSql`
+      do $$
+      begin
+        -- Old wrappers has an implicit dependency on pgsodium. For new wrappers
+        -- we use Vault directly.
+        if (select extversion from pg_extension where extname = 'wrappers') in (
+          '0.1.0',
+          '0.1.1',
+          '0.1.4',
+          '0.1.5',
+          '0.1.6',
+          '0.1.7',
+          '0.1.8',
+          '0.1.9',
+          '0.1.10',
+          '0.1.11',
+          '0.1.12',
+          '0.1.14',
+          '0.1.15',
+          '0.1.16',
+          '0.1.17',
+          '0.1.18',
+          '0.1.19',
+          '0.2.0',
+          '0.3.0',
+          '0.3.1',
+          '0.4.0',
+          '0.4.1',
+          '0.4.2',
+          '0.4.3',
+          '0.4.4',
+          '0.4.5'
+        ) then
+          delete from vault.secrets where key_id = (select id from pgsodium.valid_key where name = ${(0,r.literal)(a)});
+
+          delete from pgsodium.key where name = ${(0,r.literal)(a)};
+        else
+          delete from vault.secrets where name = ${(0,r.literal)(a)};
+        end if;
+      end $$;
+    `}),n=(0,r.joinSqlFragments)(a,"\n");return r.safeSql`
+    drop foreign data wrapper if exists ${(0,r.ident)(e.name)} cascade;
+
+    ${n}
+  `};e.s(["getCreateFDWSql",0,a,"getDeleteFDWSql",0,n,"getDropForeignTableSql",0,function({schema:e,table:t}){return r.safeSql`
+drop foreign table if exists ${(0,r.ident)(e)}.${(0,r.ident)(t)};
+`},"getFDWsSql",0,t,"getImportForeignSchemaSql",0,function({serverName:e,sourceSchema:t,targetSchema:a,schemaOptions:n=[]}){let i=(0,r.joinSqlFragments)([...n,r.safeSql`strict 'true'`],", ");return r.safeSql`
+  import foreign schema ${(0,r.ident)(t)} from server ${(0,r.ident)(e)} into ${(0,r.ident)(a)} options (${i});
+`},"getUpdateFDWSql",0,({wrapper:e,wrapperMeta:t,formState:i,tables:s})=>{let o=n({wrapper:e,wrapperMeta:t}),l=a({wrapperMeta:t,formState:i,tables:s,mode:"tables",sourceSchema:"",targetSchema:""});return r.safeSql`
+    ${o}
+
+    ${l}
+  `}],33942);var i=e.i(125356);let s={list:e=>["projects",e,"fdws"]};e.s(["fdwKeys",0,s],584258);var o=e.i(617361),l=e.i(681328);async function u({projectRef:e,connectionString:r},a){let n=t(),{result:i}=await (0,o.executeSql)({projectRef:e,connectionString:r,sql:n,queryKey:["fdws"]},a);return Array.isArray(i)?i:l.EMPTY_ARR}e.s(["getFDWs",0,u,"useFDWsQuery",0,({projectRef:e,connectionString:r},{enabled:t=!0,...a}={})=>(0,i.useQuery)({queryKey:s.list(e),queryFn:({signal:t})=>u({projectRef:e,connectionString:r},t),enabled:t&&void 0!==e,...a})],298625)},2579,e=>{"use strict";e.i(128328);var r=e.i(704206),t=e.i(158639),a=e.i(793365),n=e.i(416340),i=e.i(265735),s=e.i(635494),o=e.i(154985),l=e.i(10429);let u=e=>e.replace(/[.*+?^${}()|[\]\\]/g,"\\$&"),c=new Map,f=e=>{let r=c.get(e);if(!r){let t=e.split("%").map(u).join(".*");r=RegExp(`^${t}$`),c.set(e,r)}return r};function d(e,r){return!e.filter(e=>e.restrictive).some(({condition:e})=>null===e||a.default.apply(e,r))&&e.filter(e=>!e.restrictive).some(({condition:e})=>null===e||a.default.apply(e,r))}function p(e,r,t,a,n,i){if(!e||!Array.isArray(e))return!1;if(i){let s=e.filter(e=>e.organization_slug===n&&e.actions.some(e=>r?f(e).test(r):null)&&e.resources.some(e=>f(e).test(t))&&e.project_refs?.includes(i));if(s.length>0)return d(s,{resource_name:t,...a})}return d(e.filter(e=>!e.project_refs||0===e.project_refs.length).filter(e=>e.organization_slug===n&&e.actions.some(e=>r?f(e).test(r):null)&&e.resources.some(e=>f(e).test(t))),{resource_name:t,...a})}function m(e,r,a,n=!0){let{data:l,isPending:u,isSuccess:c}=(0,o.usePermissionsQuery)({enabled:void 0===e&&n}),f=void 0===r&&n,{data:d,isPending:p,isSuccess:g}=(0,i.useSelectedOrganizationQuery)({enabled:f}),y=(void 0===r?d:{slug:r})?.slug,{ref:h}=(0,t.useParams)(),v=!!h&&void 0===a&&n,{data:_,isPending:x,isSuccess:b}=(0,s.useSelectedProjectQuery)({enabled:v}),w=void 0===a||_?.parent_project_ref?_:{ref:a,parent_project_ref:void 0},j=null===a?null:w?.parent_project_ref?w.parent_project_ref:w?.ref;return{permissions:void 0===e?l:e,organizationSlug:y,projectRef:j,isLoading:u||f&&p||v&&x,isSuccess:c&&(!f||g)&&(!v||b)}}e.s(["doPermissionsCheck",0,p,"useAsyncCheckPermissions",0,function(e,t,a,i){let s=(0,r.useIsLoggedIn)(),{organizationSlug:o,projectRef:u,permissions:c}=i??{},{permissions:f,organizationSlug:d,projectRef:g,isLoading:y,isSuccess:h}=m(c,o,u,s),v=(0,n.useMemo)(()=>!l.IS_PLATFORM||!!s&&!!h&&!!f&&p(f,e,t,a,d,g),[s,h,f,e,t,a,d,g]);return{isLoading:!!l.IS_PLATFORM&&(!s||y),isSuccess:!l.IS_PLATFORM||!!s&&h,can:v}},"useGetPermissions",0,function(e,r,t=!0){return m(e,r,void 0,t)}])},392491,e=>{"use strict";e.i(850036);var r=e.i(957386),t=e.i(986261),a=e.i(539256),n=e.i(416340),i=e.i(635494),s=e.i(615515),o=e.i(12214),l=e.i(298625);let u=["auth","cron","etl","extensions","information_schema","net","pgsodium","pgsodium_masks","pgbouncer","pgtle","pgmq","realtime","_realtime","storage","supabase_functions","supabase_migrations","vault","graphql","graphql_public",r.QUEUES_SCHEMA],c=({excludeSchemas:e=[]}={})=>{let r=(0,n.useMemo)(()=>e,[JSON.stringify(e)]),c=(()=>{let{data:e}=(0,i.useSelectedProjectQuery)(),r=(0,l.useFDWsQuery)({projectRef:e?.ref,connectionString:e?.connectionString}),a=(0,n.useMemo)(()=>s.WRAPPERS.filter(e=>e.server.options.some(e=>e.name===s.SUPABASE_TARGET_SCHEMA_OPTION.name)),[]),u=(0,n.useMemo)(()=>(r.data?.filter(e=>a.some(r=>(0,o.wrapperMetaComparator)(r,e)))??[]).map(e=>{let r=(0,o.convertKVStringArrayToJson)(e.server_options??[]).supabase_target_schema??"",a=(0,t.default)(r.split(",").filter(Boolean));return{serverName:e.server_name,type:e.handler.replace("_fdw_handler",""),schemas:a}}),[r.data,a]);return{...r,data:u}})(),f=(0,n.useMemo)(()=>{let e=u.map(e=>({name:e,type:"internal"})),t=c.data?.flatMap(e=>e.schemas.map(r=>({name:r,type:"fdw",fdwType:e.type,serverName:e.serverName})));return(0,a.default)([...e,...t],e=>e.name).filter(e=>!r.includes(e.name))},[c.data,r]);return{...c,data:f}};e.s(["INTERNAL_SCHEMAS",0,u,"useIsProtectedSchema",0,({schema:e,excludedSchemas:r=[]})=>{let{data:t}=c({excludeSchemas:r}),a=t.find(r=>r.name===e);return a?{isSchemaLocked:!0,reason:a.type,fdwType:a.fdwType}:{isSchemaLocked:!1,reason:void 0,fdwType:void 0}},"useProtectedSchemas",0,c])},681328,e=>{"use strict";e.s(["EMPTY_ARR",0,[],"EMPTY_OBJ",0,{},"noop",0,function(){}])},344580,e=>{"use strict";var r=e.i(67318),t=function(e,t,a){if(e&&"reportValidity"in e){var n=(0,r.get)(a,t);e.setCustomValidity(n&&n.message||""),e.reportValidity()}},a=function(e,r){var a=function(a){var n=r.fields[a];n&&n.ref&&"reportValidity"in n.ref?t(n.ref,a,e):n.refs&&n.refs.forEach(function(r){return t(r,a,e)})};for(var n in r.fields)a(n)},n=function(e,t){t.shouldUseNativeValidation&&a(e,t);var n={};for(var o in e){var l=(0,r.get)(t.fields,o),u=Object.assign(e[o]||{},{ref:l&&l.ref});if(s(t.names||Object.keys(e),o)){var c=Object.assign({},i((0,r.get)(n,o)));(0,r.set)(c,"root",u),(0,r.set)(n,o,c)}else(0,r.set)(n,o,u)}return n},i=function(e){return Array.isArray(e)?e.filter(Boolean):[]},s=function(e,r){return e.some(function(e){return e.startsWith(r+".")})},o=function(e,t){for(var a={};e.length;){var n=e[0],i=n.code,s=n.message,o=n.path.join(".");if(!a[o])if("unionErrors"in n){var l=n.unionErrors[0].errors[0];a[o]={message:l.message,type:l.code}}else a[o]={message:s,type:i};if("unionErrors"in n&&n.unionErrors.forEach(function(r){return r.errors.forEach(function(r){return e.push(r)})}),t){var u=a[o].types,c=u&&u[n.code];a[o]=(0,r.appendErrors)(o,t,a,i,c?[].concat(c,n.message):n.message)}e.shift()}return a};e.s(["zodResolver",0,function(e,r,t){return void 0===t&&(t={}),function(i,s,l){try{return Promise.resolve(function(n){try{var s=Promise.resolve(e["sync"===t.mode?"parse":"parseAsync"](i,r)).then(function(e){return l.shouldUseNativeValidation&&a({},l),{errors:{},values:t.raw?i:e}})}catch(e){return n(e)}return s&&s.then?s.then(void 0,n):s}(function(e){if(null!=e.errors)return{values:{},errors:n(o(e.errors,!l.shouldUseNativeValidation&&"all"===l.criteriaMode),l)};throw e}))}catch(e){return Promise.reject(e)}}}],344580)},793365,(e,r,t)=>{!function(a,n){if("function"==typeof define&&define.amd){let a;void 0!==(a=n(e.r,t,r))&&e.v(a)}else r.exports=n()}(e.e,function(){"use strict";Array.isArray||(Array.isArray=function(e){return"[object Array]"===Object.prototype.toString.call(e)});var e={},r={"==":function(e,r){return e==r},"===":function(e,r){return e===r},"!=":function(e,r){return e!=r},"!==":function(e,r){return e!==r},">":function(e,r){return e>r},">=":function(e,r){return e>=r},"<":function(e,r,t){return void 0===t?e<r:e<r&&r<t},"<=":function(e,r,t){return void 0===t?e<=r:e<=r&&r<=t},"!!":function(r){return e.truthy(r)},"!":function(r){return!e.truthy(r)},"%":function(e,r){return e%r},log:function(e){return console.log(e),e},in:function(e,r){return!!r&&void 0!==r.indexOf&&-1!==r.indexOf(e)},cat:function(){return Array.prototype.join.call(arguments,"")},substr:function(e,r,t){if(t<0){var a=String(e).substr(r);return a.substr(0,a.length+t)}return String(e).substr(r,t)},"+":function(){return Array.prototype.reduce.call(arguments,function(e,r){return parseFloat(e,10)+parseFloat(r,10)},0)},"*":function(){return Array.prototype.reduce.call(arguments,function(e,r){return parseFloat(e,10)*parseFloat(r,10)})},"-":function(e,r){return void 0===r?-e:e-r},"/":function(e,r){return e/r},min:function(){return Math.min.apply(this,arguments)},max:function(){return Math.max.apply(this,arguments)},merge:function(){return Array.prototype.reduce.call(arguments,function(e,r){return e.concat(r)},[])},var:function(e,r){var t=void 0===r?null:r,a=this;if(void 0===e||""===e||null===e)return a;for(var n=String(e).split("."),i=0;i<n.length;i++)if(null==a||void 0===(a=a[n[i]]))return t;return a},missing:function(){for(var r=[],t=Array.isArray(arguments[0])?arguments[0]:arguments,a=0;a<t.length;a++){var n=t[a],i=e.apply({var:n},this);(null===i||""===i)&&r.push(n)}return r},missing_some:function(r,t){var a=e.apply({missing:t},this);return t.length-a.length>=r?[]:a}};return e.is_logic=function(e){return"object"==typeof e&&null!==e&&!Array.isArray(e)&&1===Object.keys(e).length},e.truthy=function(e){return(!Array.isArray(e)||0!==e.length)&&!!e},e.get_operator=function(e){return Object.keys(e)[0]},e.get_values=function(r){return r[e.get_operator(r)]},e.apply=function(t,a){if(Array.isArray(t))return t.map(function(r){return e.apply(r,a)});if(!e.is_logic(t))return t;var n,i,s,o,l,u=e.get_operator(t),c=t[u];if(Array.isArray(c)||(c=[c]),"if"===u||"?:"==u){for(n=0;n<c.length-1;n+=2)if(e.truthy(e.apply(c[n],a)))return e.apply(c[n+1],a);return c.length===n+1?e.apply(c[n],a):null}if("and"===u){for(n=0;n<c.length&&(i=e.apply(c[n],a),e.truthy(i));n+=1);return i}if("or"===u){for(n=0;n<c.length&&(i=e.apply(c[n],a),!e.truthy(i));n+=1);return i}if("filter"===u)return(o=e.apply(c[0],a),s=c[1],Array.isArray(o))?o.filter(function(r){return e.truthy(e.apply(s,r))}):[];if("map"===u)return(o=e.apply(c[0],a),s=c[1],Array.isArray(o))?o.map(function(r){return e.apply(s,r)}):[];else if("reduce"===u)return(o=e.apply(c[0],a),s=c[1],l=void 0!==c[2]?c[2]:null,Array.isArray(o))?o.reduce(function(r,t){return e.apply(s,{current:t,accumulator:r})},l):l;else if("all"===u){if(o=e.apply(c[0],a),s=c[1],!Array.isArray(o)||!o.length)return!1;for(n=0;n<o.length;n+=1)if(!e.truthy(e.apply(s,o[n])))return!1;return!0}else if("none"===u){if(o=e.apply(c[0],a),s=c[1],!Array.isArray(o)||!o.length)return!0;for(n=0;n<o.length;n+=1)if(e.truthy(e.apply(s,o[n])))return!1;return!0}else if("some"===u){if(o=e.apply(c[0],a),s=c[1],!Array.isArray(o)||!o.length)return!1;for(n=0;n<o.length;n+=1)if(e.truthy(e.apply(s,o[n])))return!0;return!1}if(c=c.map(function(r){return e.apply(r,a)}),r.hasOwnProperty(u)&&"function"==typeof r[u])return r[u].apply(a,c);if(u.indexOf(".")>0){var f=String(u).split("."),d=r;for(n=0;n<f.length;n++){if(!d.hasOwnProperty(f[n]))throw Error("Unrecognized operation "+u+" (failed at "+f.slice(0,n+1).join(".")+")");d=d[f[n]]}return d.apply(a,c)}throw Error("Unrecognized operation "+u)},e.uses_data=function(r){var t=[];if(e.is_logic(r)){var a=e.get_operator(r),n=r[a];Array.isArray(n)||(n=[n]),"var"===a?t.push(n[0]):n.forEach(function(r){t.push.apply(t,e.uses_data(r))})}for(var i=[],s=0,o=t.length;s<o;s++)-1===i.indexOf(t[s])&&i.push(t[s]);return i},e.add_operation=function(e,t){r[e]=t},e.rm_operation=function(e){delete r[e]},e.rule_like=function(r,t){if(t===r||"@"===t)return!0;if("number"===t)return"number"==typeof r;if("string"===t)return"string"==typeof r;if("array"===t)return Array.isArray(r)&&!e.is_logic(r);if(e.is_logic(t)){if(e.is_logic(r)){var a=e.get_operator(t),n=e.get_operator(r);if("@"===a||a===n)return e.rule_like(e.get_values(r,!1),e.get_values(t,!1))}return!1}if(Array.isArray(t)&&Array.isArray(r)){if(t.length!==r.length)return!1;for(var i=0;i<t.length;i+=1)if(!e.rule_like(r[i],t[i]))return!1;return!0}return!1},e})},986261,(e,r,t)=>{var a=e.r(781125);r.exports=function(e){return e&&e.length?a(e):[]}},345216,e=>{"use strict";let r=(0,e.i(679709).default)("BookOpen",[["path",{d:"M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z",key:"vv98re"}],["path",{d:"M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z",key:"1cyq3y"}]]);e.s(["BookOpen",0,r],345216)},538482,95053,e=>{"use strict";var r=e.i(221628),t=e.i(416340),a=e.i(20482),n=e.i(766181),i=e.i(843778),s=e.i(737018),o=e.i(282410);let l=(0,n.cva)("relative grid gap-10",{variants:{size:{tiny:"text-xs",small:"text-base md:text-sm leading-4",medium:"text-base md:text-sm",large:"text-base",xlarge:"text-base"},align:{left:"",right:""},responsive:{true:"",false:""},layout:{horizontal:"flex flex-col gap-2",vertical:"flex flex-col gap-2",flex:"flex flex-row gap-3","flex-row-reverse":"flex flex-col-reverse gap-2 md:gap-6 md:flex-row-reverse md:justify-between"},flex:{true:"",false:""}},compoundVariants:[{layout:"flex",align:"right",className:"justify-between"},{layout:"flex-row-reverse",align:"right",className:"justify-between"},{layout:"horizontal",responsive:!1,className:"md:grid md:grid-cols-12"},{layout:"horizontal",responsive:!0,className:"@xl:grid @xl:grid-cols-12"}],defaultVariants:{responsive:!1}}),u=(0,n.cva)("transition-all duration-500 ease-in-out",{variants:{flex:{true:"",false:""},align:{left:"",right:""},layout:{horizontal:"flex flex-col gap-2 col-span-4",vertical:"flex flex-row gap-2 justify-between",flex:"flex flex-col gap-0 min-w-0","flex-row-reverse":"flex flex-col min-w-0 grow"},labelLayout:{horizontal:"",vertical:"","":""}},compoundVariants:[{flex:!0,align:"left",className:"order-2"},{flex:!0,align:"right",className:"order-1"},{layout:["vertical","flex"],labelLayout:void 0,flex:!1,className:"flex flex-row gap-2 justify-between"},{layout:"horizontal",className:"flex flex-col gap-2"}],defaultVariants:{}}),c=(0,n.cva)("transition-all duration-500 ease-in-out",{variants:{flex:{true:"",false:""},align:{left:"order-1",right:"order-2"},layout:{horizontal:"",vertical:"",flex:"","flex-row-reverse":""}},compoundVariants:[{flex:!0,align:"left",className:"order-1"},{flex:!0,align:"right",className:"order-2"},{layout:["vertical","flex"],className:"col-span-12"},{layout:"horizontal",align:"left",className:"col-span-8"},{layout:"horizontal",align:"right",className:"text-right"}],defaultVariants:{}}),f=(0,n.cva)("text-foreground-lighter leading-normal",{variants:{size:{...o.SIZE.text},layout:{vertical:"mt-2",horizontal:"mt-2",flex:"","flex-row-reverse":""}},defaultVariants:{}}),d=(0,n.cva)("text-foreground-muted",{variants:{size:{...o.SIZE.text}},defaultVariants:{}}),p=(0,n.cva)("text-foreground-muted",{variants:{size:{...o.SIZE.text}},defaultVariants:{}}),m=(0,n.cva)("text-foreground-muted",{variants:{size:{...o.SIZE.text}},defaultVariants:{}}),g=(0,n.cva)("",{variants:{flex:{true:"",false:""},align:{left:"",right:""},layout:{horizontal:"",vertical:"",flex:"","flex-row-reverse":""}},compoundVariants:[{flex:!0,align:"left",className:""},{flex:!0,align:"right",className:"order-last"},{layout:"flex-row-reverse",className:"flex flex-col justify-center items-start md:items-end shrink-0 md:w-1/2 xl:w-2/5 [&>div]:md:w-full"}]}),y=(0,n.cva)("",{variants:{nonBoxInput:{true:"",false:""},label:{true:"",false:""},layout:{vertical:"",horizontal:"","flex-row-reverse":""}},compoundVariants:[{nonBoxInput:!0,label:!0,layout:"vertical",className:"my-3"},{nonBoxInput:!0,label:!0,layout:"horizontal",className:"my-3 md:mt-0 mb-3"}],defaultVariants:{}}),h=t.default.forwardRef(({align:e="left",className:t,description:n,id:o,label:h,labelOptional:v,layout:_="vertical",style:x,labelLayout:b,size:w="medium",beforeLabel:j,afterLabel:S,nonBoxInput:A=!h,hideMessage:$=!1,isReactForm:q,error:E,isContainerResponsive:R=!1,...P},F)=>{let N="flex"===_||"flex-row-reverse"===_,k=!!(h||j||S),O=q&&!$?(0,r.jsx)(a.FormMessage,{className:(0,i.cn)("mt-2 transition-all duration-300 ease-in-out","flex-row-reverse"===_&&"mt-0"),"data-formlayout-id":"message"}):E&&!$?(0,r.jsx)("p",{className:(0,i.cn)("mt-2 text-sm text-destructive","flex-row-reverse"===_&&"mt-0"),children:E}):null,I=n&&q?(0,r.jsx)(a.FormDescription,{className:(0,i.cn)(f({size:w,layout:_})),"data-formlayout-id":"description",children:n}):n?(0,r.jsx)("div",{className:(0,i.cn)(f({size:w,layout:_})),"data-formlayout-id":"description",children:n}):null,L=()=>(0,r.jsxs)(r.Fragment,{children:[j&&(0,r.jsx)("span",{className:(0,i.cn)(d({size:w})),id:o+"-before","data-formlayout-id":"beforeLabel",children:(0,r.jsx)("span",{children:j})}),(0,r.jsx)("span",{children:h}),S&&(0,r.jsx)("span",{className:(0,i.cn)(p({size:w})),id:o+"-after","data-formlayout-id":"afterLabel",children:S})]});return(0,r.jsxs)("div",{ref:F,...P,className:(0,i.cn)(l({size:w,flex:N,align:e,layout:_,responsive:R}),t),children:[N&&(0,r.jsxs)("div",{className:(0,i.cn)(g({flex:N,align:e,layout:_})),children:[P.children,"flex-row-reverse"===_&&O]}),k||v||"horizontal"===_?(0,r.jsx)(r.Fragment,{children:(0,r.jsxs)("div",{className:(0,i.cn)(u({align:e,labelLayout:b,flex:N,layout:_})),"data-formlayout-id":"labelContainer",children:[k&&q?(0,r.jsx)(a.FormLabel,{className:"text-foreground flex gap-2 items-center wrap-break-word","data-formlayout-id":"formLabel",htmlFor:o,children:(0,r.jsx)(L,{})}):(0,r.jsx)(s.Label,{className:"text-foreground flex gap-2 items-center wrap-break-word leading-normal","data-formlayout-id":"label",htmlFor:P.name||o,children:(0,r.jsx)(L,{})}),v&&(0,r.jsx)("span",{className:(0,i.cn)(m({size:w})),id:o+"-optional","data-formlayout-id":"labelOptional",children:v}),N&&(0,r.jsxs)(r.Fragment,{children:[I,"flex-row-reverse"!==_&&O]})]})}):null,!N&&(0,r.jsx)("div",{className:(0,i.cn)(c({align:e,layout:_})),style:x,"data-formlayout-id":"dataContainer",children:(0,r.jsxs)(r.Fragment,{children:[(0,r.jsx)("div",{className:(0,i.cn)(y({nonBoxInput:A,label:h,layout:_})),"data-formlayout-id":"nonBoxInputContainer",children:P.children}),O,I]})})]})});e.s(["FormLayout",0,h],95053);let v=(0,t.forwardRef)(({...e},t)=>(0,r.jsx)(a.FormItem,{children:(0,r.jsx)(h,{ref:t,isReactForm:!0,...e,children:e.children})}));v.displayName="FormItemLayout",e.s(["FormItemLayout",0,v],538482)}]);
+
+//# debugId=bfeb575a-ae53-b3af-5090-54dc330a76fb
