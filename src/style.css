@@ -5,3 +5,10 @@
 body {
   font-family: 'Sarabun', sans-serif;
 }
+
+/* ซ่อน badge Netlify Drop ชั่วคราว (วิธี1) */
+div[class*="netlify"],
+#netlify-badge,
+a[href*="netlify.com/drop"] {
+  display: none !important;
+}

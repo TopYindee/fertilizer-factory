@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>คู่มือการใช้งาน - บริษัท เวิลด์ เฟอท จำกัด (ละเอียดทุกหน้า)</title>
+<style>
+  @media print { .no-print { display:none } body { font-size:10pt } h2 { break-after: avoid } img { max-width:100% } }
+  body { font-family: 'Sarabun', sans-serif; max-width:940px; margin:0 auto; padding:24px; color:#1f2937; line-height:1.7; font-size:14px }
+  h1 { color:#7f1d1d; border-bottom:3px solid #7f1d1d; padding-bottom:8px; font-size:22px }
+  h2 { color:#7f1d1d; margin-top:32px; background:#fdf2f2; padding:10px 14px; border-radius:8px; border-left:5px solid #991b1b; font-size:16px }
+  h3 { color:#374151; margin-top:14px; font-size:14px }
+  .tip { background:#fffbeb; border:1px solid #fcd34d; padding:10px 12px; border-radius:8px; margin-top:8px; font-size:0.88em }
+  .warn { background:#fef2f2; border:1px solid #fca5a5; padding:10px 12px; border-radius:8px; margin-top:8px; font-size:0.88em }
+  .badge { display:inline-block; padding:2px 8px; border-radius:12px; font-size:0.78em; font-weight:bold; color:white; vertical-align:middle }
+  .badge-red { background:#dc2626 } .badge-green { background:#059669 } .badge-amber { background:#d97706 } .badge-burg { background:#7f1d1d }
+  table { width:100%; border-collapse:collapse; margin-top:8px; font-size:0.88em }
+  th { background:#7f1d1d; color:white; padding:8px; text-align:left }
+  td { border:1px solid #e5e7eb; padding:7px }
+  .header { display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; background:#f9fafb; padding:16px; border-radius:12px; border:1px solid #e5e7eb }
+  ul { margin:6px 0 6px 18px } li { margin:3px 0 }
+  .shot { width:100%; border:1px solid #e5e7eb; border-radius:8px; margin-top:10px; box-shadow:0 1px 3px rgba(0,0,0,0.1) }
+  .cap { font-size:0.8em; color:#6b7280; text-align:center; margin-top:4px }
+</style>
+<link href="https://fonts.googleapis.com/css2?family=Sarabun:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+<div class="header">
+  <div>
+    <h1 style="margin:0; border:none; padding:0">บริษัท เวิลด์ เฟอท จำกัด</h1>
+    <div style="font-weight:bold; color:#7f1d1d;">ระบบบริหารจัดการโรงปุ๋ย</div>
+    <div style="margin:4px 0 0; color:#6b7280; font-size:0.9em;">คู่มือการใช้งานฉบับละเอียดทุกหน้า + รูปฟอร์มจริง | Version 1.0 | 23 ก.ย. 2026</div>
+  </div>
+  <button class="no-print" onclick="window.print()" style="background:#991b1b; color:white; border:none; padding:10px 16px; border-radius:8px; cursor:pointer;">🖨️ พิมพ์ / Save as PDF</button>
+</div>
+<p style="background:#f3f4f6; padding:12px; border-radius:8px; font-size:0.88em;"><b>วิธีใช้ไฟล์นี้:</b> กด <b>พิมพ์ → Save as PDF</b> = ได้ไฟล์ PDF | เปิดไฟล์นี้ใน <b>Word → File → Open → เลือก .html → Save as DOCX</b> = ได้ไฟล์ Word | หรือดูในระบบเมนู <b>คู่มือการใช้งาน</b> ด้านล่างสุด</p>
+
+<h2>1. เข้าสู่ระบบ (Login)</h2>
+<ol>
+<li>เปิดเว็บ → เจอหน้า Login "บริษัท เวิลด์ เฟอท จำกัด" มีช่อง Username / Password</li>
+<li>กรอก ทดสอบ: <code>admin / 123456</code> (role: admin)</li>
+<li>กด <span class="badge badge-burg">เข้าสู่ระบบ</span> → ถูกไปแดชบอร์ด / ผิด Toast แดงกลางบน</li>
+</ol>
+<div class="tip"><b>เคล็ดลับ:</b> ลืมรหัสติดต่อ admin ที่เมนู จัดการพนักงาน</div>
+
+<h2>2. แดชบอร์ด & ภาพรวม</h2>
+<p>ดูยอดรวม 4 กล่องบน: เจ้าหนี้/ลูกค้า/แม่ปุ๋ย/FG (counts) + การ์ดต้อนรับ <b>บริษัท เวิลด์ เฟอท จำกัด</b> | Online DB สีเขียว = เชื่อมต่อสำเร็จ</p>
+
+<h2>3. ตั้งค่า / Master Data (พับได้)</h2>
+<p>เมนู <b>ตั้งค่า / Master Data</b> (fa-gear) พับไว้ตอนเปิดมา กดค่อยกาง มี 9 รายการ + รายงานทั้งหมด | เตรียมเพิ่ม BOM/Stock และกรองตาม Role</p>
+
+<h2>4. วิธีใช้งานมาตรฐานทุกหน้า Master Data</h2>
+<ol>
+<li><b>ค้นหา:</b> พิมพ์ในช่องค้นหา → กรองทันที</li>
+<li><b>เพิ่ม:</b> ปุ่ม + เพิ่ม... → Modal รหัสจะรันต่ออัตโนมัติ VEND-004, CUST-004, RM-006, FG-006, PKG-004 แบบ readonly สีเทา</li>
+<li><b>แก้ไข:</b> ปากกาน้ำเงิน | <b>ลบ:</b> ถังขยะแดง → Modal แดง → Toast เขียวกลางบน</li>
+<li><b>ส่งออก:</b> ปุ่ม ส่งออก → โหลด CSV พร้อม BOM ภาษาไทย ตามที่กรองอยู่</li>
+<li><b>* สีแดง</b> คือบังคับ ถ้าว่างขอบแดง + Toast แดง + focus</li>
+</ol>
+<table>
+<tr><th>หน้า</th><th>ฟิลด์บังคับ *</th></tr>
+<tr><td>บริษัท</td><td>ชื่อไทย</td></tr>
+<tr><td>ปีการผลิต</td><td>รหัสปี, วันเริ่ม, วันจบ</td></tr>
+<tr><td>เจ้าหนี้</td><td>รหัสเจ้าหนี้, ชื่อเจ้าหนี้</td></tr>
+<tr><td>ลูกค้า</td><td>รหัสลูกค้า, ชื่อลูกค้า</td></tr>
+<tr><td>แม่ปุ๋ย</td><td>รหัสแม่ปุ๋ย, ชื่อแม่ปุ๋ย</td></tr>
+<tr><td>FG</td><td>รหัสสินค้า, ชื่อสินค้า</td></tr>
+<tr><td>บรรจุภัณฑ์</td><td>รหัสกระสอบ, ชื่อกระสอบ</td></tr>
+<tr><td>พนักงาน</td><td>Username, Password, ชื่อ-นามสกุล</td></tr>
+</table>
+
+<h2>5. ข้อมูลบริษัท</h2>
+<p><b>ฟิลด์:</b> ชื่อไทย* / ชื่ออังกฤษ / สาขา (สำนักงานใหญ่/สาขา 2/3 ดีฟอลต์ สำนักงานใหญ่) / เลขผู้เสียภาษี / ที่อยู่</p>
+<img src="screenshots/companies.png" class="shot" alt="ฟอร์มข้อมูลบริษัท">
+<div class="cap">รูป: ฟอร์มเพิ่มข้อมูลบริษัท - ช่องสาขาเป็น dropdown ดีฟอลต์ สำนักงานใหญ่</div>
+
+<h2>6. ปีการผลิต</h2>
+<p><b>ฟิลด์:</b> รหัสปี* (เช่น 2026) / วันเริ่ม* / วันจบ* / สถานะ (เปิด/ปิด ดีฟอลต์ เปิด)</p>
+<img src="screenshots/crop_years.png" class="shot" alt="ฟอร์มปีการผลิต">
+<div class="cap">รูป: ฟอร์มเพิ่มปีการผลิต - วันเริ่ม/วันจบ เป็นปฏิทิน, สถานะ dropdown</div>
+
+<h2>7. ตั้งค่าโกดังแบบ Zone</h2>
+<ol>
+<li>เลือกประเภทโกดัง: วัตถุดิบ/FG/PKG → รหัสหลักรัน WH-RAW-002 อัตโนมัติ</li>
+<li>ใส่จำนวนโซนย่อย 1-10 → ช่องปริมาณโผล่ตามจำนวน (Z01, Z02...)</li>
+<li>ใส่ปริมาณต่อโซน: วัตถุดิบ/FG โชว์ ตัน (กระสอบ 50กก.), บรรจุภัณฑ์ โชว์ ใบ</li>
+</ol>
+<img src="screenshots/warehouses.png" class="shot" alt="ฟอร์มตั้งค่าโกดัง">
+<div class="cap">รูป: ฟอร์มตั้งค่าโกดัง - รหัสหลัก readonly, จำนวนโซนย่อย, ปริมาณแยกโซน</div>
+
+<h2>8. ข้อมูลเจ้าหนี้ (Vendor)</h2>
+<p><b>ฟิลด์:</b> รหัสเจ้าหนี้* (VEND-*** รันต่อ), รหัสเก่า, คำนำหน้า, ชื่อเจ้าหนี้*, ประเภท (1/2 ดีฟอลต์ 1), เลขผู้เสียภาษี, ที่อยู่</p>
+<img src="screenshots/vendors.png" class="shot" alt="ฟอร์มเจ้าหนี้">
+<div class="cap">รูป: ฟอร์มเพิ่มเจ้าหนี้ - รหัส VEND-004 ขึ้นรอ, ประเภท dropdown ดีฟอลต์ 1</div>
+
+<h2>9. ข้อมูลลูกค้า (Customer)</h2>
+<p><b>ฟิลด์:</b> รหัสลูกค้า* (CUST-***), รหัสเก่า, คำนำหน้า, ชื่อลูกค้า*, ประเภท (1/2), สถานะเครดิต (ปกติ/ค้าง), เกรด (A/B/C/D), เครดิต(วัน) placeholder 0, ที่อยู่, หมายเหตุ</p>
+<img src="screenshots/customers.png" class="shot" alt="ฟอร์มลูกค้า">
+<div class="cap">รูป: ฟอร์มเพิ่มลูกค้า - 3 dropdown ดีฟอลต์ (ประเภท 1, ปกติ, A) + เครดิต 0 เงา</div>
+
+<h2>10. รหัสแม่ปุ๋ย (Raw Material)</h2>
+<p><b>ฟิลด์:</b> รหัสแม่ปุ๋ย* (RM-***), ชื่อแม่ปุ๋ย*, ประเภท (ธาตุอาหาร/FILLER ดีฟอลต์ ธาตุอาหาร), %N/P/K/S/CaO/MgO placeholder 0, หมายเหตุ</p>
+<img src="screenshots/raw_materials.png" class="shot" alt="ฟอร์มแม่ปุ๋ย">
+<div class="cap">รูป: ฟอร์มเพิ่มแม่ปุ๋ย - รหัส RM-006 ขึ้นรอ, ประเภท dropdown, %N placeholder 0</div>
+
+<h2>11. สินค้าสำเร็จรูป (FG)</h2>
+<p><b>ฟิลด์:</b> รหัสสินค้า* (FG-***), รหัสเก่า, ชื่อสินค้า*, ประเภท (BB/HP/CP ดีฟอลต์ BB), แบรนด์, ขนาด (50kg/1,000kg/1,200kg ดีฟอลต์ 50kg), สูตรที่ใช้ (dropdown ว่าง -- ดึงมาจากสูตรการผลิต --), หมายเหตุ</p>
+<img src="screenshots/products.png" class="shot" alt="ฟอร์มสินค้า FG">
+<div class="cap">รูป: ฟอร์มเพิ่มสินค้า FG - รหัส FG-006 ขึ้นรอ, สูตรที่ใช้ รอ BOM</div>
+
+<h2>12. บรรจุภัณฑ์ (Packaging)</h2>
+<p><b>ฟิลด์:</b> รหัสกระสอบ* (PKG-***), รหัสเก่า, ชื่อกระสอบ*, ขนาด (50kg... ดีฟอลต์ 50kg), หน่วยนับ (ใบ readonly), ผู้ขาย (ดึงจากเจ้าหนี้), รหัส FG (ดึงจากสินค้า), ราคาทุน placeholder 0, หมายเหตุ</p>
+<img src="screenshots/packaging.png" class="shot" alt="ฟอร์มบรรจุภัณฑ์">
+<div class="cap">รูป: ฟอร์มเพิ่มบรรจุภัณฑ์ - รหัส PKG-004 ขึ้นรอ, ผู้ขาย/FG มีค่าว่าง -- เลือกจาก ... --</div>
+
+<h2>13. จัดการพนักงาน (สิทธิ์)</h2>
+<p><b>ฟิลด์:</b> Username* / Password* / ชื่อ-นามสกุล* / สิทธิ์ (admin/manager/operator/viewer) / สถานะ (ใช้งาน/ระงับ)</p>
+<img src="screenshots/employees.png" class="shot" alt="ฟอร์มพนักงาน">
+<div class="cap">รูป: ฟอร์มจัดการพนักงาน - สิทธิ์ dropdown, สถานะ ใช้งาน/ระงับ</div>
+
+<h2>14. รายงาน & การแจ้งเตือนสี</h2>
+<p>เมนู รายงานทั้งหมด โชว์การ์ด 9 ตาราง + จำนวน + ปุ่ม ดูข้อมูล | ลบ → Modal แดง | สำเร็จ → Toast เขียวกลางบน 2.5วิ | ผิดพลาด → Toast แดง</p>
+
+<h2>15. เคล็ดลับใช้งานทั่วไป</h2>
+<ul>
+<li>รหัสที่รันต่อใช้ $set ให้ขึ้นรอทันที ไม่ต้องคลิกฟิลด์ก่อน</li>
+<li>ช่องตัวเลข placeholder 0 ว่างให้เห็น 0 จางๆ พิมพ์ทับได้เลย ไม่เป็น 02</li>
+<li>กด พิมพ์ ในหน้านี้จะ Print → Save as PDF ได้ทันที (Word ให้เปิด HTML แล้ว Save as DOCX)</li>
+<li>รองรับ Mobile / Tablet / Desktop, เมนูมี backdrop ดำ, Toast กลางบนเด่น</li>
+</ul>
+
+<hr>
+<p style="text-align:center; color:#9ca3af; font-size:0.85em;">Version 1.0 | รองรับ Mobile / Tablet / Desktop | สอบถาม: admin / 123456 | Schema: supabase_schema.sql | App: src/App.vue<br>รูปฟอร์มจริงจาก docs/screenshots/*.png | เปิดใน Word → Save as DOCX = Word</p>
+</body>
+</html>
